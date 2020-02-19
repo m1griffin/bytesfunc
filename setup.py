@@ -12,9 +12,32 @@ from setuptools import setup, Extension
 
 # This is a list of the files and all the dependencies.
 extensions = [
+	('eq', ['src/eq.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('ge', ['src/ge.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('gt', ['src/gt.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('le', ['src/le.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('lt', ['src/lt.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('ne', ['src/ne.c', 'src/bytesparams_comp.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+
+	('bmax', ['src/bmax.c', 'src/bytesparams_valoutsimd.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('bmin', ['src/bmin.c', 'src/bytesparams_valoutsimd.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('bsum', ['src/bsum.c', 'src/bytesparams_bsum.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+
+	('ball', ['src/ball.c', 'src/bytesparams_allany.c', 'src/bytesparams_base.c', 'src/arrayops.c', 'src/byteserrs.c']),
+	('bany', ['src/bany.c', 'src/bytesparams_allany.c', 'src/bytesparams_base.c', 'src/arrayops.c', 'src/byteserrs.c']),
+	('findindex', ['src/findindex.c', 'src/bytesparams_allany.c', 'src/bytesparams_base.c', 'src/arrayops.c', 'src/byteserrs.c']),
+
+	('and_', ['src/and_.c', 'src/bytesparams_two.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('or_', ['src/or_.c', 'src/bytesparams_two.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('xor', ['src/xor.c', 'src/bytesparams_two.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('lshift', ['src/lshift.c', 'src/bytesparams_two.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+	('rshift', ['src/rshift.c', 'src/bytesparams_two.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+
+	('invert', ['src/invert.c', 'src/bytesparams_invert.c', 'src/bytesparams_base.c', 'src/byteserrs.c']),
+
+	('simdsupport', ['src/simdsupport.c']),
 
 ]
-
 
 # Detect the compiler used for Python. We will assume that this same compiler is
 # being used to compile our own modules (since the two are supposed to match).
@@ -48,7 +71,7 @@ with open('README.rst') as longdescdata:
 
 
 setup(name = 'bytesfunc', 
-	version = '0.0.0',
+	version = '1.0.0',
 	description = 'Fast bytes and bytearray processing functions',
 	long_description = long_description,
 	url = 'https://github.com/m1griffin/bytesfunc',
@@ -56,7 +79,7 @@ setup(name = 'bytesfunc',
 	author_email = 'm12.griffin@gmail.com',
 	license = 'Apache License V2.0',
 	classifiers = [
-		'Development Status :: 1 - Planning',
+		'Development Status :: 5 - Production/Stable',
 		'Intended Audience :: Developers',
 		'Topic :: Scientific/Engineering :: Mathematics',
 		'License :: OSI Approved :: Apache Software License',

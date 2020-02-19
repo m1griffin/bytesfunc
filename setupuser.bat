@@ -29,10 +29,10 @@ REM path which will change from time to time and need to be updated.
 SET PATH=c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\bin\Hostx64\x64;c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\lib\x64;c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.15.26726\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\SDK\ScopeCppSDK\SDK\include\ucrt;%PATH%
 
 echo Running bytesfunc build as a local install. 
-echo Compiler messages are redirected to af_compile_results.txt
+echo Compiler messages are redirected to bf_compile_results.txt
 
 ECHO Running the setup.py
 
-setup.py install --user 2> af_compile_results.txt
+setup.py install --user 2> bf_compile_results.txt
 
-echo Setup complete. Check af_compile_results.txt for errors.
+echo Setup complete. Check bf_compile_results.txt for errors.
