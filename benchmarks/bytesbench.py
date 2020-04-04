@@ -5,7 +5,7 @@
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      17-Feb-2020.
+# Ver:      03-Apr-2020.
 #
 ###############################################################################
 #
@@ -54,11 +54,15 @@ RELCOLWIDTH=5
 
 SIMDFuncs_x86 = ['and_', 'ball', 'bany', 'bmax', 'bmin', 'eq', 'findindex', 'ge', 'gt', 'invert', 'le', 'lt', 'ne', 'or_', 'xor']
 
-SIMDFuncs_arm = ['and_', 'ball', 'bany', 'bmax', 'bmin', 'eq', 'findindex', 'ge', 'gt', 'invert', 'le', 'lshift', 'lt', 'ne', 'or_', 'rshift', 'xor']
+SIMDFuncs_armv7 = ['and_', 'ball', 'bany', 'bmax', 'bmin', 'eq', 'findindex', 'ge', 'gt', 'invert', 'le', 'lshift', 'lt', 'ne', 'or_', 'rshift', 'xor']
+
+SIMDFuncs_armv8 = ['and_', 'ball', 'bany', 'bmax', 'bmin', 'eq', 'findindex', 'ge', 'gt', 'invert', 'le', 'lshift', 'lt', 'ne', 'or_', 'rshift', 'xor']
 
 # Detect the hardware platform, and assign the correct platform data table to it.
 if '-armv' in platform.platform():
-	SIMDFuncs = SIMDFuncs_arm
+	SIMDFuncs = SIMDFuncs_armv7
+elif '-aarch64' in platform.platform():
+	SIMDFuncs = SIMDFuncs_armv8
 else:
 	SIMDFuncs = SIMDFuncs_x86
 
@@ -4966,12 +4970,16 @@ else:
 
 # Write out the platform data to keep track of what platform the test was run on.
 def WritePlatformSignature(f):
+	f.write('BytesFunc Benchmarks.\n')
 	# test was run on.
 	# 'Linux'
 	f.write('Operating System: ' + platform.system() + '\n')
 
 	# 'Linux-4.4.0-79-generic-x86_64-with-Ubuntu-16.04-xenial'
 	f.write('Platform: ' + platform.platform() + '\n')
+
+	# 'x86_64'
+	f.write('Machine: ' + platform.machine() + '\n')
 
 	# ('64bit', 'ELF')
 	f.write('Word size: ' + platform.architecture()[0] + '\n')
@@ -5029,7 +5037,7 @@ for benchcode, funcname in BenchClasses:
 
 # Print the results
 
-with open('bytesbenchmarkdata.txt', 'w') as f:
+with open('bf_benchmarkdata.txt', 'w') as f:
 
 	f.write(time.ctime() + '\n')
 

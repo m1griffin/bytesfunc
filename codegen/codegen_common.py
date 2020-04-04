@@ -305,7 +305,7 @@ if __name__ == '__main__':
 		# not complain about unknown options.
 		sys.argv.remove('-l')
 
-		with open('%(modulename)s_unittest.txt', 'a') as f:
+		with open('%(testprefix)s_unittest.txt', 'a') as f:
 			f.write('\\n\\n')
 			f.write('%(funcname)s\\n\\n')
 			trun = unittest.TextTestRunner(f)
@@ -418,7 +418,8 @@ _COutputHeaderOptions = {
 	'arithcalcs' : '#include "arithcalcs.h"', 
 	'simddefs' : '#include "simddefs.h"', 
 	'simdmacromsg' : '#ifdef AF_HASSIMD_X86\n#include "%(funcname)s_simd_x86.h"\n#endif',
-	'simdmacromsg_arm' : '#ifdef AF_HASSIMD_ARM\n#include "arm_neon.h"\n#endif',
+	'simdmacromsg_armv7' : '#ifdef AF_HASSIMD_ARMv7_32BIT\n#include "arm_neon.h"\n#endif',
+	'simdmacromsg_armv8' : '#ifdef AF_HASSIMD_ARM_AARCH64\n#include "arm_neon.h"\n#endif',
 	'acalcvm_ops' : '#include "acalcvm_ops.h"',
 	'guardbands' : '#include "convguardbands.h"',
 	'arrayfunc' : '#include "arrayfunc.h"',

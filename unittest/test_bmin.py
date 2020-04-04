@@ -5,11 +5,11 @@
 # Purpose:  bytesfunc unit test.
 # Language: Python 3.4
 # Date:     01-Nov-2019.
-# Ver:      06-Nov-2019.
+# Ver:      25-Feb-2020.
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -1467,7 +1467,7 @@ if __name__ == '__main__':
 		# not complain about unknown options.
 		sys.argv.remove('-l')
 
-		with open('bytesfunc_unittest.txt', 'a') as f:
+		with open('bf_unittest.txt', 'a') as f:
 			f.write('\n\n')
 			f.write('bmin\n\n')
 			trun = unittest.TextTestRunner(f)

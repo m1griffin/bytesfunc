@@ -247,5 +247,5 @@ with open(filename, 'w') as f:
 	#####
 	# The code which initiates the unit test.
 
-	f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'modulename' : modulename})
+	f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'testprefix' : 'bf'})
 

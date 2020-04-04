@@ -1076,7 +1076,7 @@ for funcname in pyoperator:
 		#####
 
 
-		f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'modulename' : modulename})
+		f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'testprefix' : 'bf'})
 
 # ==============================================================================
 

@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 1.0.0 for 2020-02-19
+:Version: 2.0.0 for 2020-04-02
 :Copyright: 2014 - 2020
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.5 or later
@@ -875,19 +875,32 @@ However, non-SIMD functions will still be much faster standard Python code. See
 the performance benchmarks to see what the relative speed differences are. 
 
 
-Raspberry Pi 3 versus 4
------------------------
+Raspberry Pi 32 versus 64 bit
+-----------------------------
 
-The Raspberry Pi uses an ARM CPU. The Raspberry Pi 3 has an ARMv7 CPU, which
-supports NEON SIMD with 64 bit vectors. The Raspberry Pi 4 has an ARMv8 CPU,
-which supports NEON SIMD with 128 bit vectors.
+The Raspberry Pi uses an ARM CPU. This can operate in 32 or 64 bit mode. When
+in 32 bit mode, the Raspberry Pi 3 operates in ARMv7 mode. This has 64 bit ARM
+NEON SIMD vectors.
 
-This means that the SIMD instructions for the RPi 3 are different from those
-of the RPi 4 (64 bit versus 128 bit). Due to hardware availability for testing,
-SIMD support for ARMv8 is not currently available in this library. 
+When in 64 bit mode, it acts as an ARMv8, with AARCH64 128 bit ARM NEON SIMD
+vectors.
+
+The Raspbian Linux OS is 32 bit mode only. Other distros such as Ubuntu offer
+64 bit versions. 
+
+The "setup.py" file uses platform detection code to determine which ARM CPU
+and mode it is running on. Due to the availability of hardware for testing,
+this code is tailored to the Raspberry Pi 3 and the operating systems listed.
+This code then selects the appropriate compiler arguments to pass to the
+setup routines to tell the compiler what mode to compile for.
+
+If other ARM platforms are used which have different platform signatures or
+which require different compiler arguments, the "setup.py" file may need to be
+modified in order to use SIMD acceleration.
 
 However, the straight 'C' code should still compile and run, and still provide 
 performance many times faster than when using native Python.
+
 
 
 SIMD Function Support
@@ -1004,32 +1017,32 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- bmax                   79.6                   4.2
- bmin                   79.5                   4.2
- bsum                    7.4                   0.0
- ball                  619.4                  15.2
- bany                  477.0                  11.8
- findindex             680.7                  10.9
- eq                    668.1                  12.2
- ge                    671.2                  11.3
- gt                    794.8                   8.7
- le                    630.9                  11.1
- lt                    492.2                   7.5
- ne                    801.0                  11.9
- and\_                1511.2                   8.7
- or\_                 1119.4                   9.9
- xor                  1001.7                  10.1
- lshift                131.1                   0.0
- rshift                 97.6                   0.0
- invert                987.6                   8.7
+ bmax                   78.2                   3.9
+ bmin                   79.1                   3.9
+ bsum                    7.7                   0.0
+ ball                  581.8                  14.7
+ bany                  481.5                  11.2
+ findindex             601.8                  10.6
+ eq                    640.9                  12.2
+ ge                    646.5                  11.5
+ gt                    502.7                   8.3
+ le                    587.9                  10.8
+ lt                    478.8                   7.1
+ ne                    820.7                  12.2
+ and\_                1259.2                   8.7
+ or\_                 1002.8                   9.9
+ xor                  1015.3                  10.2
+ lshift                139.1                   0.0
+ rshift                105.5                   0.0
+ invert               1027.8                   8.8
 ============ ===================== ======================================
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    602.8
-Maximum:    1511.2
-Minimum:    7.4
+Average:    558.7
+Maximum:    1259.2
+Minimum:    7.7
 Array size: 100000
 =========== ========
 
@@ -1041,39 +1054,85 @@ Array size: 100000
 ARMv7 Benchmarks
 _________________
 
-The following tests were conducted on an ARMv7 CPU on a Raspberry Pi 3.
+The following tests were conducted on an ARM CPU in 32 bit mode (ARMv7) on a 
+Raspberry Pi 3.
 
 Relative Performance - Python Time / Bytesfunc Time.
 
-============ ==================== ======================================
-  function    Bytefunc vs Python   SIMD vs non-SIMD
-============ ==================== ======================================
- bmax                  222.6                   4.4
- bmin                  225.5                   4.4
+============ ===================== ======================================
+  function    Bytesfunc vs Python   SIMD vs non-SIMD
+============ ===================== ======================================
+ bmax                  222.7                   4.4
+ bmin                  225.5                   4.5
  bsum                   10.3                   0.0
- ball                  343.1                   2.6
- bany                  391.4                   2.9
- findindex             523.8                   3.6
+ ball                  344.0                   2.6
+ bany                  390.3                   2.9
+ findindex             526.3                   3.6
  eq                    344.2                   2.6
- ge                    358.7                   2.6
- gt                    358.8                   2.6
- le                    359.8                   2.6
- lt                    359.9                   2.6
- ne                    390.6                   2.9
- and\_                1040.1                   3.8
- or\_                 1072.1                   3.8
- xor                  1066.3                   3.8
- lshift               1289.6                   4.5
- rshift                933.1                   4.4
- invert                846.2                   3.8
-============ ==================== ======================================
+ ge                    359.1                   2.6
+ gt                    358.5                   2.6
+ le                    359.5                   2.6
+ lt                    361.2                   2.6
+ ne                    393.2                   2.9
+ and\_                1039.9                   3.8
+ or\_                 1064.5                   3.8
+ xor                  1053.8                   3.8
+ lshift               1292.4                   4.5
+ rshift                929.4                   4.4
+ invert                853.3                   3.8
+============ ===================== ======================================
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    563.1
-Maximum:    1289.6
+Average:    562.7
+Maximum:    1292.4
 Minimum:    10.3
+Array size: 100000
+=========== ========
+
+
+
+
+
+
+ARMv8 Benchmarks
+_________________
+
+The following tests were conducted on an ARM CPU in 64 bit mode (ARMv8) on a 
+Raspberry Pi 3.
+
+Relative Performance - Python Time / Bytesfunc Time.
+
+============ ===================== ======================================
+  function    Bytesfunc vs Python   SIMD vs non-SIMD
+============ ===================== ======================================
+ bmax                  454.9                  14.3
+ bmin                  454.0                  14.2
+ bsum                   10.5                   0.0
+ ball                  466.7                   4.7
+ bany                  535.1                   5.1
+ findindex             759.7                   6.4
+ eq                    461.5                   4.8
+ ge                    511.9                   4.7
+ gt                    514.3                   4.8
+ le                    499.2                   4.7
+ lt                    498.9                   4.7
+ ne                    561.8                   5.1
+ and\_                1627.7                  11.9
+ or\_                 1638.5                  12.0
+ xor                  1774.9                  11.9
+ lshift               2005.1                  12.3
+ rshift               1391.4                  12.3
+ invert               1281.8                  11.9
+============ ===================== ======================================
+
+=========== ========
+Stat         Value
+=========== ========
+Average:    858.2
+Maximum:    2005.1
+Minimum:    10.5
 Array size: 100000
 =========== ========
 
@@ -1119,10 +1178,14 @@ FreeBSD 12         64 bit    LLVM                        3.7
 OpenBSD 6.5        64 bit    LLVM                        3.6
 MS Windows 10      64 bit    MS Visual Studio C 2015     3.8
 Raspbian (RPi 3)   32 bit    GCC                         3.7
+Ubuntu 19.10 ARM   64 bit    GCC                         3.7
 ================= ========  ========================== =========================
 
-The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARMV7 CPU. All 
-others were conducted using VMs running on x86 hardware. 
+* The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
+  in 32 bit mode. 
+* The Ubuntu ARM tests were conducted on a Raspberry Pi 3 ARM CPU running in
+  64 bit mode.
+* All others were conducted using VMs running on x86 hardware. 
 
 
 Platform Oddities

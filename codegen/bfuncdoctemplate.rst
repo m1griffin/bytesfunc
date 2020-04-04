@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 1.0.0 for 2020-02-19
+:Version: 2.0.0 for 2020-04-02
 :Copyright: 2014 - 2020
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.5 or later
@@ -246,19 +246,32 @@ However, non-SIMD functions will still be much faster standard Python code. See
 the performance benchmarks to see what the relative speed differences are. 
 
 
-Raspberry Pi 3 versus 4
------------------------
+Raspberry Pi 32 versus 64 bit
+-----------------------------
 
-The Raspberry Pi uses an ARM CPU. The Raspberry Pi 3 has an ARMv7 CPU, which
-supports NEON SIMD with 64 bit vectors. The Raspberry Pi 4 has an ARMv8 CPU,
-which supports NEON SIMD with 128 bit vectors.
+The Raspberry Pi uses an ARM CPU. This can operate in 32 or 64 bit mode. When
+in 32 bit mode, the Raspberry Pi 3 operates in ARMv7 mode. This has 64 bit ARM
+NEON SIMD vectors.
 
-This means that the SIMD instructions for the RPi 3 are different from those
-of the RPi 4 (64 bit versus 128 bit). Due to hardware availability for testing,
-SIMD support for ARMv8 is not currently available in this library. 
+When in 64 bit mode, it acts as an ARMv8, with AARCH64 128 bit ARM NEON SIMD
+vectors.
+
+The Raspbian Linux OS is 32 bit mode only. Other distros such as Ubuntu offer
+64 bit versions. 
+
+The "setup.py" file uses platform detection code to determine which ARM CPU
+and mode it is running on. Due to the availability of hardware for testing,
+this code is tailored to the Raspberry Pi 3 and the operating systems listed.
+This code then selects the appropriate compiler arguments to pass to the
+setup routines to tell the compiler what mode to compile for.
+
+If other ARM platforms are used which have different platform signatures or
+which require different compiler arguments, the "setup.py" file may need to be
+modified in order to use SIMD acceleration.
 
 However, the straight 'C' code should still compile and run, and still provide 
 performance many times faster than when using native Python.
+
 
 
 SIMD Function Support
@@ -354,9 +367,19 @@ The following tests were conducted on an x86-64 CPU.
 ARMv7 Benchmarks
 _________________
 
-The following tests were conducted on an ARMv7 CPU on a Raspberry Pi 3.
+The following tests were conducted on an ARM CPU in 32 bit mode (ARMv7) on a 
+Raspberry Pi 3.
 
 {pybench_ARMv7}
+
+
+ARMv8 Benchmarks
+_________________
+
+The following tests were conducted on an ARM CPU in 64 bit mode (ARMv8) on a 
+Raspberry Pi 3.
+
+{pybench_ARMv8}
 
 
 Platform Effects
@@ -396,10 +419,14 @@ FreeBSD 12         64 bit    LLVM                        3.7
 OpenBSD 6.5        64 bit    LLVM                        3.6
 MS Windows 10      64 bit    MS Visual Studio C 2015     3.8
 Raspbian (RPi 3)   32 bit    GCC                         3.7
+Ubuntu 19.10 ARM   64 bit    GCC                         3.7
 ================= ========  ========================== =========================
 
-The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARMV7 CPU. All 
-others were conducted using VMs running on x86 hardware. 
+* The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
+  in 32 bit mode. 
+* The Ubuntu ARM tests were conducted on a Raspberry Pi 3 ARM CPU running in
+  64 bit mode.
+* All others were conducted using VMs running on x86 hardware. 
 
 
 Platform Oddities

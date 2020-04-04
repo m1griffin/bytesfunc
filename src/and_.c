@@ -43,7 +43,7 @@
 
 #include "simddefs.h"
 
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
 #endif
 
@@ -389,7 +389,7 @@ void and__6_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *d
    param = The parameter to be applied to each array element.
 */
 // param_arr_num_none
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 void and__1_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char param) {
 
 	// array index counter. 
@@ -628,6 +628,253 @@ void and__6_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char 
 
 
 /*--------------------------------------------------------------------------- */
+/* The following series of functions reflect the different parameter options possible.
+   arraylen = The length of the data arrays.
+   data1 = The first data array.
+   data2 = The second data array.
+   data3 = The third data array.
+   param = The parameter to be applied to each array element.
+*/
+// param_arr_num_none
+#if defined(AF_HASSIMD_ARM_AARCH64)
+void and__1_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char param) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	unsigned char compvals[CHARSIMDSIZE];
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param;
+	}
+	datasliceright = vld1q_u8(compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data1[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data1[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data1[index] = data1[index] & param;
+	}
+
+}
+
+
+
+// param_arr_num_arr
+void and__2_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char param, unsigned char *data3) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	unsigned char compvals[CHARSIMDSIZE];
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param;
+	}
+	datasliceright = vld1q_u8(compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data1[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data3[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data3[index] = data1[index] & param;
+	}
+
+}
+
+
+
+// param_num_arr_none
+void and__3_armv8_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *data2) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	unsigned char compvals[CHARSIMDSIZE];
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param;
+	}
+	datasliceleft = vld1q_u8(compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceright = vld1q_u8(&data2[index]);
+		// The actual SIMD operation. The compiler generates the correct instruction.
+		datasliceright = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data2[index], datasliceright);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data2[index] = param & data2[index];
+	}
+
+}
+
+
+
+// param_num_arr_arr
+void and__4_armv8_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *data2, unsigned char *data3) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	unsigned char compvals[CHARSIMDSIZE];
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param;
+	}
+	datasliceleft = vld1q_u8(compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceright = vld1q_u8(&data2[index]);
+		// The actual SIMD operation. The compiler generates the correct instruction.
+		datasliceright = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data3[index], datasliceright);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data3[index] = param & data2[index];
+	}
+
+}
+
+
+
+// param_arr_arr_none
+void and__5_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *data2) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft, datasliceright;
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data1[index]);
+		datasliceright = vld1q_u8(&data2[index]);
+		// The actual SIMD operation. The compiler generates the correct instruction.
+		datasliceleft = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data1[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data1[index] = data1[index] & data2[index];
+	}
+
+}
+
+
+
+// param_arr_arr_arr
+void and__6_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *data2, unsigned char *data3) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft, datasliceright;
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data1[index]);
+		datasliceright = vld1q_u8(&data2[index]);
+		// The actual SIMD operation. The compiler generates the correct instruction.
+		datasliceleft = vandq_u8(datasliceleft, datasliceright);
+		// Store the result.
+		vst1q_u8(&data3[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		data3[index] = data1[index] & data2[index];
+	}
+
+}
+#endif
+
+
+/*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
    arraylen = The length of the data arrays.
@@ -640,19 +887,24 @@ void and__6_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char 
 // param_arr_num_none
 void and__1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__1_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__1_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__1_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		and__1(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -661,19 +913,24 @@ void and__1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsign
 // param_arr_num_arr
 void and__2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param, unsigned char *data3) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__2_x86_simd(arraylen, data1, param, data3);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__2_armv7_simd(arraylen, data1, param, data3);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__2_armv8_simd(arraylen, data1, param, data3);
+		#endif
+
 	} else {
 	#endif
 		and__2(arraylen, data1, param, data3);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -682,19 +939,24 @@ void and__2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsign
 // param_num_arr_none
 void and__3_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__3_x86_simd(arraylen, param, data2);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__3_armv7_simd(arraylen, param, data2);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__3_armv8_simd(arraylen, param, data2);
+		#endif
+
 	} else {
 	#endif
 		and__3(arraylen, param, data2);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -703,19 +965,24 @@ void and__3_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigne
 // param_num_arr_arr
 void and__4_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2, unsigned char *data3) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__4_x86_simd(arraylen, param, data2, data3);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__4_armv7_simd(arraylen, param, data2, data3);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__4_armv8_simd(arraylen, param, data2, data3);
+		#endif
+
 	} else {
 	#endif
 		and__4(arraylen, param, data2, data3);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -724,19 +991,24 @@ void and__4_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigne
 // param_arr_arr_none
 void and__5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__5_x86_simd(arraylen, data1, data2);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__5_armv7_simd(arraylen, data1, data2);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__5_armv8_simd(arraylen, data1, data2);
+		#endif
+
 	} else {
 	#endif
 		and__5(arraylen, data1, data2);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -745,19 +1017,24 @@ void and__5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsign
 // param_arr_arr_arr
 void and__6_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2, unsigned char *data3) {
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			and__6_x86_simd(arraylen, data1, data2, data3);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			and__6_armv7_simd(arraylen, data1, data2, data3);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			and__6_armv8_simd(arraylen, data1, data2, data3);
+		#endif
+
 	} else {
 	#endif
 		and__6(arraylen, data1, data2, data3);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 

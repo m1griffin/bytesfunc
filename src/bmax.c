@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
 #include "byteserrs.h"
 
 #include "simddefs.h"
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
 #endif
 
@@ -128,7 +128,7 @@ unsigned char bmax_x86_simd(Py_ssize_t arraylen, unsigned char *data) {
    data = The input data array.
    Returns: The maximum value found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 unsigned char bmax_armv7_simd(Py_ssize_t arraylen, unsigned char *data) { 
 
 	// array index counter. 
@@ -176,6 +176,60 @@ unsigned char bmax_armv7_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 
 /*--------------------------------------------------------------------------- */
+/* For ARMv8 NEON SIMD.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   Returns: The maximum value found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+unsigned char bmax_armv8_simd(Py_ssize_t arraylen, unsigned char *data) { 
+
+	// array index counter. 
+	Py_ssize_t x, alignedlength; 
+	unsigned int y;
+	unsigned char maxfound;
+
+	unsigned char maxvals[CHARSIMDSIZE];
+	uint8x16_t maxslice, dataslice;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Initialise the comparison values.
+	maxslice = vld1q_u8( &data[0]);
+
+	// Use SIMD.
+	for(x = CHARSIMDSIZE; x < alignedlength; x += CHARSIMDSIZE) {
+		dataslice = vld1q_u8( &data[x]);
+		maxslice = vmaxq_u8 (maxslice, dataslice);
+	}
+
+	// Find the max within the slice.
+	vst1q_u8( maxvals,   maxslice);
+	maxfound = maxvals[0];
+	for (y = 1; y < CHARSIMDSIZE; y++) {
+		if (maxvals[y] > maxfound) {
+			maxfound = maxvals[y];
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for(x = alignedlength; x < arraylen; x++) {
+		if (data[x] > maxfound) {
+			maxfound = data[x];
+		}
+	}
+
+	return maxfound;
+}
+#endif
+/*--------------------------------------------------------------------------- */
+
+
+
+/*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
    arraylen = The length of the data arrays.
@@ -184,19 +238,24 @@ unsigned char bmax_armv7_simd(Py_ssize_t arraylen, unsigned char *data) {
 */
 unsigned char bmax_select(Py_ssize_t arraylen, int nosimd, unsigned char *data) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bmax_x86_simd(arraylen, data);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bmax_armv7_simd(arraylen, data);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bmax_armv8_simd(arraylen, data);
+		#endif
+
 	} else {
 	#endif
 		return bmax(arraylen, data);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 

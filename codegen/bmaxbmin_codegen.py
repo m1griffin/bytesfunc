@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ opstemplate = """//-------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ opstemplate = """//-------------------------------------------------------------
 #include "byteserrs.h"
 
 #include "simddefs.h"
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
 #endif
 
@@ -156,7 +156,7 @@ unsigned char %(funclabel)s_x86_simd(Py_ssize_t arraylen, unsigned char *data) {
    data = The input data array.
    Returns: The %(optype)simum value found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 unsigned char %(funclabel)s_armv7_simd(Py_ssize_t arraylen, unsigned char *data) { 
 
 	// array index counter. 
@@ -178,7 +178,7 @@ unsigned char %(funclabel)s_armv7_simd(Py_ssize_t arraylen, unsigned char *data)
 	// Use SIMD.
 	for(x = CHARSIMDSIZE; x < alignedlength; x += CHARSIMDSIZE) {
 		dataslice = vld1_u8( &data[x]);
-		%(optype)sslice = %(simdvalues_arm)s (%(optype)sslice, dataslice);
+		%(optype)sslice = %(simdvalues_armv7)s (%(optype)sslice, dataslice);
 	}
 
 	// Find the %(optype)s within the slice.
@@ -204,6 +204,60 @@ unsigned char %(funclabel)s_armv7_simd(Py_ssize_t arraylen, unsigned char *data)
 
 
 /*--------------------------------------------------------------------------- */
+/* For ARMv8 NEON SIMD.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   Returns: The %(optype)simum value found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+unsigned char %(funclabel)s_armv8_simd(Py_ssize_t arraylen, unsigned char *data) { 
+
+	// array index counter. 
+	Py_ssize_t x, alignedlength; 
+	unsigned int y;
+	unsigned char %(optype)sfound;
+
+	unsigned char %(optype)svals[CHARSIMDSIZE];
+	uint8x16_t %(optype)sslice, dataslice;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen %% CHARSIMDSIZE);
+
+	// Initialise the comparison values.
+	%(optype)sslice = vld1q_u8( &data[0]);
+
+	// Use SIMD.
+	for(x = CHARSIMDSIZE; x < alignedlength; x += CHARSIMDSIZE) {
+		dataslice = vld1q_u8( &data[x]);
+		%(optype)sslice = %(simdvalues_armv8)s (%(optype)sslice, dataslice);
+	}
+
+	// Find the %(optype)s within the slice.
+	vst1q_u8( %(optype)svals,   %(optype)sslice);
+	%(optype)sfound = %(optype)svals[0];
+	for (y = 1; y < CHARSIMDSIZE; y++) {
+		if (%(optype)svals[y] %(compare_ops)s %(optype)sfound) {
+			%(optype)sfound = %(optype)svals[y];
+		}
+	}
+
+	// Get the %(optype)s value within the left over elements at the end of the array.
+	for(x = alignedlength; x < arraylen; x++) {
+		if (data[x] %(compare_ops)s %(optype)sfound) {
+			%(optype)sfound = data[x];
+		}
+	}
+
+	return %(optype)sfound;
+}
+#endif
+/*--------------------------------------------------------------------------- */
+
+
+
+/*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
    arraylen = The length of the data arrays.
@@ -212,19 +266,24 @@ unsigned char %(funclabel)s_armv7_simd(Py_ssize_t arraylen, unsigned char *data)
 */
 unsigned char %(funclabel)s_select(Py_ssize_t arraylen, int nosimd, unsigned char *data) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return %(funclabel)s_x86_simd(arraylen, data);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return %(funclabel)s_armv7_simd(arraylen, data);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return %(funclabel)s_armv8_simd(arraylen, data);
+		#endif
+
 	} else {
 	#endif
 		return %(funclabel)s(arraylen, data);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -343,7 +402,8 @@ PyMODINIT_FUNC PyInit_%(funclabel)s(void)
 optype = {'bmax' : 'max', 'bmin' : 'min'}
 compare_ops = {'bmax' : '>', 'bmin' : '<'}
 simdvalues_x86 = {'bmax' : '__builtin_ia32_pmaxub128', 'bmin' : '__builtin_ia32_pminub128'}
-simdvalues_arm = {'bmax' : 'vmax_u8', 'bmin' : 'vmin_u8'}
+simdvalues_armv7 = {'bmax' : 'vmax_u8', 'bmin' : 'vmin_u8'}
+simdvalues_armv8 = {'bmax' : 'vmaxq_u8', 'bmin' : 'vminq_u8'}
 
 
 # ==============================================================================
@@ -358,7 +418,8 @@ for funcname in ('bmax', 'bmin'):
 								'optype' : optype[funcname],
 								'compare_ops' : compare_ops[funcname],
 								'simdvalues_x86' : simdvalues_x86[funcname],
-								'simdvalues_arm' : simdvalues_arm[funcname],
+								'simdvalues_armv7' : simdvalues_armv7[funcname],
+								'simdvalues_armv8' : simdvalues_armv8[funcname],
 								})
 
 

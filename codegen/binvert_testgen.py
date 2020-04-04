@@ -517,7 +517,7 @@ with open(filename, 'w') as f:
 	f.write(param_seq_immutable_template % {'funclabel' : funcname, 'funcname' : funcname})
 
 
-	f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'modulename' : modulename})
+	f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'testprefix' : 'bf'})
 
 # ==============================================================================
 

@@ -39,7 +39,7 @@
 
 #include "simddefs.h"
 
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
 #endif
 
@@ -167,13 +167,14 @@ void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned cha
 
 
 /*--------------------------------------------------------------------------- */
-/* The following series of functions reflect the different parameter options possible.
+/* For ARMv7 NEON SIMD.
+   The following series of functions reflect the different parameter options possible.
    byteslength = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// array index counter. 
@@ -246,6 +247,86 @@ void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 
 
 /*--------------------------------------------------------------------------- */
+/* For ARMv8 NEON SIMD.
+   The following series of functions reflect the different parameter options possible.
+   byteslength = The length of the data arrays.
+   data = The input data array.
+   dataout = The output data array.
+*/
+// param_arr_none
+#if defined(AF_HASSIMD_ARM_AARCH64)
+void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vmvnq_u8(datasliceleft);
+		// Store the result.
+		vst1q_u8(&data[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < byteslength; index++) {
+		data[index] = ~data[index];
+	}
+
+}
+
+
+// param_arr_arr
+void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vmvnq_u8(datasliceleft);
+		// Store the result.
+		vst1q_u8(&dataout[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < byteslength; index++) {
+		dataout[index] = ~data[index];
+	}
+
+}
+#endif
+
+
+/*--------------------------------------------------------------------------- */
+
+
+/*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
    byteslength = The length of the data arrays.
@@ -254,19 +335,24 @@ void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 */
 void invert_1_select(Py_ssize_t byteslength, int nosimd, unsigned char *data) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			invert_1_x86_simd(byteslength, data);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			invert_1_armv7_simd(byteslength, data);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			invert_1_armv8_simd(byteslength, data);
+		#endif
+
 	} else {
 	#endif
 		invert_1(byteslength, data);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -286,19 +372,24 @@ void invert_1_select(Py_ssize_t byteslength, int nosimd, unsigned char *data) {
 */
 void invert_2_select(Py_ssize_t byteslength, int nosimd, unsigned char *data, unsigned char *dataout) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			invert_2_x86_simd(byteslength, data, dataout);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			invert_2_armv7_simd(byteslength, data, dataout);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			invert_2_armv8_simd(byteslength, data, dataout);
+		#endif
+
 	} else {
 	#endif
 		invert_2(byteslength, data, dataout);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 

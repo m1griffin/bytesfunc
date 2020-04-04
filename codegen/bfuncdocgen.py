@@ -298,15 +298,16 @@ def GetBenchmarkData(benchfile):
 	return pybench
 
 
-pybench_x86 = GetBenchmarkData('../benchmarks/bytesbenchmarkdata.txt')
+pybench_x86 = GetBenchmarkData('../benchmarks/bf_benchmarkdata.txt')
 
-pybench_ARMv7 = GetBenchmarkData('../benchmarks/RPi_32_bytesbenchmarkdata.txt')
+pybench_ARMv7 = GetBenchmarkData('../benchmarks/RPi332_bf_benchmarkdata.txt')
 
+pybench_ARMv8 = GetBenchmarkData('../benchmarks/RPi364_bf_benchmarkdata.txt')
 
 # ==============================================================================
 
 # Insert the data into the documentation template.
-def WriteDocs(summtable, opdocs, simdtable, pybench_x86, pybench_ARMv7):
+def WriteDocs(summtable, opdocs, simdtable, pybench_x86, pybench_ARMv7, pybench_ARMv8):
 	'''Write out the documentation based on the template.
 	'''
 	# Read in the entire template file.
@@ -318,10 +319,11 @@ def WriteDocs(summtable, opdocs, simdtable, pybench_x86, pybench_ARMv7):
 		f.write(doctmpl.format(summarytable = summtable, opdocs = opdocs, 
 			simdtable = simdtable, 
 			pybench_x86 = pybench_x86,
-			pybench_ARMv7 = pybench_ARMv7
+			pybench_ARMv7 = pybench_ARMv7,
+			pybench_ARMv8 = pybench_ARMv8,
 			))
 
 # Write out the documentation file.
-WriteDocs(summtable, opdocs, simdtable, pybench_x86, pybench_ARMv7)
+WriteDocs(summtable, opdocs, simdtable, pybench_x86, pybench_ARMv7, pybench_ARMv8)
 
 # ==============================================================================

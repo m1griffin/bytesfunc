@@ -299,7 +299,7 @@ for funcname in completefuncnames:
 
 
 		# End of the tests.
-		f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'modulename' : modulename})
+		f.write(codegen_common.testendtemplate % {'funcname' : funcname, 'testprefix' : 'bf'})
 
 
 # ==============================================================================

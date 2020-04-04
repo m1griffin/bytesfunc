@@ -41,7 +41,7 @@
 #include "bytesparams_allany.h"
 
 #include "simddefs.h"
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
 #endif
 
@@ -144,7 +144,7 @@ signed int bany_eq_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_eq_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -193,6 +193,74 @@ signed int bany_eq_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_eq_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vceqq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0x0000000000000000) || (highresult != 0x0000000000000000)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] == param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -202,19 +270,24 @@ signed int bany_eq_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_eq_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_eq_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_eq_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_eq_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_eq(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -322,7 +395,7 @@ signed int bany_gt_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_gt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -371,6 +444,74 @@ signed int bany_gt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_gt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vcgtq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0x0000000000000000) || (highresult != 0x0000000000000000)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] > param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -380,19 +521,24 @@ signed int bany_gt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_gt_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_gt_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_gt_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_gt_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_gt(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -500,7 +646,7 @@ signed int bany_ge_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_ge_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -549,6 +695,74 @@ signed int bany_ge_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_ge_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vcgeq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0x0000000000000000) || (highresult != 0x0000000000000000)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] >= param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -558,19 +772,24 @@ signed int bany_ge_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_ge_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_ge_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_ge_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_ge_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_ge(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -678,7 +897,7 @@ signed int bany_lt_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_lt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -727,6 +946,74 @@ signed int bany_lt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_lt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vcltq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0x0000000000000000) || (highresult != 0x0000000000000000)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] < param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -736,19 +1023,24 @@ signed int bany_lt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_lt_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_lt_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_lt_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_lt_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_lt(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -856,7 +1148,7 @@ signed int bany_le_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_le_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -905,6 +1197,74 @@ signed int bany_le_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_le_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vcleq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0x0000000000000000) || (highresult != 0x0000000000000000)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] <= param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -914,19 +1274,24 @@ signed int bany_le_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_le_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_le_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_le_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_le_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_le(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 
@@ -1031,7 +1396,7 @@ signed int bany_ne_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned c
    Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
 		if it was not found.
 */
-#if defined(AF_HASSIMD_ARM)
+#if defined(AF_HASSIMD_ARMv7_32BIT)
 signed int bany_ne_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
 
 	// array index counter. 
@@ -1080,6 +1445,74 @@ signed int bany_ne_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 #endif
 
 
+
+/*--------------------------------------------------------------------------- */
+/* ARMv8 version.
+   opcode = The operator or function code to select what to execute.
+   arraylen = The length of the data arrays.
+   data = The input data array.
+   param1 = The parameter to be applied to each array element.
+   nosimd = If true, disable SIMD.
+   Returns 1 if the condition was true at least once, or ARR_ERR_NOTFOUND,
+		if it was not found.
+*/
+#if defined(AF_HASSIMD_ARM_AARCH64)
+signed int bany_ne_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char param1) { 
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+	unsigned int y;
+
+	uint8x16_t datasliceleft, datasliceright;
+	uint8x16_t resultslice;
+	unsigned char compvals[CHARSIMDSIZE];
+	uint64x2_t veccombine;
+	uint64_t highresult, lowresult;
+
+	// Initialise the comparison values.
+	for (y = 0; y < CHARSIMDSIZE; y++) {
+		compvals[y] = param1;
+	}
+	datasliceright = vld1q_u8( compvals);
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		datasliceleft = vld1q_u8( &data[index]);
+		// The actual SIMD operation. 
+		resultslice = vceqq_u8(datasliceleft, datasliceright);
+		// Combine the result to two 64 bit vectors.
+		veccombine = vreinterpretq_u64_u8(resultslice);
+		// Get the high and low lanes of the combined vector.
+		lowresult = vgetq_lane_u64(veccombine, 0);
+		highresult = vgetq_lane_u64(veccombine, 1);
+		// Compare the results of the SIMD operation.
+		if ((lowresult != 0xffffffffffffffff) || (highresult != 0xffffffffffffffff)) {
+			return 1;
+		}
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < arraylen; index++) {
+		if (data[index] != param1) {
+			return 1;
+		}
+	}
+
+	return ARR_ERR_NOTFOUND;
+
+}
+
+#endif
+
+
+
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
@@ -1089,19 +1522,24 @@ signed int bany_ne_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned
 */
 signed int bany_ne_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
 		#if defined(AF_HASSIMD_X86)
 			return bany_ne_x86_simd(arraylen, data1, param);
 		#endif
 
-		#if defined(AF_HASSIMD_ARM)
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
 			return bany_ne_armv7_simd(arraylen, data1, param);
 		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			return bany_ne_armv8_simd(arraylen, data1, param);
+		#endif
+
 	} else {
 	#endif
 		return bany_ne(arraylen, data1, param);
-	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
 

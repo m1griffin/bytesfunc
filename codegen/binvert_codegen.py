@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 ##############################################################################
 # Project:  bytesfunc
-# Purpose:  Generate the C code for math operators with one variable.
+# Purpose:  Generate the C code for invert.
 # Language: Python 3.4
-# Date:     18-Mar-2018
+# Date:     19-Jan-2020
 #
 ###############################################################################
 #
@@ -31,16 +31,21 @@ import codegen_common
 
 # ==============================================================================
 
-uniops_head = """//------------------------------------------------------------------------------
+# This outputs "invert" only, and the template does not allow for substitution. 
+# This Python program really only exists in order to maintain consistency with 
+# the other code generation scripts so that a maintainer can treat this 
+# operation the same as the others instead of having to remember a special case.
+
+opstemplate = """//------------------------------------------------------------------------------
 // Project:  bytesfunc
-// Module:   %(funclabel)s.c
-// Purpose:  Calculate the %(funclabel)s of values in an array.
+// Module:   invert.c
+// Purpose:  Calculate the invert of values in a bytes or bytearray object.
 // Language: C
-// Date:     15-Nov-2017.
+// Date:     19-Jan-2020.
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2018    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -66,71 +71,68 @@ uniops_head = """//-------------------------------------------------------------
 #include <limits.h>
 #include <math.h>
 
-#include "arrayerrs.h"
-#include "arrayparams_base.h"
-#include "arrayparams_onesimd.h"
+#include "byteserrs.h"
+#include "bytesparams_base.h"
+#include "bytesparams_invert.h"
 
 #include "simddefs.h"
 
-#ifdef AF_HASSIMD_X86
-#include "%(funclabel)s_simd_x86.h"
-#endif
-
-#ifdef AF_HASSIMD_ARM
+#if defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 #include "arm_neon.h"
-#include "%(funclabel)s_simd_arm.h"
 #endif
 
 /*--------------------------------------------------------------------------- */
-"""
 
 
-# ==============================================================================
 
-# For inverting integer.
-uniops_invert_int = """
 /*--------------------------------------------------------------------------- */
-/* arraylen = The length of the data arrays.
+/* byteslength = The length of the data arrays.
    data = The input data array.
-   dataout = The output data array.
-   hasoutputarray = If true, the output goes into the second array.
-   nosimd = If true, disable SIMD acceleration.
 */
-void %(funclabel)s_%(funcmodifier)s(Py_ssize_t arraylen, int nosimd, %(arraytype)s *data, %(arraytype)s *dataout, bool hasoutputarray) {
+void invert_1(Py_ssize_t byteslength, unsigned char *data) {
 
 	// array index counter.
 	Py_ssize_t x;
 
-%(simd_call)s
-	if (hasoutputarray) {		
-		for (x = 0; x < arraylen; x++) {
-			dataout[x] = ~data[x];
-		}
-	} else {
-		for (x = 0; x < arraylen; x++) {
-			data[x] = ~data[x];
-		}
+
+	for (x = 0; x < byteslength; x++) {
+		data[x] = ~data[x];
 	}
 
 }
 
-"""
-# ==============================================================================
+/*--------------------------------------------------------------------------- */
 
 
-# ==============================================================================
+/*--------------------------------------------------------------------------- */
+/* byteslength = The length of the data arrays.
+   data = The input data array.
+   dataout = The output data array.
+*/
+void invert_2(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
 
-# The actual invert operations using SIMD operations. x86-64 version.
-ops_simdsupport_x86 = """
+	// array index counter.
+	Py_ssize_t x;
+
+
+	for (x = 0; x < byteslength; x++) {
+		dataout[x] = ~data[x];
+	}
+
+}
+
+/*--------------------------------------------------------------------------- */
+
+
 /*--------------------------------------------------------------------------- */
 /* The following series of functions reflect the different parameter options possible.
-   arraylen = The length of the data arrays.
+   byteslength = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
 #if defined(AF_HASSIMD_X86)
-void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *data) {
+void invert_1_x86_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -144,10 +146,10 @@ void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen %% %(simdwidth)s);
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
-	for (index = 0; index < alignedlength; index += %(simdwidth)s) {
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
 		// Load the data into the vector register.
 		datasliceleft = (v2di) __builtin_ia32_lddqu((char *)  &data[index]);
 		// The actual SIMD operation. 
@@ -157,7 +159,7 @@ void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *d
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < arraylen; index++) {
+	for (index = alignedlength; index < byteslength; index++) {
 		data[index] = ~data[index];
 	}
 
@@ -165,7 +167,7 @@ void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *d
 
 
 // param_arr_arr
-void %(funclabel)s_%(funcmodifier)s_2_simd(Py_ssize_t arraylen, %(arraytype)s *data, %(arraytype)s *dataout) {
+void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -179,10 +181,10 @@ void %(funclabel)s_%(funcmodifier)s_2_simd(Py_ssize_t arraylen, %(arraytype)s *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen %% %(simdwidth)s);
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
-	for (index = 0; index < alignedlength; index += %(simdwidth)s) {
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
 		// Load the data into the vector register.
 		datasliceleft = (v2di) __builtin_ia32_lddqu((char *)  &data[index]);
 		// The actual SIMD operation. 
@@ -192,26 +194,26 @@ void %(funclabel)s_%(funcmodifier)s_2_simd(Py_ssize_t arraylen, %(arraytype)s *d
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < arraylen; index++) {
+	for (index = alignedlength; index < byteslength; index++) {
 		dataout[index] = ~data[index];
 	}
 
 }
 #endif
 
-"""
-
-# The actual invert operations using SIMD operations. ARM version.
-ops_simdsupport_arm = """
 /*--------------------------------------------------------------------------- */
-/* The following series of functions reflect the different parameter options possible.
-   arraylen = The length of the data arrays.
+
+
+/*--------------------------------------------------------------------------- */
+/* For ARMv7 NEON SIMD.
+   The following series of functions reflect the different parameter options possible.
+   byteslength = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
-#if defined(AF_HASSIMD_ARM)
-void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *data) {
+#if defined(AF_HASSIMD_ARMv7_32BIT)
+void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -219,25 +221,25 @@ void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *d
 	// SIMD related variables.
 	Py_ssize_t alignedlength;
 
-	%(simdattr)s datasliceleft;
+	uint8x8_t datasliceleft;
 
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen %% %(simdwidth)s);
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
-	for (index = 0; index < alignedlength; index += %(simdwidth)s) {
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
 		// Load the data into the vector register.
-		datasliceleft = %(vldinstr)s(&data[index]);
+		datasliceleft = vld1_u8(&data[index]);
 		// The actual SIMD operation. 
-		datasliceleft = %(vopinstr)s(datasliceleft);
+		datasliceleft = vmvn_u8(datasliceleft);
 		// Store the result.
-		%(vstinstr)s(&data[index], datasliceleft);
+		vst1_u8(&data[index], datasliceleft);
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < arraylen; index++) {
+	for (index = alignedlength; index < byteslength; index++) {
 		data[index] = ~data[index];
 	}
 
@@ -245,7 +247,7 @@ void %(funclabel)s_%(funcmodifier)s_1_simd(Py_ssize_t arraylen, %(arraytype)s *d
 
 
 // param_arr_arr
-void %(funclabel)s_%(funcmodifier)s_2_simd(Py_ssize_t arraylen, %(arraytype)s *data, %(arraytype)s *dataout) {
+void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -253,98 +255,219 @@ void %(funclabel)s_%(funcmodifier)s_2_simd(Py_ssize_t arraylen, %(arraytype)s *d
 	// SIMD related variables.
 	Py_ssize_t alignedlength;
 
-	%(simdattr)s datasliceleft;
+	uint8x8_t datasliceleft;
 
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen %% %(simdwidth)s);
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
-	for (index = 0; index < alignedlength; index += %(simdwidth)s) {
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
 		// Load the data into the vector register.
-		datasliceleft = %(vldinstr)s(&data[index]);
+		datasliceleft = vld1_u8(&data[index]);
 		// The actual SIMD operation. 
-		datasliceleft = %(vopinstr)s(datasliceleft);
+		datasliceleft = vmvn_u8(datasliceleft);
 		// Store the result.
-		%(vstinstr)s(&dataout[index], datasliceleft);
+		vst1_u8(&dataout[index], datasliceleft);
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < arraylen; index++) {
+	for (index = alignedlength; index < byteslength; index++) {
 		dataout[index] = ~data[index];
 	}
 
 }
 #endif
 
-"""
+
+/*--------------------------------------------------------------------------- */
 
 
-# SIMD call template.
-SIMD_call = '''\n%(simdplatform)s
-	// SIMD version.
-	if (!nosimd && (arraylen >= (%(simdwidth)s * 2))) {
-		if (hasoutputarray) {
-			%(funclabel)s_%(funcmodifier)s_2_simd(arraylen, data, dataout);
-		} else {
-			%(funclabel)s_%(funcmodifier)s_1_simd(arraylen, data);
-		}
-		return;
+/*--------------------------------------------------------------------------- */
+/* For ARMv8 NEON SIMD.
+   The following series of functions reflect the different parameter options possible.
+   byteslength = The length of the data arrays.
+   data = The input data array.
+   dataout = The output data array.
+*/
+// param_arr_none
+#if defined(AF_HASSIMD_ARM_AARCH64)
+void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
+
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vmvnq_u8(datasliceleft);
+		// Store the result.
+		vst1q_u8(&data[index], datasliceleft);
 	}
-#endif\n'''
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < byteslength; index++) {
+		data[index] = ~data[index];
+	}
+
+}
 
 
-# ==============================================================================
+// param_arr_arr
+void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
 
-# This is the set of function calls used to call each operator function.
-opscall = """
-		// %(funcmodifier)s
-		case '%(arraycode)s' : {
-			%(funclabel)s_%(funcmodifier)s(arraydata.arraylength, arraydata.nosimd, arraydata.array1.%(arraycode)s, arraydata.array2.%(arraycode)s, arraydata.hasoutputarray);
-			break;
-		}
-"""
+	// array index counter. 
+	Py_ssize_t index; 
+
+	// SIMD related variables.
+	Py_ssize_t alignedlength;
+
+	uint8x16_t datasliceleft;
+
+
+	// Calculate array lengths for arrays whose lengths which are not even
+	// multipes of the SIMD slice length.
+	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+
+	// Perform the main operation using SIMD instructions.
+	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
+		// Load the data into the vector register.
+		datasliceleft = vld1q_u8(&data[index]);
+		// The actual SIMD operation. 
+		datasliceleft = vmvnq_u8(datasliceleft);
+		// Store the result.
+		vst1q_u8(&dataout[index], datasliceleft);
+	}
+
+	// Get the max value within the left over elements at the end of the array.
+	for (index = alignedlength; index < byteslength; index++) {
+		dataout[index] = ~data[index];
+	}
+
+}
+#endif
+
+
+/*--------------------------------------------------------------------------- */
+
+
+/*--------------------------------------------------------------------------- */
+/* This selects the correct function, whether the platform independent non-SIMD
+   version, or the architecture appropriate SIMD version.
+   byteslength = The length of the data arrays.
+   data = The input data array.
+   nosimd = If true, disable SIMD acceleration.
+*/
+void invert_1_select(Py_ssize_t byteslength, int nosimd, unsigned char *data) { 
+
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
+	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
+		#if defined(AF_HASSIMD_X86)
+			invert_1_x86_simd(byteslength, data);
+		#endif
+
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
+			invert_1_armv7_simd(byteslength, data);
+		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			invert_1_armv8_simd(byteslength, data);
+		#endif
+
+	} else {
+	#endif
+		invert_1(byteslength, data);
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
+	}
+	#endif
+
+}
+/*--------------------------------------------------------------------------- */
 
 
 
-invert_params = """
+
+/*--------------------------------------------------------------------------- */
+/* This selects the correct function, whether the platform independent non-SIMD
+   version, or the architecture appropriate SIMD version.
+   byteslength = The length of the data arrays.
+   data = The input data array.
+   dataout = The output data array.
+   nosimd = If true, disable SIMD acceleration.
+*/
+void invert_2_select(Py_ssize_t byteslength, int nosimd, unsigned char *data, unsigned char *dataout) { 
+
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
+	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
+		#if defined(AF_HASSIMD_X86)
+			invert_2_x86_simd(byteslength, data, dataout);
+		#endif
+
+		#if defined(AF_HASSIMD_ARMv7_32BIT)
+			invert_2_armv7_simd(byteslength, data, dataout);
+		#endif
+
+		#if defined(AF_HASSIMD_ARM_AARCH64)
+			invert_2_armv8_simd(byteslength, data, dataout);
+		#endif
+
+	} else {
+	#endif
+		invert_2(byteslength, data, dataout);
+	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
+	}
+	#endif
+
+}
+/*--------------------------------------------------------------------------- */
+
 
 /*--------------------------------------------------------------------------- */
 
 /* The wrapper to the underlying C function */
-static PyObject *py_%(funclabel)s(PyObject *self, PyObject *args, PyObject *keywds) {
+static PyObject *py_invert(PyObject *self, PyObject *args, PyObject *keywds) {
 
 
 	// This is used to hold the parsed parameters.
-	struct args_params_1 arraydata = ARGSINIT_ONE;
+	struct args_params_1 bytesdata = ARGSINIT_ONE;
 
 	// -----------------------------------------------------
 
 
 	// Get the parameters passed from Python.
-	arraydata = getparams_one(self, args, keywds, 0, "%(funclabel)s");
+	bytesdata = getparams_one(self, args, keywds, "invert");
 
 	// If there was an error, we count on the parameter parsing function to 
 	// release the buffers if this was necessary.
-	if (arraydata.error) {
+	if (bytesdata.error) {
 		return NULL;
 	}
 
+
 	// Call the C function.
-	switch(arraydata.arraytype) {
-%(opscall)s
-		// We don't know this code.
-		default: {
-			releasebuffers_one(arraydata);
-			ErrMsgUnknownArrayType();
-			return NULL;
-			break;
-		}
+	if (bytesdata.hasoutputseq) {
+		invert_2_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.bytes2.B);
+	} else {
+		invert_1_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B);
 	}
 
+
+
 	// Release the buffers. 
-	releasebuffers_one(arraydata);
+	releasebuffers_one(bytesdata);
 
 
 	// Everything was successful.
@@ -357,329 +480,72 @@ static PyObject *py_%(funclabel)s(PyObject *self, PyObject *args, PyObject *keyw
 
 
 /* The module doc string */
-PyDoc_STRVAR(%(funclabel)s__doc__,
-"%(funclabel)s \\n\\
+PyDoc_STRVAR(invert__doc__,
+"invert \\n\\
 _____________________________ \\n\\
 \\n\\
-Calculate %(funclabel)s over the values in an array.  \\n\\
+Calculate invert over the values in a bytes or bytearray object.  \\n\\
 \\n\\
 ======================  ============================================== \\n\\
-Equivalent to:          %(opcodedocs)s \\n\\
-Array types supported:  %(supportedarrays)s \\n\\
-Exceptions raised:      %(matherrors)s \\n\\
+Equivalent to:          [~x for x in sequence1] \\n\\
 ======================  ============================================== \\n\\
 \\n\\
 Call formats: \\n\\
 \\n\\
-    %(funclabel)s(array1) \\n\\
-    %(funclabel)s(array1, outparray) \\n\\
-    %(funclabel)s(array1, maxlen=y) \\n\\
-    %(funclabel)s(array1, nosimd=False) \\n\\
+    invert(sequence1) \\n\\
+    invert(sequence1, outpseq) \\n\\
+    invert(sequence1, maxlen=y) \\n\\
+    invert(sequence1, nosimd=False) \\n\\
  \\n\\
-* array1 - The first input data array to be examined. If no output  \\n\\
-  array is provided the results will overwrite the input data.  \\n\\
-* outparray - The output array. This parameter is optional.  \\n\\
-* maxlen - Limit the length of the array used. This must be a valid  \\n\\
-  positive integer. If a zero or negative length, or a value which is  \\n\\
-  greater than the actual length of the array is specified, this  \\n\\
-  parameter is ignored.  \\n\\
+* sequence1 - The input bytes or bytearray to be examined. If no output \\n\\
+  bytearray is provided the results will overwrite the input data, in which \\n\\
+  case it must be a bytearray. \\n\\
+* outpseq - The output bytearray. This parameter is optional. \\n\\
+* maxlen - Limit the length of the sequence used. This must be a valid \\n\\
+  positive integer. If a zero or negative length, or a value which is \\n\\
+  greater than the actual length of the sequence is specified, this \\n\\
+  parameter is ignored. \\n\\
 * nosimd - If True, SIMD acceleration is disabled. This parameter is \\n\\
-  optional. The default is FALSE.  \\n\\
+  optional. The default is FALSE. \\n\\
 ");
 
 
 /*--------------------------------------------------------------------------- */
 
 /* A list of all the methods defined by this module. 
- "%(funclabel)s" is the name seen inside of Python. 
- "py_%(funclabel)s" is the name of the C function handling the Python call. 
+ "invert" is the name seen inside of Python. 
+ "py_invert" is the name of the C function handling the Python call. 
  "METH_VARGS" tells Python how to call the handler. 
  The {NULL, NULL} entry indicates the end of the method definitions. */
-static PyMethodDef %(funclabel)s_methods[] = {
-	{"%(funclabel)s",  (PyCFunction)py_%(funclabel)s, METH_VARARGS | METH_KEYWORDS, %(funclabel)s__doc__}, 
+static PyMethodDef invert_methods[] = {
+	{"invert",  (PyCFunction)py_invert, METH_VARARGS | METH_KEYWORDS, invert__doc__}, 
 	{NULL, NULL, 0, NULL}
 };
 
 
-static struct PyModuleDef %(funclabel)smodule = {
+static struct PyModuleDef invertmodule = {
     PyModuleDef_HEAD_INIT,
-    "%(funclabel)s",
+    "invert",
     NULL,
     -1,
-    %(funclabel)s_methods
+    invert_methods
 };
 
-PyMODINIT_FUNC PyInit_%(funclabel)s(void)
+PyMODINIT_FUNC PyInit_invert(void)
 {
-    return PyModule_Create(&%(funclabel)smodule);
+    return PyModule_Create(&invertmodule);
 };
 
 /*--------------------------------------------------------------------------- */
 
 """
 
-
-# ==============================================================================
-
-# These get substituted into function call templates.
-SIMD_platform_x86 = '#if defined(AF_HASSIMD_X86)'
-SIMD_platform_x86_ARM = '#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARM)'
-SIMD_platform_ARM = '#if defined(AF_HASSIMD_ARM)'
-
 # ==============================================================================
 
 
-# Various SIMD instruction information which varies according to array type.
-# For x86-64.
-
-# The actual SIMD instructions are embedded in the template. 
-x86_simdtypes = ('b', 'B', 'h', 'H', 'i', 'I')
-
-# ==============================================================================
-
-# For ARM NEON.
-
-arm_simdattr = {
-	'b' : ' int8x8_t', 
-	'B' : 'uint8x8_t', 
-	'h' : 'int16x4_t', 
-	'H' : 'uint16x4_t', 
-	'i' : 'int32x2_t ', 
-	'I' : 'uint32x2_t', 
-}
-
-arm_vldinstr = {
-	'b' : 'vld1_s8', 
-	'B' : 'vld1_u8', 
-	'h' : 'vld1_s16', 
-	'H' : 'vld1_u16', 
-	'i' : 'vld1_s32', 
-	'I' : 'vld1_u32', 
-}
-
-arm_vstinstr = {
-	'b' : 'vst1_s8',
-	'B' : 'vst1_u8',
-	'h' : 'vst1_s16',
-	'H' : ' vst1_u16',
-	'i' : 'vst1_s32',
-	'I' : 'vst1_u32',
-}
-
-arm_vopinstr = {
-	'b' : 'vmvn_s8',
-	'B' : 'vmvn_u8',
-	'h' : 'vmvn_s16',
-	'H' : 'vmvn_u16',
-	'i' : 'vmvn_s32',
-	'I' : 'vmvn_u32',
-}
-
-
-arm_simdtypes = arm_simdattr.keys()
-
-# ==============================================================================
-
-# Width of array elements.
-simdwidth = {'b' : 'CHARSIMDSIZE',
-		'B' : 'CHARSIMDSIZE',
-		'h' : 'SHORTSIMDSIZE',
-		'H' : 'SHORTSIMDSIZE',
-		'i' : 'INTSIMDSIZE',
-		'I' : 'INTSIMDSIZE',
-		}
-
-# ==============================================================================
-
-# Return the platform SIMD enable C macro. 
-# This is for the platform independent file, and not the plaform specific
-# SIMD files.
-def findsimdplatform(arraycode):
-
-	# The calls to SIMD support code are platform dependent.
-	if (arraycode in x86_simdtypes) and (arraycode not in arm_simdtypes):
-		return SIMD_platform_x86
-	elif (arraycode in x86_simdtypes) and (arraycode in arm_simdtypes):
-		return SIMD_platform_x86_ARM
-	else:
-		return 'Error: Template error, this should not be here.'
-
-# ==============================================================================
-
-# Read in the op codes.
-oplist = codegen_common.ReadCSVData('funcs.csv')
-
-
-# Filter out the desired math functions.
-
-funclist = [x for x in oplist if x['c_code_template'] == 'template_invert']
-
-# ==============================================================================
-
-
-for func in funclist:
-
-	# Create the source code based on templates.
-	filename = func['funcname'] + '.c'
-	with open(filename, 'w') as f:
-		funcdata = {'funclabel' : func['funcname']}
-		f.write(uniops_head % {'funclabel' : func['funcname']})
-		opscalltext = []
-
-
-		# Check each array type. The types of arrays supported must be looked up.
-		for arraycode in codegen_common.intarrays:
-			funcdata['funcmodifier'] = codegen_common.arraytypes[arraycode].replace(' ', '_')
-			funcdata['arraytype'] = codegen_common.arraytypes[arraycode]
-			funcdata['intmaxvalue'] = codegen_common.maxvalue[arraycode]
-			funcdata['intminvalue'] = codegen_common.minvalue[arraycode]
-
-			if (arraycode in x86_simdtypes) or (arraycode in arm_simdtypes):
-				simd_call_vals = {'simdwidth' : simdwidth[arraycode],
-								'simdplatform' : findsimdplatform(arraycode),
-								'funclabel' : funcdata['funclabel'], 
-								'funcmodifier' : funcdata['funcmodifier']}
-
-				funcdata['simd_call'] = SIMD_call % simd_call_vals
-			else:
-				funcdata['simd_call'] = ''
-
-			f.write(uniops_invert_int % funcdata)
-
-			# This is the call to the functions for this array type. This
-			# is inserted into another template below.
-			funcdata['arraycode'] = arraycode
-			opscalltext.append(opscall % funcdata)
-
-		supportedarrays = codegen_common.FormatDocsArrayTypes(func['arraytypes'])
-
-		f.write(invert_params % {'funclabel' : func['funcname'], 
-				'opcodedocs' : func['opcodedocs'], 
-				'supportedarrays' : supportedarrays,
-				'matherrors' : ', '.join(func['matherrors'].split(',')),
-				'opscall' : ''.join(opscalltext)})
-
-
-
-# ==============================================================================
-
-
-# ==============================================================================
-
-# This outputs the SIMD version for x86-64.
-simdcodedate = '21-Mar-2019'
-simdfilename = '_simd_x86'
-
-# This outputs the SIMD version.
-
-for func in funclist:
-
-	outputlist = []
-
-	funcname = func['funcname']
-
-	# This provides the description in the header of the file.
-	maindescription = 'Calculate the %s of values in an array.' % funcname
-
-
-	# Output the generated code.
-	for arraycode in codegen_common.arraycodes:
-
-		if (arraycode in x86_simdtypes):
-			arraytype = codegen_common.arraytypes[arraycode]
-
-			# The compare_ops symbols is the same for integer and floating point.
-			datavals = {'funclabel' : funcname,
-						'arraytype' : arraytype, 
-						'funcmodifier' : arraytype.replace(' ', '_'),
-						'simdwidth' : simdwidth[arraycode],
-						}
-
-
-			# Start of function definition.
-			outputlist.append(ops_simdsupport_x86 % datavals)
-
-
-
-	# This outputs the SIMD version.
-	codegen_common.OutputSourceCode(funcname + simdfilename + '.c', outputlist, 
-		maindescription, 
-		codegen_common.SIMDDescription, 
-		simdcodedate,
-		'', ['simddefs'])
-
-
-	# Output the .h header file.
-	headedefs = codegen_common.GenSIMDCHeaderText(outputlist, funcname)
-
-	# Write out the file.
-	codegen_common.OutputCHeader(funcname + simdfilename + '.h', headedefs, 
-		maindescription, 
-		codegen_common.SIMDDescription, 
-		simdcodedate)
-
-# ==============================================================================
-
-
-
-# ==============================================================================
-
-# This outputs the SIMD version for ARM NEON.
-simdcodedate = '08-Oct-2019'
-simdfilename = '_simd_arm'
-
-# This outputs the SIMD version.
-
-for func in funclist:
-
-	outputlist = []
-
-	funcname = func['funcname']
-
-	# This provides the description in the header of the file.
-	maindescription = 'Calculate the %s of values in an array.' % funcname
-
-
-	# Output the generated code.
-	for arraycode in codegen_common.arraycodes:
-
-		if (arraycode in arm_simdtypes):
-			arraytype = codegen_common.arraytypes[arraycode]
-
-			# The compare_ops symbols is the same for integer and floating point.
-			datavals = {'funclabel' : funcname,
-						'arraytype' : arraytype, 
-						'funcmodifier' : arraytype.replace(' ', '_'),
-						'simdplatform' : SIMD_platform_ARM,
-						'simdwidth' : simdwidth[arraycode],
-						'simdattr' : arm_simdattr[arraycode],
-						'vldinstr' : arm_vldinstr[arraycode],
-						'vstinstr' : arm_vstinstr[arraycode],
-						'vopinstr' : arm_vopinstr[arraycode],
-						}
-
-
-			# Start of function definition.
-			outputlist.append(ops_simdsupport_arm % datavals)
-
-
-
-	# This outputs the SIMD version.
-	codegen_common.OutputSourceCode(funcname + simdfilename + '.c', outputlist, 
-		maindescription, 
-		codegen_common.SIMDDescription, 
-		simdcodedate,
-		'', ['simddefs', 'simdmacromsg_arm'])
-
-
-	# Output the .h header file.
-	headedefs = codegen_common.GenSIMDCHeaderText(outputlist, funcname)
-
-	# Write out the file.
-	codegen_common.OutputCHeader(funcname + simdfilename + '.h', headedefs, 
-		maindescription, 
-		codegen_common.SIMDDescription, 
-		simdcodedate)
-
-# ==============================================================================
+funcname = 'invert'
+filename = funcname + '.c'
+
+with open(filename, 'w') as f:
+	f.write(opstemplate)
 

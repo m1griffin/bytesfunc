@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -89,11 +89,15 @@ RELCOLWIDTH=5
 
 SIMDFuncs_x86 = %(SIMD_data_x86)s
 
-SIMDFuncs_arm = %(SIMD_data_arm)s
+SIMDFuncs_armv7 = %(SIMD_data_armv7)s
+
+SIMDFuncs_armv8 = %(SIMD_data_armv8)s
 
 # Detect the hardware platform, and assign the correct platform data table to it.
 if '-armv' in platform.platform():
-	SIMDFuncs = SIMDFuncs_arm
+	SIMDFuncs = SIMDFuncs_armv7
+elif '-aarch64' in platform.platform():
+	SIMDFuncs = SIMDFuncs_armv8
 else:
 	SIMDFuncs = SIMDFuncs_x86
 
@@ -414,12 +418,16 @@ benchruntemplate = '''
 
 # Write out the platform data to keep track of what platform the test was run on.
 def WritePlatformSignature(f):
+	f.write('BytesFunc Benchmarks.\\n')
 	# test was run on.
 	# 'Linux'
 	f.write('Operating System: ' + platform.system() + '\\n')
 
 	# 'Linux-4.4.0-79-generic-x86_64-with-Ubuntu-16.04-xenial'
 	f.write('Platform: ' + platform.platform() + '\\n')
+
+	# 'x86_64'
+	f.write('Machine: ' + platform.machine() + '\\n')
 
 	# ('64bit', 'ELF')
 	f.write('Word size: ' + platform.architecture()[0] + '\\n')
@@ -477,7 +485,7 @@ for benchcode, funcname in BenchClasses:
 
 # Print the results
 
-with open('bytesbenchmarkdata.txt', 'w') as f:
+with open('bf_benchmarkdata.txt', 'w') as f:
 
 	f.write(time.ctime() + '\\n')
 
@@ -753,14 +761,17 @@ def GetSourceFileSIMD(filepath, simdname):
 # Find all the functions with x86 SIMD support.
 SIMD_data_x86 = GetSourceFileSIMD('../src/*.c', '_x86_simd')
 # Find all the functions with ARMv7 SIMD support.
-SIMD_data_arm = GetSourceFileSIMD('../src/*.c', '_armv7_simd')
+SIMD_data_armv7 = GetSourceFileSIMD('../src/*.c', '_armv7_simd')
+# Find all the functions with ARMv8 SIMD support.
+SIMD_data_armv8 = GetSourceFileSIMD('../src/*.c', '_armv8_simd')
 
 testdate = datetime.date.today()
 headerdata = {
 'verdate' : testdate.strftime('%d-%b-%Y'),
 'cpyear' : testdate.year,
 'SIMD_data_x86' : str(SIMD_data_x86),
-'SIMD_data_arm' : str(SIMD_data_arm),
+'SIMD_data_armv7' : str(SIMD_data_armv7),
+'SIMD_data_armv8' : str(SIMD_data_armv8),
 }
 
 # Output the benchmark.

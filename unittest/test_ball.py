@@ -5,7 +5,7 @@
 # Purpose:  bytesfunc unit test.
 # Language: Python 3.4
 # Date:     20-Jan-2020.
-# Ver:      21-Jan-2020.
+# Ver:      25-Feb-2020.
 #
 ###############################################################################
 #
@@ -11847,7 +11847,7 @@ if __name__ == '__main__':
 		# not complain about unknown options.
 		sys.argv.remove('-l')
 
-		with open('bytesfunc_unittest.txt', 'a') as f:
+		with open('bf_unittest.txt', 'a') as f:
 			f.write('\n\n')
 			f.write('ball\n\n')
 			trun = unittest.TextTestRunner(f)
