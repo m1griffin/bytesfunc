@@ -302,7 +302,7 @@ pybench_x86 = GetBenchmarkData('../benchmarks/bf_benchmarkdata.txt')
 
 pybench_ARMv7 = GetBenchmarkData('../benchmarks/RPi332_bf_benchmarkdata.txt')
 
-pybench_ARMv8 = GetBenchmarkData('../benchmarks/RPi364_bf_benchmarkdata.txt')
+pybench_ARMv8 = GetBenchmarkData('../benchmarks/RPi464_bf_benchmarkdata.txt')
 
 # ==============================================================================
 

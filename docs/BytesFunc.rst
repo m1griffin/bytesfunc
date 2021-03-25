@@ -6,8 +6,8 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 2.0.0 for 2020-04-02
-:Copyright: 2014 - 2020
+:Version: 2.1.0 for 2021-03-19
+:Copyright: 2014 - 2021
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.5 or later
 
@@ -866,13 +866,19 @@ To repeat, there is normally no reason to wish to disable SIMD.
 Platform Support
 ----------------
 
-SIMD instructions are presently supported only on 64 bit x86 (i.e. AMD64) and 
-ARMv7 using the GCC compiler. Other compilers or platforms will still run the 
-same functions and should produce the same results, but they will not benefit 
-from SIMD acceleration. 
+SIMD instructions are presently supported only on the following:
+
+* 64 bit x86 (i.e. AMD64) using GCC.
+* 32 bit ARMv7 using GCC (tested on Raspberry Pi 3).
+* 64 bit ARMv8 AARCH64 using GCC (tested on Raspberry Pi 4).
+
+Other compilers or platforms will still run the same functions and should 
+produce the same results, but they will not benefit from SIMD acceleration. 
 
 However, non-SIMD functions will still be much faster standard Python code. See
-the performance benchmarks to see what the relative speed differences are. 
+the performance benchmarks to see what the relative speed differences are. With
+wider data types (e.g. double precision floating point) SIMD provides only
+marginal speed ups anyway. 
 
 
 Raspberry Pi 32 versus 64 bit
@@ -890,9 +896,10 @@ The Raspbian Linux OS is 32 bit mode only. Other distros such as Ubuntu offer
 
 The "setup.py" file uses platform detection code to determine which ARM CPU
 and mode it is running on. Due to the availability of hardware for testing,
-this code is tailored to the Raspberry Pi 3 and the operating systems listed.
-This code then selects the appropriate compiler arguments to pass to the
-setup routines to tell the compiler what mode to compile for.
+this code is tailored to the Raspberry Pi 3 and Raspberry Pi 4 and the 
+operating systems listed. This code then selects the appropriate compiler 
+arguments to pass to the setup routines to tell the compiler what mode to 
+compile for.
 
 If other ARM platforms are used which have different platform signatures or
 which require different compiler arguments, the "setup.py" file may need to be
@@ -1017,32 +1024,32 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- bmax                   78.2                   3.9
- bmin                   79.1                   3.9
- bsum                    7.7                   0.0
- ball                  581.8                  14.7
- bany                  481.5                  11.2
- findindex             601.8                  10.6
- eq                    640.9                  12.2
- ge                    646.5                  11.5
- gt                    502.7                   8.3
- le                    587.9                  10.8
- lt                    478.8                   7.1
- ne                    820.7                  12.2
- and\_                1259.2                   8.7
- or\_                 1002.8                   9.9
- xor                  1015.3                  10.2
- lshift                139.1                   0.0
- rshift                105.5                   0.0
- invert               1027.8                   8.8
+ bmax                   89.8                   2.6
+ bmin                   76.9                   2.8
+ bsum                    8.1                   0.0
+ ball                  782.6                  16.9
+ bany                  794.4                  16.4
+ findindex             980.3                  16.1
+ eq                    773.2                  16.9
+ ge                    747.8                  16.1
+ gt                    596.4                  12.8
+ le                    761.1                  16.5
+ lt                    598.4                  12.8
+ ne                    766.0                  16.4
+ and\_                 930.1                  10.5
+ or\_                  997.3                  10.6
+ xor                  1016.9                  10.9
+ lshift                198.5                   0.0
+ rshift                141.7                   0.0
+ invert                741.7                   9.8
 ============ ===================== ======================================
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    558.7
-Maximum:    1259.2
-Minimum:    7.7
+Average:    611.2
+Maximum:    1016.9
+Minimum:    8.1
 Array size: 100000
 =========== ========
 
@@ -1062,31 +1069,31 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- bmax                  222.7                   4.4
- bmin                  225.5                   4.5
+ bmax                  220.6                   4.4
+ bmin                  224.4                   4.4
  bsum                   10.3                   0.0
- ball                  344.0                   2.6
- bany                  390.3                   2.9
- findindex             526.3                   3.6
- eq                    344.2                   2.6
- ge                    359.1                   2.6
- gt                    358.5                   2.6
- le                    359.5                   2.6
- lt                    361.2                   2.6
- ne                    393.2                   2.9
- and\_                1039.9                   3.8
- or\_                 1064.5                   3.8
- xor                  1053.8                   3.8
- lshift               1292.4                   4.5
- rshift                929.4                   4.4
- invert                853.3                   3.8
+ ball                  343.7                   2.6
+ bany                  394.2                   2.9
+ findindex             520.9                   3.6
+ eq                    343.7                   2.6
+ ge                    359.9                   2.6
+ gt                    359.8                   2.6
+ le                    364.6                   2.6
+ lt                    365.2                   2.6
+ ne                    390.4                   2.9
+ and\_                1027.9                   3.8
+ or\_                 1067.0                   3.8
+ xor                  1074.3                   3.8
+ lshift               1284.9                   4.5
+ rshift                960.2                   4.4
+ invert                855.6                   3.8
 ============ ===================== ======================================
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    562.7
-Maximum:    1292.4
+Average:    564.9
+Maximum:    1284.9
 Minimum:    10.3
 Array size: 100000
 =========== ========
@@ -1100,39 +1107,39 @@ ARMv8 Benchmarks
 _________________
 
 The following tests were conducted on an ARM CPU in 64 bit mode (ARMv8) on a 
-Raspberry Pi 3.
+Raspberry Pi 4.
 
 Relative Performance - Python Time / Bytesfunc Time.
 
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- bmax                  454.9                  14.3
- bmin                  454.0                  14.2
- bsum                   10.5                   0.0
- ball                  466.7                   4.7
- bany                  535.1                   5.1
- findindex             759.7                   6.4
- eq                    461.5                   4.8
- ge                    511.9                   4.7
- gt                    514.3                   4.8
- le                    499.2                   4.7
- lt                    498.9                   4.7
- ne                    561.8                   5.1
- and\_                1627.7                  11.9
- or\_                 1638.5                  12.0
- xor                  1774.9                  11.9
- lshift               2005.1                  12.3
- rshift               1391.4                  12.3
- invert               1281.8                  11.9
+ bmax                  339.3                  14.8
+ bmin                  294.4                  14.8
+ bsum                    8.8                   0.0
+ ball                  588.2                  10.0
+ bany                  629.5                  10.3
+ findindex             786.8                   6.9
+ eq                    594.0                  10.1
+ ge                    629.1                  10.1
+ gt                    631.4                  10.1
+ le                    620.5                  10.1
+ lt                    619.3                  10.0
+ ne                    658.5                  10.4
+ and\_                1403.7                   9.4
+ or\_                 1319.6                   8.8
+ xor                  1374.8                   8.8
+ lshift               1635.2                   7.9
+ rshift               1303.5                   8.9
+ invert                581.0                   5.0
 ============ ===================== ======================================
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    858.2
-Maximum:    2005.1
-Minimum:    10.5
+Average:    778.8
+Maximum:    1635.2
+Minimum:    8.8
 Array size: 100000
 =========== ========
 
@@ -1164,26 +1171,25 @@ List of tested Operation Systems, Compilers, and CPU Architectures
 BytesFunc is written in 'C' and uses the standard C libraries to implement the 
 underlying math functions. BytesFunc has been tested on the following platforms.
 
-================= ========  ========================== =========================
-OS                   Bits      Compiler                  Python Version Tested
-================= ========  ========================== =========================
-Ubuntu 18.04 LTS   64 bit    GCC                         3.6
-Ubuntu 19.10       64 bit    GCC                         3.7
-Ubuntu 20.04       64 bit    GCC                         3.8
-Debian 10          32 bit    GCC                         3.7
-Debian 10          64 bit    GCC                         3.7
-OpenSuse 15        64 bit    GCC                         3.6
-Centos 8           64 bit    GCC                         3.6
-FreeBSD 12         64 bit    LLVM                        3.7
-OpenBSD 6.5        64 bit    LLVM                        3.6
-MS Windows 10      64 bit    MS Visual Studio C 2015     3.8
-Raspbian (RPi 3)   32 bit    GCC                         3.7
-Ubuntu 19.10 ARM   64 bit    GCC                         3.7
-================= ========  ========================== =========================
+===================== ========  =============== =========================
+OS                      Bits      Compiler        Python Version Tested
+===================== ========  =============== =========================
+Ubuntu 20.04 LTS       64 bit    GCC               3.8
+Ubuntu 20.10           64 bit    GCC               3.8
+Debian 10              32 bit    GCC               3.7
+Debian 10              64 bit    GCC               3.7
+OpenSuse 15.2          64 bit    GCC               3.6
+Centos 8               64 bit    GCC               3.6
+FreeBSD 12             64 bit    LLVM              3.7
+OpenBSD 6.8            64 bit    LLVM              3.8
+MS Windows 10          64 bit    MS VS C 2015      3.9
+Raspbian (RPi 3)       32 bit    GCC               3.7
+Ubuntu 20.04 (RPi 4)   64 bit    GCC               3.8
+===================== ========  =============== =========================
 
 * The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
-* The Ubuntu ARM tests were conducted on a Raspberry Pi 3 ARM CPU running in
+* The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
   64 bit mode.
 * All others were conducted using VMs running on x86 hardware. 
 
