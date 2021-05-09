@@ -751,7 +751,7 @@ endobj
 endobj
 127 0 obj
 <<
-/Author (Michael Griffin) /CreationDate (D:20210324014450+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20210324014450+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+/Author (Michael Griffin) /CreationDate (D:20210508182733+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20210508182733+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (\(unspecified\)) /Title (BytesFunc) /Trapped /False
 >>
 endobj
@@ -1070,7 +1070,7 @@ q
 1 0 0 1 91.03937 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.1.0 for 2021-03-19) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.1.1 for 2021-05-02) Tj T* ET
 Q
 Q
 q
@@ -1132,7 +1132,7 @@ q
 1 0 0 1 91.03937 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Python 3.5 or later) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Python 3.6 or later) Tj T* ET
 Q
 Q
 q
@@ -10798,7 +10798,7 @@ q
 1 0 0 1 6 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 20.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 21.04) Tj T* ET
 Q
 Q
 q
@@ -10819,7 +10819,7 @@ q
 1 0 0 1 305.6398 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
 Q
 Q
 q
@@ -10938,7 +10938,7 @@ q
 1 0 0 1 6 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (FreeBSD 12) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (FreeBSD 13) Tj T* ET
 Q
 Q
 q
@@ -10966,7 +10966,7 @@ q
 1 0 0 1 6 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (OpenBSD 6.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (OpenBSD 6.9) Tj T* ET
 Q
 Q
 q
@@ -11577,7 +11577,7 @@ xref
 trailer
 <<
 /ID 
-[<0c9ada25163b96630af9463de95305e8><0c9ada25163b96630af9463de95305e8>]
+[<c424af1af7a047516de842fd01eebf27><c424af1af7a047516de842fd01eebf27>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 127 0 R

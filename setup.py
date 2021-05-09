@@ -121,7 +121,7 @@ with open('README.rst') as longdescdata:
 
 
 setup(name = 'bytesfunc', 
-	version = '2.1.0',
+	version = '2.1.1',
 	description = 'Fast bytes and bytearray processing functions',
 	long_description = long_description,
 	url = 'https://github.com/m1griffin/bytesfunc',
@@ -133,7 +133,7 @@ setup(name = 'bytesfunc',
 		'Intended Audience :: Developers',
 		'Topic :: Scientific/Engineering :: Mathematics',
 		'License :: OSI Approved :: Apache Software License',
-		'Programming Language :: Python :: 3.5',
+		'Programming Language :: Python :: 3.6',
 		],
 	keywords = 'bytes and bytearray functions',
 	ext_package='bytesfunc',
