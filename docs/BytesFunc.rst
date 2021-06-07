@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 2.1.1 for 2021-05-02
+:Version: 2.2.0 for 2021-06-06
 :Copyright: 2014 - 2021
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
@@ -1024,34 +1024,36 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- bmax                   89.8                   2.6
- bmin                   76.9                   2.8
- bsum                    8.1                   0.0
- ball                  782.6                  16.9
- bany                  794.4                  16.4
- findindex             980.3                  16.1
- eq                    773.2                  16.9
- ge                    747.8                  16.1
- gt                    596.4                  12.8
- le                    761.1                  16.5
- lt                    598.4                  12.8
- ne                    766.0                  16.4
- and\_                 930.1                  10.5
- or\_                  997.3                  10.6
- xor                  1016.9                  10.9
- lshift                198.5                   0.0
- rshift                141.7                   0.0
- invert                741.7                   9.8
+ and\_                1023.4                   9.6
+ ball                  800.8                  15.6
+ bany                  757.1                  15.4
+ bmax                   90.7                   2.5
+ bmin                   77.8                   2.5
+ bsum                    9.3
+ eq                    765.2                  15.7
+ findindex             935.8                  15.0
+ ge                    802.6                  14.9
+ gt                    624.7                  11.6
+ invert                738.2                   9.5
+ le                    764.9                  15.0
+ lshift                250.5
+ lt                    571.2                  11.7
+ ne                    746.7                  15.3
+ or\_                  926.3                   9.6
+ rshift                137.6
+ xor                  1149.9                   9.5
 ============ ===================== ======================================
+
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    611.2
-Maximum:    1016.9
-Minimum:    8.1
+Average:    621
+Maximum:    1150
+Minimum:    9.3
 Array size: 100000
 =========== ========
+
 
 
 
@@ -1178,8 +1180,8 @@ Ubuntu 20.04 LTS       64 bit    GCC               3.8
 Ubuntu 21.04           64 bit    GCC               3.9
 Debian 10              32 bit    GCC               3.7
 Debian 10              64 bit    GCC               3.7
-OpenSuse 15.2          64 bit    GCC               3.6
-Centos 8               64 bit    GCC               3.6
+OpenSuse 15.3          64 bit    GCC               3.6
+Centos 8.4             64 bit    GCC               3.6
 FreeBSD 13             64 bit    LLVM              3.7
 OpenBSD 6.9            64 bit    LLVM              3.8
 MS Windows 10          64 bit    MS VS C 2015      3.9
