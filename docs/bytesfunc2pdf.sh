@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rst2pdf index.rst -o BytesFunc.pdf
+rst2pdf BytesFunc.rst
 
