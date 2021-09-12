@@ -5,7 +5,7 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version: 2.2.0 for 2021-06-06
+:Version: 3.0.0 for 2021-09-11
 :Copyright: 2014 - 2021
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
@@ -131,11 +131,11 @@ OS                      Bits      Compiler        Python Version Tested
 ===================== ========  =============== =========================
 Ubuntu 20.04 LTS       64 bit    GCC               3.8
 Ubuntu 21.04           64 bit    GCC               3.9
-Debian 10              32 bit    GCC               3.7
-Debian 10              64 bit    GCC               3.7
+Debian 11              32 bit    GCC               3.9
+Debian 11              64 bit    GCC               3.9
 OpenSuse 15.3          64 bit    GCC               3.6
 Centos 8.4             64 bit    GCC               3.6
-FreeBSD 13             64 bit    LLVM              3.7
+FreeBSD 13             64 bit    LLVM              3.8
 OpenBSD 6.9            64 bit    LLVM              3.8
 MS Windows 10          64 bit    MS VS C 2015      3.9
 Raspbian (RPi 3)       32 bit    GCC               3.7
@@ -185,6 +185,9 @@ setup.py directly is no longer done.
 
 Release History
 ===============
+* 3.0.0 - Major speed improvement to lshfit and rshift on x86-64 due to adding
+          SIMD support. Debian test platforms were updated to latest versions 
+          (11). 
 * 2.2.0 - Updated benchmarks to make each one a separate file. Centos and
           OpenSuse test platforms updated to latest versions.
 * 2.1.1 - Documentation updated and version number bumped to reflect testing 

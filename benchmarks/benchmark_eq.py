@@ -5,7 +5,7 @@
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      31-May-2021.
+# Ver:      12-Sep-2021.
 #
 ###############################################################################
 #

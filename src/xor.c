@@ -51,6 +51,31 @@
 
 
 /*--------------------------------------------------------------------------- */
+/*   calcalignedlength
+   Calculate the aligned length of the array. This is the length which is
+   evenly divisible by the SIMD register. Any array elements after this
+   one must be dealt with using non-SIMD clean-up code.
+   arraylen = The length of the array in number of elements.
+   simdwidth = The width of the SIMD registers for this data type.
+   Returns the length of the array which can be processed using SIMD.
+*/
+
+#define calcalignedlength(arraylen) (arraylen - (arraylen % CHARSIMDSIZE))
+
+
+/*   enoughforsimd
+   Calculate whether the array to be processed is big enough to be handled by
+   SIMD. We make the minimum size for this bigger than the actual minimum as
+   the overhead for setting up SIMD does not justify very small arrays. The
+   minimum size used here is arbitrary and was not tested with benchmarks.
+   arraylen = The length of the array in number of elements.
+   simdwidth = The width of the SIMD registers for this data type.
+*/
+
+#define enoughforsimd(arraylen) (arraylen >= (CHARSIMDSIZE * 2))
+
+
+/*--------------------------------------------------------------------------- */
 /* The following series of functions reflect the different parameter options possible.
    arraylen = The length of the data arrays.
    data1 = The first data array.
@@ -163,7 +188,7 @@ void xor_1_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char par
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -205,7 +230,7 @@ void xor_2_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char par
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -247,7 +272,7 @@ void xor_3_x86_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *dat
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -289,7 +314,7 @@ void xor_4_x86_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *dat
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -323,7 +348,7 @@ void xor_5_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *da
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -358,7 +383,7 @@ void xor_6_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *da
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -410,7 +435,7 @@ void xor_1_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char p
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -452,7 +477,7 @@ void xor_2_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char p
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -494,7 +519,7 @@ void xor_3_armv7_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -536,7 +561,7 @@ void xor_4_armv7_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -570,7 +595,7 @@ void xor_5_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -605,7 +630,7 @@ void xor_6_armv7_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -657,7 +682,7 @@ void xor_1_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char p
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -699,7 +724,7 @@ void xor_2_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char p
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -741,7 +766,7 @@ void xor_3_armv8_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -783,7 +808,7 @@ void xor_4_armv8_simd(Py_ssize_t arraylen, unsigned char param, unsigned char *d
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -817,7 +842,7 @@ void xor_5_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -852,7 +877,7 @@ void xor_6_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -888,7 +913,7 @@ void xor_6_armv8_simd(Py_ssize_t arraylen, unsigned char *data1, unsigned char *
 void xor_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_1_x86_simd(arraylen, data1, param);
 		#endif
@@ -914,7 +939,7 @@ void xor_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigne
 void xor_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_2_x86_simd(arraylen, data1, param, data3);
 		#endif
@@ -940,7 +965,7 @@ void xor_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigne
 void xor_3_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_3_x86_simd(arraylen, param, data2);
 		#endif
@@ -966,7 +991,7 @@ void xor_3_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned
 void xor_4_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_4_x86_simd(arraylen, param, data2, data3);
 		#endif
@@ -992,7 +1017,7 @@ void xor_4_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned
 void xor_5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_5_x86_simd(arraylen, data1, data2);
 		#endif
@@ -1018,7 +1043,7 @@ void xor_5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigne
 void xor_6_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen)) {
 		#if defined(AF_HASSIMD_X86)
 			xor_6_x86_simd(arraylen, data1, data2, data3);
 		#endif
@@ -1144,7 +1169,8 @@ Call formats: \n\
   greater than the actual length of the sequence is specified, this \n\
   parameter is ignored. \n\
 * nosimd - If True, SIMD acceleration is disabled. This parameter is \n\
-  optional. The default is FALSE. \n");
+  optional. The default is FALSE. \n\
+");
 
 
 /*--------------------------------------------------------------------------- */

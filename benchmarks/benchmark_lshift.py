@@ -5,7 +5,7 @@
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      31-May-2021.
+# Ver:      12-Sep-2021.
 #
 ###############################################################################
 #
@@ -277,7 +277,7 @@ def platformdetect():
 	# These values were derived from the platform data reported by the benchmark.
 	signatures = {
 		'i686' : False,
-		'x86_64' : False,
+		'x86_64' : True,
 		'armv7l' : True,
 		'aarch64' : True,
 	}

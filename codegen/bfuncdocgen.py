@@ -219,7 +219,7 @@ def MakeSummaryTable(funcsdocs):
 
 # ==============================================================================
 
-def MakeSIMDTable(funcsdocs, x86, armv7):
+def MakeSIMDTable(funcsdocs, x86, armv7, armv8):
 	'''Make a table showing which functions have SIMD support, and for which architecture.
 	'''
 	funcnames = list(funcsdocs.keys())
@@ -228,21 +228,21 @@ def MakeSIMDTable(funcsdocs, x86, armv7):
 	functitlepad = max(functitlesize, len('Function')) + 2
 
 	summdocs = []
-	tablesep = '=' * functitlepad + ' ===== ======='
+	tablesep = '=' * functitlepad + ' ===== ======= ======='
 
-	tablehead = tablesep + '\n' + 'Function'.center(functitlepad) + '  x86   ARMv7 \n' + tablesep
+	tablehead = tablesep + '\n' + 'Function'.center(functitlepad) + '  x86   ARMv7   ARMv8 \n' + tablesep
 	summdocs.append('\n' + tablehead)
 
-	flinetemplate = '   %s     %s    %s '
+	flinetemplate = '   %s     %s    %s    %s '
 	for func in funcnames:
 		hasx86 = '  X   ' if func in x86 else '      '
 		hasarmv7 = '   X  ' if func in armv7 else '      '
+		hasarmv8 = '   X  ' if func in armv8 else '      '
 
 		# Escape the function name in the event it contains underscores.
 		# This is required for RST when converting to PDF or HTML. 
 		funcrst = sanitizer(func)
-		summdocs.append(' ' + funcrst.ljust(functitlepad) + hasx86 + hasarmv7)
-		#summdocs.append(' %s               %s    %s \n' % (funcrst, hasx86, hasarmv7))
+		summdocs.append(' ' + funcrst.ljust(functitlepad) + hasx86 + hasarmv7 + hasarmv8)
 
 	summdocs.append(tablesep)
 
@@ -266,7 +266,9 @@ funcsdocs = FindFuncDocs(filelist, funcnames, filedirpath)
 # Find all the functions with x86 SIMD support.
 SIMD_data_x86 = GetSourceFileSIMD(filepath, '_x86_simd')
 # Find all the functions with ARMv7 SIMD support.
-SIMD_data_arm = GetSourceFileSIMD(filepath, '_armv7_simd')
+SIMD_data_armv7 = GetSourceFileSIMD(filepath, '_armv7_simd')
+# Find all the functions with ARMv8 SIMD support.
+SIMD_data_armv8 = GetSourceFileSIMD(filepath, '_armv8_simd')
 
 
 # Format the main function documentation.
@@ -275,7 +277,7 @@ opdocs = FormatFuncsDocs(funcsdocs)
 # Format the function summary table.
 summtable = MakeSummaryTable(funcsdocs)
 
-simdtable = MakeSIMDTable(funcsdocs, SIMD_data_x86, SIMD_data_arm)
+simdtable = MakeSIMDTable(funcsdocs, SIMD_data_x86, SIMD_data_armv7, SIMD_data_armv8)
 
 # ==============================================================================
 
