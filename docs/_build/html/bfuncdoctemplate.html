@@ -1,0 +1,653 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BytesFunc &#8212; BytesFunc  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bytesfunc">
+<h1><a class="toc-backref" href="#id2">BytesFunc</a><a class="headerlink" href="#bytesfunc" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Michael Griffin</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">3.0.0 for 2021-09-11</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">2014 - 2021</td>
+</tr>
+<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">This document may be distributed under the Apache License V2.0.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Language:</th><td class="field-body">Python 3.6 or later</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#bytesfunc" id="id2">BytesFunc</a><ul>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#function-summary" id="id4">Function Summary</a><ul>
+<li><a class="reference internal" href="#brief-description" id="id5">Brief Description</a></li>
+<li><a class="reference internal" href="#python-equivalent" id="id6">Python Equivalent</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#description" id="id7">Description</a><ul>
+<li><a class="reference internal" href="#parameters" id="id8">Parameters</a><ul>
+<li><a class="reference internal" href="#parameter-formats" id="id9">Parameter Formats</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function-documentation-details" id="id10">Function Documentation Details</a></li>
+<li><a class="reference internal" href="#parameter-details" id="id11">Parameter Details</a><ul>
+<li><a class="reference internal" href="#comparison-operators" id="id12">Comparison Operators</a></li>
+<li><a class="reference internal" href="#numeric-parameters" id="id13">Numeric Parameters</a></li>
+<li><a class="reference internal" href="#using-less-than-the-entire-sequence" id="id14">Using Less than the Entire Sequence</a></li>
+<li><a class="reference internal" href="#suppressing-or-ignoring-math-errors" id="id15">Suppressing or Ignoring Math Errors</a></li>
+<li><a class="reference internal" href="#differences-with-native-python" id="id16">Differences with Native Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simd-support" id="id17">SIMD Support</a><ul>
+<li><a class="reference internal" href="#general" id="id18">General</a></li>
+<li><a class="reference internal" href="#disabling-simd" id="id19">Disabling SIMD</a></li>
+<li><a class="reference internal" href="#platform-support" id="id20">Platform Support</a></li>
+<li><a class="reference internal" href="#raspberry-pi-32-versus-64-bit" id="id21">Raspberry Pi 32 versus 64 bit</a></li>
+<li><a class="reference internal" href="#simd-function-support" id="id22">SIMD Function Support</a></li>
+<li><a class="reference internal" href="#simd-support-attributes" id="id23">SIMD Support Attributes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#performance" id="id24">Performance</a><ul>
+<li><a class="reference internal" href="#variables-affecting-performance" id="id25">Variables affecting Performance</a></li>
+<li><a class="reference internal" href="#typical-performance-readings" id="id26">Typical Performance Readings</a><ul>
+<li><a class="reference internal" href="#x86-64-benchmarks" id="id27">x86-64 Benchmarks</a></li>
+<li><a class="reference internal" href="#armv7-benchmarks" id="id28">ARMv7 Benchmarks</a></li>
+<li><a class="reference internal" href="#armv8-benchmarks" id="id29">ARMv8 Benchmarks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#platform-effects" id="id30">Platform Effects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1" id="id31">Platform support</a><ul>
+<li><a class="reference internal" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" id="id32">List of tested Operation Systems, Compilers, and CPU Architectures</a></li>
+<li><a class="reference internal" href="#platform-oddities" id="id33">Platform Oddities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The BytesFunc module provides high speed array processing functions for use with
+Python ‘bytes’ and ‘bytearray’ objects. These functions are patterned after the
+functions in the standard Python “operator” module together with some additional
+ones from other sources.</p>
+<p>The purpose of these functions is to perform mathematical calculations on
+“bytes” and “bytearray” objects significantly faster than using native Python.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="function-summary">
+<h2><a class="toc-backref" href="#id4">Function Summary</a><a class="headerlink" href="#function-summary" title="Permalink to this headline">¶</a></h2>
+<p>The compare operators used for ‘ball’, ‘bany’, and ‘findindex’ are examples
+only, and other compare operations are available. Many functions will accept
+other parameter combinations of sequences and numeric parameters. See the
+details for each function for what parameter combinations are valid.</p>
+<div class="section" id="brief-description">
+<h3><a class="toc-backref" href="#id5">Brief Description</a><a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Function</th>
+<th class="head">Equivalent to</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>and_</td>
+<td>Perform a bitwise AND across the sequence.</td>
+</tr>
+<tr class="row-odd"><td>ball</td>
+<td>True if all elements of the sequence meet the match criteria.</td>
+</tr>
+<tr class="row-even"><td>bany</td>
+<td>True if any elements of the sequence meet the match criteria.</td>
+</tr>
+<tr class="row-odd"><td>bmax</td>
+<td>Return the maximum value in the sequence.</td>
+</tr>
+<tr class="row-even"><td>bmin</td>
+<td>Return the minimum value in the sequence.</td>
+</tr>
+<tr class="row-odd"><td>bsum</td>
+<td>Return the sum of the sequence.</td>
+</tr>
+<tr class="row-even"><td>eq</td>
+<td>True if all elements of the sequence equal the compare value.</td>
+</tr>
+<tr class="row-odd"><td>findindex</td>
+<td>Returns the index of the first value in an array to meet the
+specified criteria.</td>
+</tr>
+<tr class="row-even"><td>ge</td>
+<td>True if all elements of the sequence are greater than or equal to
+the compare value.</td>
+</tr>
+<tr class="row-odd"><td>gt</td>
+<td>True if all elements of the sequence are greater than the compare
+value.</td>
+</tr>
+<tr class="row-even"><td>invert</td>
+<td>Perform a bitwise invert across the sequence.</td>
+</tr>
+<tr class="row-odd"><td>le</td>
+<td>True if all elements of the sequence are less than or equal to the
+compare value.</td>
+</tr>
+<tr class="row-even"><td>lshift</td>
+<td>Perform a bitwise left shift across the sequence.</td>
+</tr>
+<tr class="row-odd"><td>lt</td>
+<td>True if all elements of the sequence are less than the compare
+value.</td>
+</tr>
+<tr class="row-even"><td>ne</td>
+<td>True if all elements of the sequence are not equal the compare
+value.</td>
+</tr>
+<tr class="row-odd"><td>or_</td>
+<td>Perform a bitwise OR across the sequence.</td>
+</tr>
+<tr class="row-even"><td>rshift</td>
+<td>Perform a bitwise right shift across the sequence.</td>
+</tr>
+<tr class="row-odd"><td>xor</td>
+<td>Perform a bitwise XOR across the sequence.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="python-equivalent">
+<h3><a class="toc-backref" href="#id6">Python Equivalent</a><a class="headerlink" href="#python-equivalent" title="Permalink to this headline">¶</a></h3>
+<p>{summarytable}</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="description">
+<h2><a class="toc-backref" href="#id7">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parameters">
+<h3><a class="toc-backref" href="#id8">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="parameter-formats">
+<h4><a class="toc-backref" href="#id9">Parameter Formats</a><a class="headerlink" href="#parameter-formats" title="Permalink to this headline">¶</a></h4>
+<p>Parameters come in several forms.</p>
+<ul class="simple">
+<li>Sequences. Sequences are either “bytes” or “bytearray” objects. Bytes
+sequences are immutable and must not be used for output destinations.
+Bytearray sequences are mutable, and may be used for inputs or outputs.</li>
+<li>Numeric parameters. Numeric input parameters are individual integers and must
+be in the range of 0 to 255.</li>
+<li>Comparison operators. Comparison operators are unicode strings in the form
+used by Python for compare operations. These must be quoted strings, and not
+bare Python symbols. See the section below for a list of these.</li>
+<li>Sequence length control. Sequence length control allows only part of a
+sequence to be used as an input. See the section below for details.</li>
+<li>Overflow detection disable. Overflow detection control is used for disable
+integer overflow. See the section below for details.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="c1"># Find the maximum value and return it. The answer should be 99.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">bmax</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sequence1</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">sequence2</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Xor each element in sequence1 with &#39;7&#39;, and write the output to</span>
+<span class="c1"># sequence2. Sequence2 should be bytearray(b&#39;\x06\x05\x02d\x0f&#39;).</span>
+<span class="n">bytesfunc</span><span class="o">.</span><span class="n">xor</span><span class="p">(</span><span class="n">sequence1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">sequence2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sequence1</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">101</span><span class="p">])</span>
+<span class="c1"># Find the first index of sequence1 which is greater than or equal to 99.</span>
+<span class="c1"># The answer should be 3.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">findindex</span><span class="p">(</span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="function-documentation-details">
+<h3><a class="toc-backref" href="#id10">Function Documentation Details</a><a class="headerlink" href="#function-documentation-details" title="Permalink to this headline">¶</a></h3>
+<p>{opdocs}</p>
+</div>
+<div class="section" id="parameter-details">
+<h3><a class="toc-backref" href="#id11">Parameter Details</a><a class="headerlink" href="#parameter-details" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="comparison-operators">
+<h4><a class="toc-backref" href="#id12">Comparison Operators</a><a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h4>
+<p>Some functions use comparison operators. These are unicode strings containing
+the Python compare operators and include following:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operator</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>‘&lt;’</td>
+<td>Less than.</td>
+</tr>
+<tr class="row-odd"><td>‘&lt;=’</td>
+<td>Less than or equal to.</td>
+</tr>
+<tr class="row-even"><td>‘&gt;’</td>
+<td>Greater than.</td>
+</tr>
+<tr class="row-odd"><td>‘&gt;=’</td>
+<td>Greater than or equal to.</td>
+</tr>
+<tr class="row-even"><td>‘==’</td>
+<td>Equal to.</td>
+</tr>
+<tr class="row-odd"><td>‘!=’</td>
+<td>Not equal to.</td>
+</tr>
+</tbody>
+</table>
+<p>All comparison operators must contain only the above characters and may not
+include any leading or trailing spaces or other characters.</p>
+</div>
+<div class="section" id="numeric-parameters">
+<h4><a class="toc-backref" href="#id13">Numeric Parameters</a><a class="headerlink" href="#numeric-parameters" title="Permalink to this headline">¶</a></h4>
+<p>“Bytes” and “bytearray” objects are sequences of 8 bit bytes with each element
+being in the range of 0 to 255. When a function accepts a non-sequence numeric
+parameter, this must also be in the range of 0 to 255.</p>
+</div>
+<div class="section" id="using-less-than-the-entire-sequence">
+<h4><a class="toc-backref" href="#id14">Using Less than the Entire Sequence</a><a class="headerlink" href="#using-less-than-the-entire-sequence" title="Permalink to this headline">¶</a></h4>
+<p>If the size of the sequence is larger than the desired length of the calculation,
+it may be limited to the first part of the sequence by using the ‘maxlen’
+parameter. In the following example only the first 3 elements will be operated
+on, with the following ones left unchanged.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">25</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">bmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="suppressing-or-ignoring-math-errors">
+<h4><a class="toc-backref" href="#id15">Suppressing or Ignoring Math Errors</a><a class="headerlink" href="#suppressing-or-ignoring-math-errors" title="Permalink to this headline">¶</a></h4>
+<p>Some functions can be made to ignore some mathematical errors (e.g. integer
+overflow) by setting the ‘matherrors’ keyword parameter to True.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">250</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">matherrors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ignoring errors may be desirable if the side effect (e.g. the result of an
+integer overflow) is the intended effect, or for reasons of a minor performance
+improvement in some cases. Benchmark your calculation before deciding if this
+is worth while.</p>
+</div>
+<div class="section" id="differences-with-native-python">
+<h4><a class="toc-backref" href="#id16">Differences with Native Python</a><a class="headerlink" href="#differences-with-native-python" title="Permalink to this headline">¶</a></h4>
+<p>In some cases ‘BytesFunc’ will not produce exactly the same result as Python.
+There are several reasons for this, the primary one being that BytesFunc
+operates on different underlying data types. Specifically, BytesFunc
+uses the platform’s native integer types while Python integers are of
+arbitrary size and can never overflow (Python simply expands the word size
+indefinitely), while BytesFunc integers will overflow the same as they would
+with programs written in C.</p>
+<p>Think of BytesFunc as exposing C style semantics in a form convenient to use
+in Python. Some convenience which Python provides (e.g. no limit to the size of
+integers) is traded off for large performance increases.</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="simd-support">
+<h2><a class="toc-backref" href="#id17">SIMD Support</a><a class="headerlink" href="#simd-support" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general">
+<h3><a class="toc-backref" href="#id18">General</a><a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>SIMD (Single Instruction Multiple Data) is a set of CPU features which allow
+multiple operations to take place in parallel. Some, but not all, functions may
+make use of these instructions to speed up execution.</p>
+</div>
+<div class="section" id="disabling-simd">
+<h3><a class="toc-backref" href="#id19">Disabling SIMD</a><a class="headerlink" href="#disabling-simd" title="Permalink to this headline">¶</a></h3>
+<p>Those functions which do support SIMD features will automatically make use of
+them by default unless this feature is disabled. There is normally no reason
+to disable SIMD, but should there be hardware related problems the function can
+be forced to fall back to conventional execution mode.</p>
+<p>If the optional parameter “nosimd” is set to true (“nosimd=True”), SIMD
+execution will be disabled. The default is “False”.</p>
+<p>To repeat, there is normally no reason to wish to disable SIMD.</p>
+</div>
+<div class="section" id="platform-support">
+<h3><a class="toc-backref" href="#id20">Platform Support</a><a class="headerlink" href="#platform-support" title="Permalink to this headline">¶</a></h3>
+<p>SIMD instructions are presently supported only on the following:</p>
+<ul class="simple">
+<li>64 bit x86 (i.e. AMD64) using GCC.</li>
+<li>32 bit ARMv7 using GCC (tested on Raspberry Pi 3).</li>
+<li>64 bit ARMv8 AARCH64 using GCC (tested on Raspberry Pi 4).</li>
+</ul>
+<p>Other compilers or platforms will still run the same functions and should
+produce the same results, but they will not benefit from SIMD acceleration.</p>
+<p>However, non-SIMD functions will still be much faster standard Python code. See
+the performance benchmarks to see what the relative speed differences are. With
+wider data types (e.g. double precision floating point) SIMD provides only
+marginal speed ups anyway.</p>
+</div>
+<div class="section" id="raspberry-pi-32-versus-64-bit">
+<h3><a class="toc-backref" href="#id21">Raspberry Pi 32 versus 64 bit</a><a class="headerlink" href="#raspberry-pi-32-versus-64-bit" title="Permalink to this headline">¶</a></h3>
+<p>The Raspberry Pi uses an ARM CPU. This can operate in 32 or 64 bit mode. When
+in 32 bit mode, the Raspberry Pi 3 operates in ARMv7 mode. This has 64 bit ARM
+NEON SIMD vectors.</p>
+<p>When in 64 bit mode, it acts as an ARMv8, with AARCH64 128 bit ARM NEON SIMD
+vectors.</p>
+<p>The Raspbian Linux OS is 32 bit mode only. Other distros such as Ubuntu offer
+64 bit versions.</p>
+<p>The “setup.py” file uses platform detection code to determine which ARM CPU
+and mode it is running on. Due to the availability of hardware for testing,
+this code is tailored to the Raspberry Pi 3 and Raspberry Pi 4 and the
+operating systems listed. This code then selects the appropriate compiler
+arguments to pass to the setup routines to tell the compiler what mode to
+compile for.</p>
+<p>If other ARM platforms are used which have different platform signatures or
+which require different compiler arguments, the “setup.py” file may need to be
+modified in order to use SIMD acceleration.</p>
+<p>However, the straight ‘C’ code should still compile and run, and still provide
+performance many times faster than when using native Python.</p>
+</div>
+<div class="section" id="simd-function-support">
+<h3><a class="toc-backref" href="#id22">SIMD Function Support</a><a class="headerlink" href="#simd-function-support" title="Permalink to this headline">¶</a></h3>
+<p>The following table shows which functions are supported by SIMD on which CPU
+architectures.</p>
+<p>{simdtable}</p>
+</div>
+<div class="section" id="simd-support-attributes">
+<h3><a class="toc-backref" href="#id23">SIMD Support Attributes</a><a class="headerlink" href="#simd-support-attributes" title="Permalink to this headline">¶</a></h3>
+<p>There is an attribute which can be tested to detect if BytesFunc is compiled
+with SIMD support and if the current hardware supports the required SIMD level.</p>
+<p>bytesfunc.simdsupport.hassimd</p>
+<p>The attribute “hassimd” will be True if the module supports SIMD.</p>
+<p>example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bytesfunc</span>
+<span class="n">bytesfunc</span><span class="o">.</span><span class="n">simdsupport</span><span class="o">.</span><span class="n">hassimd</span>
+<span class="o">==&gt;</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="performance">
+<h2><a class="toc-backref" href="#id24">Performance</a><a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="variables-affecting-performance">
+<h3><a class="toc-backref" href="#id25">Variables affecting Performance</a><a class="headerlink" href="#variables-affecting-performance" title="Permalink to this headline">¶</a></h3>
+<p>The purpose of the BytesFunc module is to execute common operations faster than
+native Python. The relative speed will depend upon a number of factors:</p>
+<ul class="simple">
+<li>The function.</li>
+<li>Function options. Turning checking off will result in faster performance.</li>
+<li>The data in the sequence and the parameters.</li>
+<li>The size of the sequence.</li>
+<li>The platform, including CPU type (e.g. x86 or ARM), operating system,
+and compiler.</li>
+</ul>
+<p>The speeds listed below should be used as rough guidelines only. More exact
+results will require application specific testing. The numbers shown are the
+execution time of each function relative to native Python. For example, a value
+of ‘50’ means that the corresponding BytesFunc operation ran 50 times faster
+than the closest native Python equivalent.</p>
+<p>Both relative performance (the speed-up as compared to Python) and absolute
+performance (the actual execution speed of Python and BytesFunc) will vary
+significantly depending upon the compiler (which is OS platform dependent) and
+whether compiled to 32 or 64 bit. If your precise actual benchmark performance
+results matter, be sure to conduct your testing using the actual OS and compiler
+your final program will be deployed on. The values listed below were measured on
+x86-64 Linux compiled with GCC.</p>
+<p>Note: Some more complex BytesFunc functions do not work exactly the same way as
+the native Python equivalents. This means that the benchmark results should be
+taken as general guidelines rather than precise comparisons.</p>
+</div>
+<div class="section" id="typical-performance-readings">
+<h3><a class="toc-backref" href="#id26">Typical Performance Readings</a><a class="headerlink" href="#typical-performance-readings" title="Permalink to this headline">¶</a></h3>
+<p>In this set of tests, all error checking was turned on and SIMD
+acceleration was enabled where this did not conflict with the preceding
+(the defaults in each case).</p>
+<p>The Bytesfunc versus Python factor of 100.0 means the bytesfunc version ran
+100 times faster than in native Python on that platform. Benchmarks for
+different hardware and platforms cannot be compared via this benchmark in terms
+of absolute performance as these are relative, not absolute numbers.</p>
+<p>An SIMD versus non-SIMD factor of 10.0 means the SIMD version was 10 times
+faster than the non-SIMD version. An SIMD versus non-SIMD factor of 0.0 means
+the function did not support SIMD on the tested platform.</p>
+<div class="section" id="x86-64-benchmarks">
+<h4><a class="toc-backref" href="#id27">x86-64 Benchmarks</a><a class="headerlink" href="#x86-64-benchmarks" title="Permalink to this headline">¶</a></h4>
+<p>The following tests were conducted on an x86-64 CPU.</p>
+<p>{pybench_x86}</p>
+</div>
+<div class="section" id="armv7-benchmarks">
+<h4><a class="toc-backref" href="#id28">ARMv7 Benchmarks</a><a class="headerlink" href="#armv7-benchmarks" title="Permalink to this headline">¶</a></h4>
+<p>The following tests were conducted on an ARM CPU in 32 bit mode (ARMv7) on a
+Raspberry Pi 3.</p>
+<p>{pybench_ARMv7}</p>
+</div>
+<div class="section" id="armv8-benchmarks">
+<h4><a class="toc-backref" href="#id29">ARMv8 Benchmarks</a><a class="headerlink" href="#armv8-benchmarks" title="Permalink to this headline">¶</a></h4>
+<p>The following tests were conducted on an ARM CPU in 64 bit mode (ARMv8) on a
+Raspberry Pi 4.</p>
+<p>{pybench_ARMv8}</p>
+</div>
+</div>
+<div class="section" id="platform-effects">
+<h3><a class="toc-backref" href="#id30">Platform Effects</a><a class="headerlink" href="#platform-effects" title="Permalink to this headline">¶</a></h3>
+<p>The platform, including CPU, OS, compiler, and compiler version can
+affect performance, and this influence can change significantly for
+different functions.</p>
+<p>If your application requires exact performance data, then benchmark
+your application in the specific platform (hardware, OS, and compiler)
+that you will be using.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id31">Platform support</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="list-of-tested-operation-systems-compilers-and-cpu-architectures">
+<h3><a class="toc-backref" href="#id32">List of tested Operation Systems, Compilers, and CPU Architectures</a><a class="headerlink" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" title="Permalink to this headline">¶</a></h3>
+<p>BytesFunc is written in ‘C’ and uses the standard C libraries to implement the
+underlying math functions. BytesFunc has been tested on the following platforms.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="12%" />
+<col width="22%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">OS</th>
+<th class="head">Bits</th>
+<th class="head">Compiler</th>
+<th class="head">Python Version Tested</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ubuntu 20.04 LTS</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.8</td>
+</tr>
+<tr class="row-odd"><td>Ubuntu 21.04</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.9</td>
+</tr>
+<tr class="row-even"><td>Debian 11</td>
+<td>32 bit</td>
+<td>GCC</td>
+<td>3.9</td>
+</tr>
+<tr class="row-odd"><td>Debian 11</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.9</td>
+</tr>
+<tr class="row-even"><td>OpenSuse 15.3</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.6</td>
+</tr>
+<tr class="row-odd"><td>Centos 8.4</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.6</td>
+</tr>
+<tr class="row-even"><td>FreeBSD 13</td>
+<td>64 bit</td>
+<td>LLVM</td>
+<td>3.8</td>
+</tr>
+<tr class="row-odd"><td>OpenBSD 6.9</td>
+<td>64 bit</td>
+<td>LLVM</td>
+<td>3.8</td>
+</tr>
+<tr class="row-even"><td>MS Windows 10</td>
+<td>64 bit</td>
+<td>MS VS C 2015</td>
+<td>3.9</td>
+</tr>
+<tr class="row-odd"><td>Raspbian (RPi 3)</td>
+<td>32 bit</td>
+<td>GCC</td>
+<td>3.7</td>
+</tr>
+<tr class="row-even"><td>Ubuntu 20.04 (RPi 4)</td>
+<td>64 bit</td>
+<td>GCC</td>
+<td>3.8</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
+in 32 bit mode.</li>
+<li>The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
+64 bit mode.</li>
+<li>All others were conducted using VMs running on x86 hardware.</li>
+</ul>
+</div>
+<div class="section" id="platform-oddities">
+<h3><a class="toc-backref" href="#id33">Platform Oddities</a><a class="headerlink" href="#platform-oddities" title="Permalink to this headline">¶</a></h3>
+<p>As most operators are implemented using native behaviour, details of some
+operations may depend on the CPU architecture.</p>
+<p>Lshift and rshift will exhibit a behaviour that depends on the CPU type
+whether it is 32 or 64 bit, and array size.</p>
+<p>For 32 bit x86 systems, if the array word size is 32 bits or less, the shift
+is masked to 5 bits. That is, shift amounts greater than 32 will “roll over”,
+repeating smaller shifts.</p>
+<p>On 64 bit systems, this behaviour will vary depending on whether SIMD is used
+or not. Arrays which are not even multiples of SIMD register sizes may
+exibit different behaviour at different array indexes (depending on whether
+SIMD or non-SIMD instructions were used for those parts of the array).</p>
+<p>ARM does not display this roll-over behaviour, and so may give different
+results than x86. However, negative shift values may result in the shift
+operation being conducted in the opposite direction (e.g. right shift instead
+of left shift).</p>
+<p>The conclusion is that bit shift operations which use a shift amount which is
+not in the range of 0 to “maximum number” may produce undefined results.
+So valid bit shift amounts should be 0 to 7.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BytesFunc</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="BytesFunc.html">BytesFunc</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, mgriffin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/bfuncdoctemplate.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

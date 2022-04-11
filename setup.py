@@ -105,11 +105,11 @@ elif ('GCC' in PyCompilerType) and ('aarch64' in platform.machine()):
 	# Get the CPU part string from the kernel.
 	cpupart = GetRaspCPUType()
 	# For Raspberry Pi 3 in 64 bit mode.
-	if '0xD03' in cpupart.upper():
+	if '0XD03' in cpupart.upper():
 		Compile_Args = ['-mcpu=cortex-a53']
 	# For Raspberry Pi 4 in 64 bit mode.
-	elif '0xD08' in cpupart.upper():
-		Compile_Args = ['cortex-a72']
+	elif '0XD08' in cpupart.upper():
+		Compile_Args = ['-mcpu=cortex-a72']
 	else:
 		Compile_Args = []
 else:
@@ -121,7 +121,7 @@ with open('README.rst') as longdescdata:
 
 
 setup(name = 'bytesfunc', 
-	version = '3.1.0',
+	version = '3.1.1',
 	description = 'Fast bytes and bytearray processing functions',
 	long_description = long_description,
 	url = 'https://github.com/m1griffin/bytesfunc',

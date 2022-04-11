@@ -6,8 +6,8 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.0.0 for 2021-09-11
-:Copyright: 2014 - 2021
+:Version: 3.1.1 for 2022-04-10
+:Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
 
@@ -1182,23 +1182,24 @@ List of tested Operation Systems, Compilers, and CPU Architectures
 BytesFunc is written in 'C' and uses the standard C libraries to implement the 
 underlying math functions. BytesFunc has been tested on the following platforms.
 
-===================== ========  =============== =========================
-OS                      Bits      Compiler        Python Version Tested
-===================== ========  =============== =========================
-Ubuntu 20.04 LTS       64 bit    GCC               3.8
-Ubuntu 21.04           64 bit    GCC               3.9
-Debian 11              32 bit    GCC               3.9
-Debian 11              64 bit    GCC               3.9
-OpenSuse 15.3          64 bit    GCC               3.6
-Centos 8.4             64 bit    GCC               3.6
-FreeBSD 13             64 bit    LLVM              3.8
-OpenBSD 6.9            64 bit    LLVM              3.8
-MS Windows 10          64 bit    MS VS C 2015      3.9
-Raspbian (RPi 3)       32 bit    GCC               3.7
-Ubuntu 20.04 (RPi 4)   64 bit    GCC               3.8
-===================== ========  =============== =========================
+======================= ========== ====== =============== ================
+OS                       Hardware   Bits   Compiler        Python Version
+======================= ========== ====== =============== ================
+Ubuntu 20.04 LTS         x86_64     64     GCC               3.8
+Ubuntu 21.10             x86_64     64     GCC               3.9
+Debian 11                i686       32     GCC               3.9
+Debian 11                x86_64     64     GCC               3.9
+OpenSuse 15.3            x86_64     64     GCC               3.6
+Alma 8.5                 x86_64     64     GCC               3.6
+FreeBSD 13               x86_64     64     LLVM              3.8
+OpenBSD 7.0              x86_64     64     LLVM              3.8
+MS Windows 10            x86_64     64     MS VS C v.1929    3.10
+MS Windows 11            x86_64     64     MS VS C v.1929    3.10
+Raspberry Pi 2022-04-04  RPi 3      32     GCC               3.9
+Ubuntu 20.04             RPi 4      64     GCC               3.8
+======================= ========== ====== =============== ================
 
-* The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
+* The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
 * The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
   64 bit mode.

@@ -5,7 +5,7 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version: 3.1.0 for 2022-01-17
+:Version: 3.1.1 for 2022-04-10
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
@@ -23,6 +23,10 @@ ones from other sources.
 The purpose of these functions is to perform mathematical calculations on 
 "bytes" and "bytearray" objects significantly faster than using native Python.
 
+See full documentation at: https://bytesfunc.readthedocs.io/en/latest/
+
+If you are installing on an ARM platform such as the Raspberry Pi, see the
+installation notes at the end before attemptint to install from PyPI using PIP.
 
 ---------------------------------------------------------------------
 
@@ -181,10 +185,29 @@ in order to provide a common testing method for all platforms. Testing using
 setup.py directly is no longer done.
 
 
+Installing on ARM using PIP from PyPI.
+______________________________________
+
+Recent versions of PyPI seem to be building their own binary wheels for some 
+platforms using their own infrastruction. This may result in an invalid ARM 
+binary on Raspberry Pi. 
+
+If you have difficulties, then download the tar.gz version and install it 
+locally (see the above instructions for a local install). There is also a
+bash script called "setupuser.sh" which will call setup.py directly with 
+the appropriate parameters. 
+
+The setup.py file has platform detection code which it uses to pass the 
+correct flags to the C compiler. For ARM, this includes the CPU type. 
+
+
 ---------------------------------------------------------------------
 
 Release History
 ===============
+* 3.1.1 - Update to testing and support. Raspberry Pi 32 bit OS updated to
+          version 2022-04-04. Update to setup.py to improve ARM version 
+          detection.
 * 3.1.0 - Update to testing and support. On Windows 10 the Python version is
           3.10. Centos has been replaced by AlmaLinux due to Red Hat ending 
           long term support for Centos. Ubuntu Server 21.04 replaced by 21.10.
