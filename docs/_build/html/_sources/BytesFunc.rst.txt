@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.1.1 for 2022-04-10
+:Version: 3.1.2 for 2022-04-10
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later

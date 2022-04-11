@@ -5,7 +5,7 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version: 3.1.1 for 2022-04-10
+:Version: 3.1.2 for 2022-04-10
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
@@ -26,7 +26,7 @@ The purpose of these functions is to perform mathematical calculations on
 See full documentation at: https://bytesfunc.readthedocs.io/en/latest/
 
 If you are installing on an ARM platform such as the Raspberry Pi, see the
-installation notes at the end before attemptint to install from PyPI using PIP.
+installation notes at the end before attempting to install from PyPI using PIP.
 
 ---------------------------------------------------------------------
 
@@ -186,7 +186,7 @@ setup.py directly is no longer done.
 
 
 Installing on ARM using PIP from PyPI.
-______________________________________
+======================================
 
 Recent versions of PyPI seem to be building their own binary wheels for some 
 platforms using their own infrastruction. This may result in an invalid ARM 
@@ -205,6 +205,7 @@ correct flags to the C compiler. For ARM, this includes the CPU type.
 
 Release History
 ===============
+* 3.1.2 - Bump to correct minor documentation error in README.rst. 
 * 3.1.1 - Update to testing and support. Raspberry Pi 32 bit OS updated to
           version 2022-04-04. Update to setup.py to improve ARM version 
           detection.
