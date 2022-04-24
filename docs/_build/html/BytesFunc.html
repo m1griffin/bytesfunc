@@ -38,7 +38,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Michael Griffin</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">3.1.2 for 2022-04-10</td>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">3.2.0 for 2022-04-23</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">2014 - 2022</td>
 </tr>
@@ -1362,16 +1362,28 @@ architectures.</p>
 </div>
 <div class="section" id="simd-support-attributes">
 <h3><a class="toc-backref" href="#id41">SIMD Support Attributes</a><a class="headerlink" href="#simd-support-attributes" title="Permalink to this headline">¶</a></h3>
-<p>There is an attribute which can be tested to detect if BytesFunc is compiled
-with SIMD support and if the current hardware supports the required SIMD level.</p>
-<p>bytesfunc.simdsupport.hassimd</p>
-<p>The attribute “hassimd” will be True if the module supports SIMD.</p>
-<p>example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bytesfunc</span>
-<span class="n">bytesfunc</span><span class="o">.</span><span class="n">simdsupport</span><span class="o">.</span><span class="n">hassimd</span>
-<span class="o">==&gt;</span> <span class="kc">True</span>
+<p>“Simdsupport” provides information on the SIMD level compiled into this
+version of the library. There are two attributes, ‘hassimd’ and ‘simdarch’.</p>
+<ul class="simple">
+<li>‘hassimd’ is TRUE if the CPU supports the required SIMD features.</li>
+<li><dl class="first docutils">
+<dt>‘simdarch’ contains a string indicating the CPU architecture the library</dt>
+<dd>was compiled for.</dd>
+</dl>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bytesfunc</span><span class="o">.</span><span class="n">simdsupport</span><span class="o">.</span><span class="n">hassimd</span>
+<span class="go">True</span>
 </pre></div>
 </div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bytesfunc</span><span class="o">.</span><span class="n">simdsupport</span><span class="o">.</span><span class="n">simdarch</span>
+<span class="go">&#39;x86_64&#39;</span>
+</pre></div>
+</div>
+<p>This was created primarily for unit testing and benchmarking and should
+not be considered to be a permanent or stable part of the library.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -1435,76 +1447,76 @@ the function did not support SIMD on the tested platform.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>and_</td>
-<td>946.1</td>
-<td>9.7</td>
+<td>925.3</td>
+<td>10.1</td>
 </tr>
 <tr class="row-odd"><td>ball</td>
-<td>746.8</td>
-<td>15.7</td>
+<td>759.7</td>
+<td>15.3</td>
 </tr>
 <tr class="row-even"><td>bany</td>
-<td>768.9</td>
-<td>15.1</td>
+<td>809.3</td>
+<td>15.0</td>
 </tr>
 <tr class="row-odd"><td>bmax</td>
-<td>80.0</td>
+<td>79.0</td>
 <td>2.5</td>
 </tr>
 <tr class="row-even"><td>bmin</td>
-<td>77.6</td>
-<td>2.5</td>
+<td>77.1</td>
+<td>2.6</td>
 </tr>
 <tr class="row-odd"><td>bsum</td>
-<td>8.1</td>
+<td>11.9</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td>eq</td>
-<td>761.3</td>
+<td>777.1</td>
 <td>15.6</td>
 </tr>
 <tr class="row-odd"><td>findindex</td>
-<td>968.9</td>
-<td>14.7</td>
-</tr>
-<tr class="row-even"><td>ge</td>
-<td>757.4</td>
-<td>15.1</td>
-</tr>
-<tr class="row-odd"><td>gt</td>
-<td>590.7</td>
-<td>12.2</td>
-</tr>
-<tr class="row-even"><td>invert</td>
-<td>732.0</td>
-<td>10.2</td>
-</tr>
-<tr class="row-odd"><td>le</td>
-<td>742.5</td>
+<td>965.5</td>
 <td>14.8</td>
 </tr>
+<tr class="row-even"><td>ge</td>
+<td>743.0</td>
+<td>14.9</td>
+</tr>
+<tr class="row-odd"><td>gt</td>
+<td>586.2</td>
+<td>11.8</td>
+</tr>
+<tr class="row-even"><td>invert</td>
+<td>703.0</td>
+<td>9.2</td>
+</tr>
+<tr class="row-odd"><td>le</td>
+<td>764.2</td>
+<td>14.9</td>
+</tr>
 <tr class="row-even"><td>lshift</td>
-<td>1365.2</td>
-<td>6.4</td>
+<td>1345.9</td>
+<td>6.5</td>
 </tr>
 <tr class="row-odd"><td>lt</td>
-<td>592.8</td>
+<td>614.1</td>
 <td>11.8</td>
 </tr>
 <tr class="row-even"><td>ne</td>
-<td>759.9</td>
-<td>15.3</td>
+<td>749.3</td>
+<td>15.2</td>
 </tr>
 <tr class="row-odd"><td>or_</td>
-<td>903.1</td>
-<td>9.2</td>
+<td>1047.6</td>
+<td>9.4</td>
 </tr>
 <tr class="row-even"><td>rshift</td>
-<td>925.0</td>
-<td>6.4</td>
+<td>911.1</td>
+<td>7.4</td>
 </tr>
 <tr class="row-odd"><td>xor</td>
-<td>1008.7</td>
-<td>9.3</td>
+<td>1018.4</td>
+<td>9.5</td>
 </tr>
 </tbody>
 </table>
@@ -1520,13 +1532,13 @@ the function did not support SIMD on the tested platform.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Average:</td>
-<td>707</td>
+<td>716</td>
 </tr>
 <tr class="row-odd"><td>Maximum:</td>
-<td>1365</td>
+<td>1346</td>
 </tr>
 <tr class="row-even"><td>Minimum:</td>
-<td>8.1</td>
+<td>11.9</td>
 </tr>
 <tr class="row-odd"><td>Array size:</td>
 <td>100000</td>
@@ -1553,75 +1565,75 @@ Raspberry Pi 3.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>and_</td>
-<td>1031.4</td>
+<td>1109.7</td>
 <td>3.6</td>
 </tr>
 <tr class="row-odd"><td>ball</td>
-<td>342.5</td>
+<td>348.9</td>
 <td>2.6</td>
 </tr>
 <tr class="row-even"><td>bany</td>
-<td>395.6</td>
-<td>2.8</td>
+<td>332.5</td>
+<td>2.4</td>
 </tr>
 <tr class="row-odd"><td>bmax</td>
-<td>223.1</td>
-<td>4.3</td>
+<td>264.8</td>
+<td>5.0</td>
 </tr>
 <tr class="row-even"><td>bmin</td>
-<td>223.5</td>
-<td>4.3</td>
+<td>261.5</td>
+<td>5.0</td>
 </tr>
 <tr class="row-odd"><td>bsum</td>
-<td>10.3</td>
+<td>10.4</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td>eq</td>
-<td>342.3</td>
+<td>346.2</td>
 <td>2.6</td>
 </tr>
 <tr class="row-odd"><td>findindex</td>
-<td>520.5</td>
-<td>3.5</td>
+<td>508.4</td>
+<td>3.2</td>
 </tr>
 <tr class="row-even"><td>ge</td>
-<td>357.4</td>
+<td>362.5</td>
 <td>2.6</td>
 </tr>
 <tr class="row-odd"><td>gt</td>
-<td>356.0</td>
+<td>362.0</td>
 <td>2.6</td>
 </tr>
 <tr class="row-even"><td>invert</td>
-<td>829.6</td>
-<td>3.6</td>
+<td>914.8</td>
+<td>3.7</td>
 </tr>
 <tr class="row-odd"><td>le</td>
-<td>364.7</td>
+<td>360.2</td>
 <td>2.6</td>
 </tr>
 <tr class="row-even"><td>lshift</td>
-<td>1298.3</td>
-<td>4.3</td>
+<td>1365.7</td>
+<td>4.2</td>
 </tr>
 <tr class="row-odd"><td>lt</td>
-<td>363.2</td>
+<td>357.5</td>
 <td>2.6</td>
 </tr>
 <tr class="row-even"><td>ne</td>
-<td>386.6</td>
-<td>2.8</td>
+<td>335.6</td>
+<td>2.4</td>
 </tr>
 <tr class="row-odd"><td>or_</td>
-<td>1053.5</td>
-<td>3.6</td>
+<td>1342.4</td>
+<td>3.7</td>
 </tr>
 <tr class="row-even"><td>rshift</td>
-<td>934.8</td>
-<td>4.2</td>
+<td>960.8</td>
+<td>4.3</td>
 </tr>
 <tr class="row-odd"><td>xor</td>
-<td>1052.6</td>
+<td>1168.0</td>
 <td>3.6</td>
 </tr>
 </tbody>
@@ -1638,13 +1650,13 @@ Raspberry Pi 3.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Average:</td>
-<td>560</td>
+<td>595</td>
 </tr>
 <tr class="row-odd"><td>Maximum:</td>
-<td>1298</td>
+<td>1366</td>
 </tr>
 <tr class="row-even"><td>Minimum:</td>
-<td>10.3</td>
+<td>10.4</td>
 </tr>
 <tr class="row-odd"><td>Array size:</td>
 <td>100000</td>
@@ -1671,76 +1683,76 @@ Raspberry Pi 4.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>and_</td>
-<td>813.1</td>
-<td>7.0</td>
+<td>862.7</td>
+<td>7.2</td>
 </tr>
 <tr class="row-odd"><td>ball</td>
-<td>571.2</td>
-<td>9.7</td>
+<td>572.4</td>
+<td>6.6</td>
 </tr>
 <tr class="row-even"><td>bany</td>
-<td>606.7</td>
-<td>10.0</td>
+<td>616.3</td>
+<td>6.7</td>
 </tr>
 <tr class="row-odd"><td>bmax</td>
-<td>292.2</td>
+<td>283.0</td>
 <td>14.0</td>
 </tr>
 <tr class="row-even"><td>bmin</td>
-<td>291.1</td>
+<td>288.3</td>
 <td>14.0</td>
 </tr>
 <tr class="row-odd"><td>bsum</td>
-<td>8.8</td>
+<td>8.7</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-even"><td>eq</td>
-<td>570.3</td>
-<td>9.7</td>
-</tr>
-<tr class="row-odd"><td>findindex</td>
-<td>797.8</td>
+<td>571.4</td>
 <td>6.6</td>
 </tr>
+<tr class="row-odd"><td>findindex</td>
+<td>791.6</td>
+<td>6.7</td>
+</tr>
 <tr class="row-even"><td>ge</td>
-<td>602.5</td>
-<td>9.7</td>
+<td>600.8</td>
+<td>6.5</td>
 </tr>
 <tr class="row-odd"><td>gt</td>
-<td>596.1</td>
-<td>9.7</td>
+<td>598.9</td>
+<td>6.6</td>
 </tr>
 <tr class="row-even"><td>invert</td>
-<td>662.1</td>
-<td>6.7</td>
+<td>674.5</td>
+<td>7.0</td>
 </tr>
 <tr class="row-odd"><td>le</td>
-<td>598.5</td>
-<td>9.7</td>
+<td>599.0</td>
+<td>6.6</td>
 </tr>
 <tr class="row-even"><td>lshift</td>
-<td>1150.6</td>
-<td>6.8</td>
+<td>1193.0</td>
+<td>6.3</td>
 </tr>
 <tr class="row-odd"><td>lt</td>
-<td>595.4</td>
-<td>9.7</td>
+<td>593.6</td>
+<td>6.5</td>
 </tr>
 <tr class="row-even"><td>ne</td>
-<td>626.1</td>
-<td>10.0</td>
-</tr>
-<tr class="row-odd"><td>or_</td>
-<td>856.9</td>
+<td>624.9</td>
 <td>6.7</td>
 </tr>
+<tr class="row-odd"><td>or_</td>
+<td>865.9</td>
+<td>6.9</td>
+</tr>
 <tr class="row-even"><td>rshift</td>
-<td>859.0</td>
+<td>783.5</td>
 <td>6.4</td>
 </tr>
 <tr class="row-odd"><td>xor</td>
-<td>917.3</td>
-<td>6.5</td>
+<td>910.7</td>
+<td>6.4</td>
 </tr>
 </tbody>
 </table>
@@ -1756,13 +1768,13 @@ Raspberry Pi 4.</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Average:</td>
-<td>634</td>
+<td>636</td>
 </tr>
 <tr class="row-odd"><td>Maximum:</td>
-<td>1151</td>
+<td>1193</td>
 </tr>
 <tr class="row-even"><td>Minimum:</td>
-<td>8.8</td>
+<td>8.7</td>
 </tr>
 <tr class="row-odd"><td>Array size:</td>
 <td>100000</td>
@@ -1811,11 +1823,11 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 <td>GCC</td>
 <td>3.8</td>
 </tr>
-<tr class="row-odd"><td>Ubuntu 21.10</td>
+<tr class="row-odd"><td>Ubuntu 22.04</td>
 <td>x86_64</td>
 <td>64</td>
 <td>GCC</td>
-<td>3.9</td>
+<td>3.10</td>
 </tr>
 <tr class="row-even"><td>Debian 11</td>
 <td>i686</td>
@@ -1847,11 +1859,11 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 <td>LLVM</td>
 <td>3.8</td>
 </tr>
-<tr class="row-odd"><td>OpenBSD 7.0</td>
+<tr class="row-odd"><td>OpenBSD 7.1</td>
 <td>x86_64</td>
 <td>64</td>
 <td>LLVM</td>
-<td>3.8</td>
+<td>3.9</td>
 </tr>
 <tr class="row-even"><td>MS Windows 10</td>
 <td>x86_64</td>
@@ -1871,11 +1883,17 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 <td>GCC</td>
 <td>3.9</td>
 </tr>
-<tr class="row-odd"><td>Ubuntu 20.04</td>
+<tr class="row-odd"><td>Ubuntu 22.04</td>
 <td>RPi 4</td>
 <td>64</td>
 <td>GCC</td>
-<td>3.8</td>
+<td>3.10</td>
+</tr>
+<tr class="row-even"><td>Alpine 3.15.4</td>
+<td>VIA C3</td>
+<td>32</td>
+<td>GCC</td>
+<td>3.9</td>
 </tr>
 </tbody>
 </table>
@@ -1884,6 +1902,8 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 in 32 bit mode.</li>
 <li>The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
 64 bit mode.</li>
+<li>The Alpine tests were conducted on a VIA C3 (x86 compatible) running in
+32 bit mode.</li>
 <li>All others were conducted using VMs running on x86 hardware.</li>
 </ul>
 </div>

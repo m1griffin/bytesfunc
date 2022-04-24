@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.1.2 for 2022-04-10
+:Version: 3.2.0 for 2022-04-23
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
@@ -950,19 +950,27 @@ architectures.
 SIMD Support Attributes
 -----------------------
 
-There is an attribute which can be tested to detect if BytesFunc is compiled 
-with SIMD support and if the current hardware supports the required SIMD level.
+"Simdsupport" provides information on the SIMD level compiled into this 
+version of the library. There are two attributes, 'hassimd' and 'simdarch'.
 
-bytesfunc.simdsupport.hassimd
+* 'hassimd' is TRUE if the CPU supports the required SIMD features.
+* 'simdarch' contains a string indicating the CPU architecture the library
+   was compiled for.
 
-The attribute "hassimd" will be True if the module supports SIMD.
+Example::
 
-example::
+  >>> bytesfunc.simdsupport.hassimd
+  True
 
-	import bytesfunc
-	bytesfunc.simdsupport.hassimd
-	==> True
 
+Example::
+
+  >>> bytesfunc.simdsupport.simdarch
+  'x86_64'
+
+
+This was created primarily for unit testing and benchmarking and should
+not be considered to be a permanent or stable part of the library.
 
 ---------------------------------------------------------------------
 
@@ -1029,33 +1037,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                 946.1                   9.7
- ball                  746.8                  15.7
- bany                  768.9                  15.1
- bmax                   80.0                   2.5
- bmin                   77.6                   2.5
- bsum                    8.1
- eq                    761.3                  15.6
- findindex             968.9                  14.7
- ge                    757.4                  15.1
- gt                    590.7                  12.2
- invert                732.0                  10.2
- le                    742.5                  14.8
- lshift               1365.2                   6.4
- lt                    592.8                  11.8
- ne                    759.9                  15.3
- or\_                  903.1                   9.2
- rshift                925.0                   6.4
- xor                  1008.7                   9.3
+ and\_                 925.3                  10.1
+ ball                  759.7                  15.3
+ bany                  809.3                  15.0
+ bmax                   79.0                   2.5
+ bmin                   77.1                   2.6
+ bsum                   11.9
+ eq                    777.1                  15.6
+ findindex             965.5                  14.8
+ ge                    743.0                  14.9
+ gt                    586.2                  11.8
+ invert                703.0                   9.2
+ le                    764.2                  14.9
+ lshift               1345.9                   6.5
+ lt                    614.1                  11.8
+ ne                    749.3                  15.2
+ or\_                 1047.6                   9.4
+ rshift                911.1                   7.4
+ xor                  1018.4                   9.5
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    707
-Maximum:    1365
-Minimum:    8.1
+Average:    716
+Maximum:    1346
+Minimum:    11.9
 Array size: 100000
 =========== ========
 
@@ -1076,33 +1084,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                1031.4                   3.6
- ball                  342.5                   2.6
- bany                  395.6                   2.8
- bmax                  223.1                   4.3
- bmin                  223.5                   4.3
- bsum                   10.3
- eq                    342.3                   2.6
- findindex             520.5                   3.5
- ge                    357.4                   2.6
- gt                    356.0                   2.6
- invert                829.6                   3.6
- le                    364.7                   2.6
- lshift               1298.3                   4.3
- lt                    363.2                   2.6
- ne                    386.6                   2.8
- or\_                 1053.5                   3.6
- rshift                934.8                   4.2
- xor                  1052.6                   3.6
+ and\_                1109.7                   3.6
+ ball                  348.9                   2.6
+ bany                  332.5                   2.4
+ bmax                  264.8                   5.0
+ bmin                  261.5                   5.0
+ bsum                   10.4
+ eq                    346.2                   2.6
+ findindex             508.4                   3.2
+ ge                    362.5                   2.6
+ gt                    362.0                   2.6
+ invert                914.8                   3.7
+ le                    360.2                   2.6
+ lshift               1365.7                   4.2
+ lt                    357.5                   2.6
+ ne                    335.6                   2.4
+ or\_                 1342.4                   3.7
+ rshift                960.8                   4.3
+ xor                  1168.0                   3.6
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    560
-Maximum:    1298
-Minimum:    10.3
+Average:    595
+Maximum:    1366
+Minimum:    10.4
 Array size: 100000
 =========== ========
 
@@ -1123,33 +1131,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                 813.1                   7.0
- ball                  571.2                   9.7
- bany                  606.7                  10.0
- bmax                  292.2                  14.0
- bmin                  291.1                  14.0
- bsum                    8.8
- eq                    570.3                   9.7
- findindex             797.8                   6.6
- ge                    602.5                   9.7
- gt                    596.1                   9.7
- invert                662.1                   6.7
- le                    598.5                   9.7
- lshift               1150.6                   6.8
- lt                    595.4                   9.7
- ne                    626.1                  10.0
- or\_                  856.9                   6.7
- rshift                859.0                   6.4
- xor                   917.3                   6.5
+ and\_                 862.7                   7.2
+ ball                  572.4                   6.6
+ bany                  616.3                   6.7
+ bmax                  283.0                  14.0
+ bmin                  288.3                  14.0
+ bsum                    8.7
+ eq                    571.4                   6.6
+ findindex             791.6                   6.7
+ ge                    600.8                   6.5
+ gt                    598.9                   6.6
+ invert                674.5                   7.0
+ le                    599.0                   6.6
+ lshift               1193.0                   6.3
+ lt                    593.6                   6.5
+ ne                    624.9                   6.7
+ or\_                  865.9                   6.9
+ rshift                783.5                   6.4
+ xor                   910.7                   6.4
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    634
-Maximum:    1151
-Minimum:    8.8
+Average:    636
+Maximum:    1193
+Minimum:    8.7
 Array size: 100000
 =========== ========
 
@@ -1186,23 +1194,26 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 OS                       Hardware   Bits   Compiler        Python Version
 ======================= ========== ====== =============== ================
 Ubuntu 20.04 LTS         x86_64     64     GCC               3.8
-Ubuntu 21.10             x86_64     64     GCC               3.9
+Ubuntu 22.04             x86_64     64     GCC               3.10
 Debian 11                i686       32     GCC               3.9
 Debian 11                x86_64     64     GCC               3.9
 OpenSuse 15.3            x86_64     64     GCC               3.6
 Alma 8.5                 x86_64     64     GCC               3.6
 FreeBSD 13               x86_64     64     LLVM              3.8
-OpenBSD 7.0              x86_64     64     LLVM              3.8
+OpenBSD 7.1              x86_64     64     LLVM              3.9
 MS Windows 10            x86_64     64     MS VS C v.1929    3.10
 MS Windows 11            x86_64     64     MS VS C v.1929    3.10
 Raspberry Pi 2022-04-04  RPi 3      32     GCC               3.9
-Ubuntu 20.04             RPi 4      64     GCC               3.8
+Ubuntu 22.04             RPi 4      64     GCC               3.10
+Alpine 3.15.4            VIA C3     32     GCC               3.9
 ======================= ========== ====== =============== ================
 
 * The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
 * The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
   64 bit mode.
+* The Alpine tests were conducted on a VIA C3 (x86 compatible) running in 
+  32 bit mode.
 * All others were conducted using VMs running on x86 hardware. 
 
 
