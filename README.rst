@@ -5,7 +5,7 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version: 3.2.0 for 2022-04-23
+:Version: 3.2.1 for 2022-04-23
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
@@ -130,9 +130,9 @@ Platform support
 BytesFunc is written in 'C' and uses the standard C libraries to implement the 
 underlying math functions. BytesFunc has been tested on the following platforms.
 
-===================== ========  =============== =========================
-OS                      Bits      Compiler        Python Version Tested
-===================== ========  =============== =========================
+======================= ========== ====== =============== ================
+OS                       Hardware   Bits   Compiler        Python Version
+======================= ========== ====== =============== ================
 Ubuntu 20.04 LTS         x86_64     64     GCC               3.8
 Ubuntu 22.04             x86_64     64     GCC               3.10
 Debian 11                i686       32     GCC               3.9
@@ -146,7 +146,7 @@ MS Windows 11            x86_64     64     MS VS C v.1929    3.10
 Raspberry Pi 2022-04-04  RPi 3      32     GCC               3.9
 Ubuntu 22.04             RPi 4      64     GCC               3.10
 Alpine 3.15.4            VIA C3     32     GCC               3.9
-===================== ========  =============== =========================
+======================= ========== ====== =============== ================
 
 * The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
@@ -211,6 +211,7 @@ existing ones.
 
 Release History
 ===============
+* 3.2.1 - Fixed formatting error in README.rst. 
 * 3.2.0 - Update to testing and support. Tested with new releases of Ubuntu 
           22.04 and OpenBSD 7.1. Changed "simdsupport" to also report the 
           architecture the binary was compiled for. "Simdsupport" is only
