@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -56,17 +57,17 @@ void releasebuffers_two(struct args_params_2 bytesdata) {
 
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 
 	if (bytesdata.hasbuffer2) {
 		PyBuffer_Release(&bytesdata.pybuffer2);
-		bytesdata.hasbuffer2 = 0;
+		bytesdata.hasbuffer2 = false;
 	}
 
 	if (bytesdata.hasbuffer3) {
 		PyBuffer_Release(&bytesdata.pybuffer3);
-		bytesdata.hasbuffer3 = 0;
+		bytesdata.hasbuffer3 = false;
 	}
 
 }
@@ -77,7 +78,7 @@ void releasebuffers_two(struct args_params_2 bytesdata) {
  * dataobj = The object to be tested.
  * Returns TRUE if a bytes or bytearray object, otherwise returns FALSE.
 */
-char isseqobjtype(enum paramtypes paramtype) {
+int isseqobjtype(enum paramtypes paramtype) {
 	return ((paramtype == paramobj_bytes) || (paramtype == paramobj_bytearray));
 }
 
@@ -115,7 +116,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 
 
 	// How long the array is.
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 
 	// The numeric parameter which may or may not be present.
 	unsigned char parampy = 0;
@@ -127,7 +128,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	int nosimd = 0;
 
 	// The integer parameter value. We check later to see if it is in range.
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 
 	// If true, the parameter is a sequence. If false, it is assumed
 	// to be an integer in the range 0 - 255.
@@ -161,7 +162,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist_2wsimdwomath, &dataobj1, 
 							&dataobj2, &dataobj3, &bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		return bytesdata;
 	}
 
@@ -169,7 +170,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	// Parse the first object parameter. 
 	if (get_paramdata(dataobj1, &paramobjdata1, &bytesdata.hasbuffer1, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 3;
+		bytesdata.errorcode = 3;
 		releasebuffers_two(bytesdata);
 		return bytesdata;
 	}
@@ -177,7 +178,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	// Parse the second object parameter. 
 	if (get_paramdata(dataobj2, &paramobjdata2, &bytesdata.hasbuffer2, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 4;
+		bytesdata.errorcode = 4;
 		releasebuffers_two(bytesdata);
 		return bytesdata;
 	}
@@ -186,7 +187,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	if (dataobj3 != NULL) {
 		if (get_paramdata(dataobj3, &paramobjdata3, &bytesdata.hasbuffer3, &paramoverflow)) {
 			ErrMsgParameterError();
-			bytesdata.error = 5;
+			bytesdata.errorcode = 5;
 			releasebuffers_two(bytesdata);
 			return bytesdata;
 		}
@@ -236,57 +237,56 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 		case param_arr_num_none : {
 			outputmutable = isbytearrayobjtype(dataobj1);
 			parampy = paramobjdata2.ucharparam;
-			byteslength = paramobjdata1.pybuffer.len;
+			arraylen = paramobjdata1.pybuffer.len;
 			validparamlength = 1;
 			break;
 		}
 		case param_arr_num_arr : {
 			outputmutable = isbytearrayobjtype(dataobj3);
 			parampy = paramobjdata2.ucharparam;
-			byteslength = paramobjdata1.pybuffer.len;
-			validparamlength = (byteslength == paramobjdata3.pybuffer.len);
+			arraylen = paramobjdata1.pybuffer.len;
+			validparamlength = (arraylen == paramobjdata3.pybuffer.len);
 			break;
 		}
 		case param_num_arr_none : {
 			outputmutable = isbytearrayobjtype(dataobj2);
 			parampy = paramobjdata1.ucharparam;
-			byteslength = paramobjdata2.pybuffer.len;
+			arraylen = paramobjdata2.pybuffer.len;
 			validparamlength = 1;
 			break;
 		}
 		case param_num_arr_arr : {
 			outputmutable = isbytearrayobjtype(dataobj3);
 			parampy = paramobjdata1.ucharparam;
-			byteslength = paramobjdata2.pybuffer.len;
-			validparamlength = (byteslength == paramobjdata3.pybuffer.len);
+			arraylen = paramobjdata2.pybuffer.len;
+			validparamlength = (arraylen == paramobjdata3.pybuffer.len);
 			break;
 		}
 		case param_arr_arr_none : {
 			outputmutable = isbytearrayobjtype(dataobj1);
-			byteslength = paramobjdata1.pybuffer.len;
-			validparamlength = (byteslength == paramobjdata2.pybuffer.len);
+			arraylen = paramobjdata1.pybuffer.len;
+			validparamlength = (arraylen == paramobjdata2.pybuffer.len);
 			break;
 		}
 		case param_arr_arr_arr : {
 			outputmutable = isbytearrayobjtype(dataobj3);
-			byteslength = paramobjdata1.pybuffer.len;
-			validparamlength = ((byteslength == paramobjdata2.pybuffer.len) && (byteslength == paramobjdata3.pybuffer.len));
+			arraylen = paramobjdata1.pybuffer.len;
+			validparamlength = ((arraylen == paramobjdata2.pybuffer.len) && (arraylen == paramobjdata3.pybuffer.len));
 			break;
 		}
 		// The parameter pattern is invalid.
 		default : {
 			ErrMsgParameterError();
-			bytesdata.error = 6;
+			bytesdata.errorcode = 6;
 			releasebuffers_two(bytesdata);
 			return bytesdata;
-			break;
 		}
 	}
 
 	// If the output is not mutable, signal the error.
 	if (!outputmutable) {
 		ErrMsgOutputNotMutableParam();
-		bytesdata.error = 7;
+		bytesdata.errorcode = 7;
 		releasebuffers_two(bytesdata);
 		return bytesdata;
 	}
@@ -295,7 +295,7 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 	// All sequences must be the same length.
 	if (!validparamlength) {
 		ErrMsgArrayLengthMismatch();
-		bytesdata.error = 8;
+		bytesdata.errorcode = 8;
 		releasebuffers_two(bytesdata);
 		return bytesdata;
 	}
@@ -303,10 +303,10 @@ struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *key
 
 
 	// Collect the parameter data for return to the calling function.
-	bytesdata.error = 0;
+	bytesdata.errorcode = 0;
 	bytesdata.nosimd = nosimd;
 	bytesdata.paramcat = paramcat;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.bytes2.buf = paramobjdata2.byteseq.buf;
 	bytesdata.bytes3.buf = paramobjdata3.byteseq.buf;

@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -34,14 +34,15 @@
 
 // Provide a struct for returning data from parsing Python arguments.
 struct args_params_bsum {
-	char error;
-	char bytestype;
-	char hasbuffer1;
-	unsigned int ignoreerrors;
-	Py_ssize_t byteslength;
+	int errorcode;
+	bool hasbuffer1;
+	signed int ignoreerrors;
+	signed int nosimd;
+	Py_ssize_t arraylen;
 	union dataseq bytes1;
 	Py_buffer pybuffer1;
 };
+
 
 /*--------------------------------------------------------------------------- */
 

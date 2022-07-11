@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ Py_ssize_t findindex_eq_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -171,7 +171,7 @@ Py_ssize_t findindex_eq_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -236,7 +236,7 @@ Py_ssize_t findindex_eq_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -284,7 +284,7 @@ Py_ssize_t findindex_eq_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_eq_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_eq_x86_simd(arraylen, data1, param);
 		#endif
@@ -365,7 +365,7 @@ Py_ssize_t findindex_gt_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -435,7 +435,7 @@ Py_ssize_t findindex_gt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -500,7 +500,7 @@ Py_ssize_t findindex_gt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -548,7 +548,7 @@ Py_ssize_t findindex_gt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_gt_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_gt_x86_simd(arraylen, data1, param);
 		#endif
@@ -629,7 +629,7 @@ Py_ssize_t findindex_ge_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -699,7 +699,7 @@ Py_ssize_t findindex_ge_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -764,7 +764,7 @@ Py_ssize_t findindex_ge_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -812,7 +812,7 @@ Py_ssize_t findindex_ge_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_ge_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_ge_x86_simd(arraylen, data1, param);
 		#endif
@@ -893,7 +893,7 @@ Py_ssize_t findindex_lt_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -963,7 +963,7 @@ Py_ssize_t findindex_lt_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1028,7 +1028,7 @@ Py_ssize_t findindex_lt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1076,7 +1076,7 @@ Py_ssize_t findindex_lt_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_lt_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_lt_x86_simd(arraylen, data1, param);
 		#endif
@@ -1157,7 +1157,7 @@ Py_ssize_t findindex_le_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -1227,7 +1227,7 @@ Py_ssize_t findindex_le_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1292,7 +1292,7 @@ Py_ssize_t findindex_le_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1340,7 +1340,7 @@ Py_ssize_t findindex_le_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_le_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_le_x86_simd(arraylen, data1, param);
 		#endif
@@ -1421,7 +1421,7 @@ Py_ssize_t findindex_ne_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsig
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	// On x86 we have to do this in a round-about fashion for some
@@ -1488,7 +1488,7 @@ Py_ssize_t findindex_ne_armv7_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1553,7 +1553,7 @@ Py_ssize_t findindex_ne_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -1601,7 +1601,7 @@ Py_ssize_t findindex_ne_armv8_simd(Py_ssize_t arraylen, unsigned char *data, uns
 Py_ssize_t findindex_ne_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return findindex_ne_x86_simd(arraylen, data1, param);
 		#endif
@@ -1646,13 +1646,13 @@ static PyObject *py_findindex(PyObject *self, PyObject *args, PyObject *keywds) 
 
 	// If there was an error, we count on the parameter parsing function to 
 	// release the buffers if this was necessary.
-	if (bytesdata.error) {
+	if (bytesdata.errorcode) {
 		return NULL;
 	}
 
 
 	// The length of the data array.
-	if (bytesdata.byteslength < 1) {
+	if (bytesdata.arraylen < 1) {
 		// Release the buffers. 
 		releasebuffers_allany(bytesdata);
 		ErrMsgArrayLengthErr();
@@ -1664,32 +1664,32 @@ static PyObject *py_findindex(PyObject *self, PyObject *args, PyObject *keywds) 
 	switch(bytesdata.opcode) {
 		// AF_EQ
 		case OP_AF_EQ: {
-			resultcode = findindex_eq_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_eq_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// AF_GT
 		case OP_AF_GT: {
-			resultcode = findindex_gt_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_gt_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// AF_GE
 		case OP_AF_GE: {
-			resultcode = findindex_ge_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_ge_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// AF_LT
 		case OP_AF_LT: {
-			resultcode = findindex_lt_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_lt_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// AF_LE
 		case OP_AF_LE: {
-			resultcode = findindex_le_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_le_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// AF_NE
 		case OP_AF_NE: {
-			resultcode = findindex_ne_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			resultcode = findindex_ne_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		// The operation code is unknown.

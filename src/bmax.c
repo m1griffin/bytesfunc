@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@ unsigned char bmax_x86_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Initialise the comparison values.
 	maxslice = (v16qi) __builtin_ia32_lddqu((char *) &data[0]);
@@ -142,7 +142,7 @@ unsigned char bmax_armv7_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Initialise the comparison values.
 	maxslice = vld1_u8( &data[0]);
@@ -195,7 +195,7 @@ unsigned char bmax_armv8_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = arraylen - (arraylen % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Initialise the comparison values.
 	maxslice = vld1q_u8( &data[0]);
@@ -239,7 +239,7 @@ unsigned char bmax_armv8_simd(Py_ssize_t arraylen, unsigned char *data) {
 unsigned char bmax_select(Py_ssize_t arraylen, int nosimd, unsigned char *data) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (arraylen >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			return bmax_x86_simd(arraylen, data);
 		#endif
@@ -284,13 +284,13 @@ static PyObject *py_bmax(PyObject *self, PyObject *args, PyObject *keywds) {
 
 	// If there was an error, we count on the parameter parsing function to 
 	// release the buffers if this was necessary.
-	if (bytesdata.error) {
+	if (bytesdata.errorcode) {
 		return NULL;
 	}
 
 
 	// The length of the bytes or bytearray.
-	if (bytesdata.byteslength < 1) {
+	if (bytesdata.arraylen < 1) {
 		// Release the buffers. 
 		releasebuffers_valoutsimd(bytesdata);
 		ErrMsgArrayLengthErr();
@@ -298,7 +298,7 @@ static PyObject *py_bmax(PyObject *self, PyObject *args, PyObject *keywds) {
 	}
 
 	// Call the calculation function.
-	result = bmax_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B);
+	result = bmax_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B);
 
 	// Release the buffers. 
 	releasebuffers_valoutsimd(bytesdata);

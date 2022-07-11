@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 ##############################################################################
 # Project:  bytesfunc
-# Module:   benchmark_bsum.py
+# Module:   benchmark_le.py
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      05-Jul-2022.
+# Ver:      11-Jul-2022.
 #
 ###############################################################################
 #
@@ -54,7 +54,7 @@ def InitDataArrays(funcname, arraysize):
 
 
 	# Ensure the data is in the right format for the array type.
-	xdata = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249]
+	xdata = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249]
 
 	arraydata.datax = bytearray(list(itertools.islice(itertools.cycle(xdata), arraysize)))
 	assert len(arraydata.datax) == arraysize, 'datax is not expected length %d' % len(arraydata.datax)
@@ -62,7 +62,7 @@ def InitDataArrays(funcname, arraysize):
 	arraydata.arraylength = len(arraydata.datax)
 
 	# Those functions which need a second parameter are given a single value for this benchmark.
-	arraydata.yvalue = 0
+	arraydata.yvalue = 250
 
 	# Output data.
 	arraydata.dataout = bytearray(list(itertools.repeat(0, arraysize)))
@@ -138,7 +138,7 @@ def BenchmarkPython(pyitercounts, arraysize, arraydata):
 	starttime = time.perf_counter()
 
 	for x in range(pyitercounts):
-		result = sum(datax)
+		result = all([x <= yvalue for x in datax])
 
 	endtime = time.perf_counter()
 
@@ -163,7 +163,7 @@ def BenchmarkBF(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax)
+		result = bytesfunc.le(datax, yvalue)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -188,7 +188,7 @@ def BenchmarkBFNoSIMD(bfiternosidmcounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfiternosidmcounts):
-		result = bytesfunc.bsum(datax, nosimd=True)
+		result = bytesfunc.le(datax, yvalue, nosimd=True)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfiternosidmcounts
@@ -214,7 +214,7 @@ def BenchmarkBFSIMD(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax, nosimd=False)
+		result = bytesfunc.le(datax, yvalue, nosimd=False)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -277,7 +277,7 @@ def platformdetect():
 	# These values were derived from the platform data reported by the benchmark.
 	signatures = {
 		'i686' : False,
-		'x86_64' : False,
+		'x86_64' : True,
 		'armv7l' : True,
 		'aarch64' : True,
 	}
@@ -291,7 +291,7 @@ HasSIMD = platformdetect()
 ##############################################################################
 
 # Run the benchmarks.
-funcname = 'bsum'
+funcname = 'le'
 
 ##############################################################################
 

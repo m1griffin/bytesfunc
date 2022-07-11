@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ opstemplate = """//-------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -70,6 +70,7 @@ opstemplate = """//-------------------------------------------------------------
 
 #include <limits.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -86,16 +87,16 @@ opstemplate = """//-------------------------------------------------------------
 
 
 /*--------------------------------------------------------------------------- */
-/* byteslength = The length of the data arrays.
+/* arraylen = The length of the data arrays.
    data = The input data array.
 */
-void invert_1(Py_ssize_t byteslength, unsigned char *data) {
+void invert_1(Py_ssize_t arraylen, unsigned char *data) {
 
 	// array index counter.
 	Py_ssize_t x;
 
 
-	for (x = 0; x < byteslength; x++) {
+	for (x = 0; x < arraylen; x++) {
 		data[x] = ~data[x];
 	}
 
@@ -105,17 +106,17 @@ void invert_1(Py_ssize_t byteslength, unsigned char *data) {
 
 
 /*--------------------------------------------------------------------------- */
-/* byteslength = The length of the data arrays.
+/* arraylen = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
-void invert_2(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
+void invert_2(Py_ssize_t arraylen, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter.
 	Py_ssize_t x;
 
 
-	for (x = 0; x < byteslength; x++) {
+	for (x = 0; x < arraylen; x++) {
 		dataout[x] = ~data[x];
 	}
 
@@ -126,13 +127,13 @@ void invert_2(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataou
 
 /*--------------------------------------------------------------------------- */
 /* The following series of functions reflect the different parameter options possible.
-   byteslength = The length of the data arrays.
+   arraylen = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
 #if defined(AF_HASSIMD_X86)
-void invert_1_x86_simd(Py_ssize_t byteslength, unsigned char *data) {
+void invert_1_x86_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -146,7 +147,7 @@ void invert_1_x86_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -159,7 +160,7 @@ void invert_1_x86_simd(Py_ssize_t byteslength, unsigned char *data) {
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		data[index] = ~data[index];
 	}
 
@@ -167,7 +168,7 @@ void invert_1_x86_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 
 // param_arr_arr
-void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
+void invert_2_x86_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -181,7 +182,7 @@ void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned cha
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -194,7 +195,7 @@ void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned cha
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		dataout[index] = ~data[index];
 	}
 
@@ -207,13 +208,13 @@ void invert_2_x86_simd(Py_ssize_t byteslength, unsigned char *data, unsigned cha
 /*--------------------------------------------------------------------------- */
 /* For ARMv7 NEON SIMD.
    The following series of functions reflect the different parameter options possible.
-   byteslength = The length of the data arrays.
+   arraylen = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
 #if defined(AF_HASSIMD_ARMv7_32BIT)
-void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
+void invert_1_armv7_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -226,7 +227,7 @@ void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -239,7 +240,7 @@ void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		data[index] = ~data[index];
 	}
 
@@ -247,7 +248,7 @@ void invert_1_armv7_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 
 // param_arr_arr
-void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
+void invert_2_armv7_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -260,7 +261,7 @@ void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -273,7 +274,7 @@ void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		dataout[index] = ~data[index];
 	}
 
@@ -287,13 +288,13 @@ void invert_2_armv7_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 /*--------------------------------------------------------------------------- */
 /* For ARMv8 NEON SIMD.
    The following series of functions reflect the different parameter options possible.
-   byteslength = The length of the data arrays.
+   arraylen = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
 */
 // param_arr_none
 #if defined(AF_HASSIMD_ARM_AARCH64)
-void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
+void invert_1_armv8_simd(Py_ssize_t arraylen, unsigned char *data) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -306,7 +307,7 @@ void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -319,7 +320,7 @@ void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		data[index] = ~data[index];
 	}
 
@@ -327,7 +328,7 @@ void invert_1_armv8_simd(Py_ssize_t byteslength, unsigned char *data) {
 
 
 // param_arr_arr
-void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned char *dataout) {
+void invert_2_armv8_simd(Py_ssize_t arraylen, unsigned char *data, unsigned char *dataout) {
 
 	// array index counter. 
 	Py_ssize_t index; 
@@ -340,7 +341,7 @@ void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = byteslength - (byteslength % CHARSIMDSIZE);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -353,7 +354,7 @@ void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 	}
 
 	// Get the max value within the left over elements at the end of the array.
-	for (index = alignedlength; index < byteslength; index++) {
+	for (index = alignedlength; index < arraylen; index++) {
 		dataout[index] = ~data[index];
 	}
 
@@ -367,29 +368,29 @@ void invert_2_armv8_simd(Py_ssize_t byteslength, unsigned char *data, unsigned c
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
-   byteslength = The length of the data arrays.
+   arraylen = The length of the data arrays.
    data = The input data array.
    nosimd = If true, disable SIMD acceleration.
 */
-void invert_1_select(Py_ssize_t byteslength, int nosimd, unsigned char *data) { 
+void invert_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
-			invert_1_x86_simd(byteslength, data);
+			invert_1_x86_simd(arraylen, data);
 		#endif
 
 		#if defined(AF_HASSIMD_ARMv7_32BIT)
-			invert_1_armv7_simd(byteslength, data);
+			invert_1_armv7_simd(arraylen, data);
 		#endif
 
 		#if defined(AF_HASSIMD_ARM_AARCH64)
-			invert_1_armv8_simd(byteslength, data);
+			invert_1_armv8_simd(arraylen, data);
 		#endif
 
 	} else {
 	#endif
-		invert_1(byteslength, data);
+		invert_1(arraylen, data);
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
@@ -403,30 +404,30 @@ void invert_1_select(Py_ssize_t byteslength, int nosimd, unsigned char *data) {
 /*--------------------------------------------------------------------------- */
 /* This selects the correct function, whether the platform independent non-SIMD
    version, or the architecture appropriate SIMD version.
-   byteslength = The length of the data arrays.
+   arraylen = The length of the data arrays.
    data = The input data array.
    dataout = The output data array.
    nosimd = If true, disable SIMD acceleration.
 */
-void invert_2_select(Py_ssize_t byteslength, int nosimd, unsigned char *data, unsigned char *dataout) { 
+void invert_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data, unsigned char *dataout) { 
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && (byteslength >= (CHARSIMDSIZE * 2))) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
-			invert_2_x86_simd(byteslength, data, dataout);
+			invert_2_x86_simd(arraylen, data, dataout);
 		#endif
 
 		#if defined(AF_HASSIMD_ARMv7_32BIT)
-			invert_2_armv7_simd(byteslength, data, dataout);
+			invert_2_armv7_simd(arraylen, data, dataout);
 		#endif
 
 		#if defined(AF_HASSIMD_ARM_AARCH64)
-			invert_2_armv8_simd(byteslength, data, dataout);
+			invert_2_armv8_simd(arraylen, data, dataout);
 		#endif
 
 	} else {
 	#endif
-		invert_2(byteslength, data, dataout);
+		invert_2(arraylen, data, dataout);
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
 	}
 	#endif
@@ -452,16 +453,16 @@ static PyObject *py_invert(PyObject *self, PyObject *args, PyObject *keywds) {
 
 	// If there was an error, we count on the parameter parsing function to 
 	// release the buffers if this was necessary.
-	if (bytesdata.error) {
+	if (bytesdata.errorcode) {
 		return NULL;
 	}
 
 
 	// Call the C function.
 	if (bytesdata.hasoutputseq) {
-		invert_2_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.bytes2.B);
+		invert_2_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.bytes2.B);
 	} else {
-		invert_1_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B);
+		invert_1_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B);
 	}
 
 

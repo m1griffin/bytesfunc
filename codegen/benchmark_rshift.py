@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 ##############################################################################
 # Project:  bytesfunc
-# Module:   benchmark_bsum.py
+# Module:   benchmark_rshift.py
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      05-Jul-2022.
+# Ver:      11-Jul-2022.
 #
 ###############################################################################
 #
@@ -62,7 +62,7 @@ def InitDataArrays(funcname, arraysize):
 	arraydata.arraylength = len(arraydata.datax)
 
 	# Those functions which need a second parameter are given a single value for this benchmark.
-	arraydata.yvalue = 0
+	arraydata.yvalue = 2
 
 	# Output data.
 	arraydata.dataout = bytearray(list(itertools.repeat(0, arraysize)))
@@ -138,7 +138,7 @@ def BenchmarkPython(pyitercounts, arraysize, arraydata):
 	starttime = time.perf_counter()
 
 	for x in range(pyitercounts):
-		result = sum(datax)
+		result = bytearray( (x >> yvalue for x in datax) )
 
 	endtime = time.perf_counter()
 
@@ -163,7 +163,7 @@ def BenchmarkBF(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax)
+		bytesfunc.rshift(datax, yvalue, dataout)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -188,7 +188,7 @@ def BenchmarkBFNoSIMD(bfiternosidmcounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfiternosidmcounts):
-		result = bytesfunc.bsum(datax, nosimd=True)
+		bytesfunc.rshift(datax, yvalue, dataout, nosimd=True)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfiternosidmcounts
@@ -214,7 +214,7 @@ def BenchmarkBFSIMD(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax, nosimd=False)
+		bytesfunc.rshift(datax, yvalue, dataout, nosimd=False)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -277,7 +277,7 @@ def platformdetect():
 	# These values were derived from the platform data reported by the benchmark.
 	signatures = {
 		'i686' : False,
-		'x86_64' : False,
+		'x86_64' : True,
 		'armv7l' : True,
 		'aarch64' : True,
 	}
@@ -291,7 +291,7 @@ HasSIMD = platformdetect()
 ##############################################################################
 
 # Run the benchmarks.
-funcname = 'bsum'
+funcname = 'rshift'
 
 ##############################################################################
 

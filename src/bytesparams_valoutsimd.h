@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -26,17 +26,18 @@
 
 #include "Python.h"
 
+#include <stdbool.h>
+
 /*--------------------------------------------------------------------------- */
 
-#define ARGSINIT_VALOUTSIMD {0, 0, 0, 0, 0, {NULL}, {NULL}}
+#define ARGSINIT_VALOUTSIMD {0, 0, 0, 0, {NULL}, {NULL}}
 
 // Provide a struct for returning data from parsing Python arguments.
 struct args_params_valoutsimd {
-	char error;
-	char bytestype;
-	char hasbuffer1;
+	int errorcode;
+	bool hasbuffer1;
 	int nosimd;
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 	union dataseq bytes1;
 	Py_buffer pybuffer1;
 };

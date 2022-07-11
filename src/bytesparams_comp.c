@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -49,12 +50,12 @@ static char *kwlist_comp[] = {"data1", "data2", "maxlen", "nosimd", NULL};
 void releasebuffers_comp(struct args_params_comp bytesdata) {
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 
 	if (bytesdata.hasbuffer2) {
 		PyBuffer_Release(&bytesdata.pybuffer2);
-		bytesdata.hasbuffer2 = 0;
+		bytesdata.hasbuffer2 = false;
 	}
 
 }
@@ -88,7 +89,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 
 
 	// How long the sequence is.
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen = 0;
 
 	// The numeric parameter which may or may not be present.
 	unsigned char parampy = 0;
@@ -99,7 +100,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	int nosimd = 0;
 
 
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 
 	// The category of the parameters. That is, what type (sequence, number, none)
 	// of each parameter. 
@@ -123,7 +124,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist_comp, &dataobj1, 
 							&dataobj2, &bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		return bytesdata;
 	}
 
@@ -131,7 +132,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	// Parse the first object parameter. 
 	if (get_paramdata(dataobj1, &paramobjdata1, &bytesdata.hasbuffer1, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 3;
+		bytesdata.errorcode = 3;
 		releasebuffers_comp(bytesdata);
 		return bytesdata;
 	}
@@ -139,7 +140,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	// Parse the second object parameter. 
 	if (get_paramdata(dataobj2, &paramobjdata2, &bytesdata.hasbuffer2, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 4;
+		bytesdata.errorcode = 4;
 		releasebuffers_comp(bytesdata);
 		return bytesdata;
 	}
@@ -154,7 +155,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	// Either the first or second parameter (or both) must be an bytes or bytearray sequence.
 	if ((!param1issequence) && (!param2issequence)) {
 		ErrMsgParameterError();
-		bytesdata.error = 5;
+		bytesdata.errorcode = 5;
 		releasebuffers_comp(bytesdata);
 		return bytesdata;
 	}
@@ -164,14 +165,14 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 	if (param1issequence && param2issequence) {
 		if (paramobjdata1.pybuffer.len != paramobjdata2.pybuffer.len) {
 			ErrMsgParameterError();
-			bytesdata.error = 7;
+			bytesdata.errorcode = 7;
 			releasebuffers_comp(bytesdata);
 			return bytesdata;
 		} else {
 			// This keeps track of the pattern of parameters.
 			paramcat = param_arr_arr;
 			// The number of bytes.
-			byteslength = paramobjdata1.pybuffer.len;
+			arraylen = paramobjdata1.pybuffer.len;
 		}
 	} else {
 		// The first parameter is a bytes or bytearray sequence and the 
@@ -182,7 +183,7 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 			// This keeps track of the pattern of parameters.
 			paramcat = param_arr_num;
 			// The number of bytes.
-			byteslength = paramobjdata1.pybuffer.len;
+			arraylen = paramobjdata1.pybuffer.len;
 		} else {
 			// The second parameter is a bytes or bytearray sequence and the 
 			// first is an integer.
@@ -192,12 +193,12 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 				// This keeps track of the pattern of parameters.
 				paramcat = param_num_arr;
 				// The number of bytes.
-				byteslength = paramobjdata2.pybuffer.len;
+				arraylen = paramobjdata2.pybuffer.len;
 			} else {
 				// An invalid parameter combination. This should have been
 				// caught previously, but we check it again.
 				ErrMsgParameterError();
-				bytesdata.error = 8;
+				bytesdata.errorcode = 8;
 				releasebuffers_comp(bytesdata);
 				return bytesdata;
 			}
@@ -206,8 +207,8 @@ struct args_params_comp getparams_comp(PyObject *self, PyObject *args, PyObject 
 
 
 
-	bytesdata.error = 0;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.errorcode = 0;
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.nosimd = nosimd;
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.bytes2.buf = paramobjdata2.byteseq.buf;

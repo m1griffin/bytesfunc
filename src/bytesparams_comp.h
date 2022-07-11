@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -25,9 +25,11 @@
 
 #include "Python.h"
 
+#include <stdbool.h>
+
 /*--------------------------------------------------------------------------- */
 
-#define ARGSINIT_COMP {0, 0, 0, 0, 0, 0, {NULL}, {NULL}, {NULL}, {NULL}, 0, 0}
+#define ARGSINIT_COMP {0, 0, 0, 0, 0, {NULL}, {NULL}, {NULL}, {NULL}, 0, 0}
 
 
 enum paramcats
@@ -40,12 +42,11 @@ enum paramcats
 
 // Provide a struct for returning data from parsing Python arguments.
 struct args_params_comp {
-	char error;
-	char bytestype;
-	Py_ssize_t byteslength;
+	int errorcode;
+	Py_ssize_t arraylen;
 	int nosimd;
-	char hasbuffer1;
-	char hasbuffer2;
+	bool hasbuffer1;
+	bool hasbuffer2;
 	union dataseq bytes1;
 	union dataseq bytes2;
 	Py_buffer pybuffer1;

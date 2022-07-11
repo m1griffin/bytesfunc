@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 
 /*--------------------------------------------------------------------------- */
 
-#define ARGSINIT_TWO {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, {NULL}, {NULL}, {NULL}, {NULL}, {NULL}, {NULL}}
+#define ARGSINIT_TWO {0, 0, 0, 0, 0, 0, 0, 0, {NULL}, {NULL}, {NULL}, {NULL}, {NULL}, {NULL}}
 
 
 enum paramcats
@@ -45,16 +45,14 @@ enum paramcats
 
 // Provide a struct for returning data from parsing Python arguments.
 struct args_params_2 {
-	char error;
+	int errorcode;
 	enum paramcats paramcat;
-	bool hasoutputarray;
-	char hasbuffer1;
-	char hasbuffer2;
-	char hasbuffer3;
-	unsigned int ignoreerrors;
+	bool hasbuffer1;
+	bool hasbuffer2;
+	bool hasbuffer3;
 	int nosimd;
-	Py_ssize_t byteslength;
-	int param;
+	Py_ssize_t arraylen;
+	unsigned char param;
 	union dataseq bytes1;
 	union dataseq bytes2;
 	union dataseq bytes3;
@@ -69,9 +67,5 @@ struct args_params_2 {
 struct args_params_2 getparams_two(PyObject *self, PyObject *args, PyObject *keywds, char *funcname);
 
 void releasebuffers_two(struct args_params_2 arraydata);
-
-
-// Is a bytes or bytearray object.
-char isseqobjtype(enum paramtypes paramtype);
 
 /*--------------------------------------------------------------------------- */

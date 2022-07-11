@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -51,12 +52,12 @@ static char *kwlist_invert[] = {"data", "dataout", "maxlen", "nosimd", NULL};
 void releasebuffers_one(struct args_params_1 bytesdata) {
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 
 	if (bytesdata.hasbuffer2) {
 		PyBuffer_Release(&bytesdata.pybuffer2);
-		bytesdata.hasbuffer2 = 0;
+		bytesdata.hasbuffer2 = false;
 	}
 }
 
@@ -85,7 +86,7 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	struct paramsdata paramobjdata1, paramobjdata2;
 
 	// How long the array is.
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 
 	// Number of elements to work on. If zero or less, ignore this parameter.
 	Py_ssize_t bytesmaxlen = 0;
@@ -93,10 +94,10 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	// If True, SIMD processing is disabled.
 	int nosimd = 0;
 
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 
 	// If true, then there is a third parameter for data output.
-	int hasoutputseq = 0;
+	bool hasoutputseq = false;
 	// If true, then the output sequence is mutable (a bytearray).
 	int outputmutable = 0;
 	// If true the sequences are all the same length (required).
@@ -118,7 +119,7 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist_invert, &dataobj1, 
 							&dataobj2, &bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 1;
+		bytesdata.errorcode = 1;
 		return bytesdata;
 	}
 
@@ -127,7 +128,7 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	// Parse the first object parameter. 
 	if (get_paramdata(dataobj1, &paramobjdata1, &bytesdata.hasbuffer1, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		releasebuffers_one(bytesdata);
 		return bytesdata;
 	}
@@ -137,24 +138,24 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	if (dataobj2 != NULL) {
 		if (get_paramdata(dataobj2, &paramobjdata2, &bytesdata.hasbuffer2, &paramoverflow)) {
 			ErrMsgParameterError();
-			bytesdata.error = 3;
+			bytesdata.errorcode = 3;
 			releasebuffers_one(bytesdata);
 			return bytesdata;
 		}
 	
-		hasoutputseq = 1;
+		hasoutputseq = true;
 	} else {
-		hasoutputseq = 0;
+		hasoutputseq = false;
 	}
 
 
 	// Get the seqeuence length.
-	byteslength = paramobjdata1.pybuffer.len;
+	arraylen = paramobjdata1.pybuffer.len;
 
 	// Check if the sequences are compatible with respect to length
 	// and if the output is mutable (writable).
 	if (hasoutputseq) {
-		validparamlength = (byteslength == paramobjdata2.pybuffer.len);
+		validparamlength = (arraylen == paramobjdata2.pybuffer.len);
 		outputmutable = isbytearrayobjtype(dataobj2);
 	} else {
 		validparamlength = 1;
@@ -164,7 +165,7 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	// If the output is not mutable, signal the error.
 	if (!outputmutable) {
 		ErrMsgOutputNotMutableParam();
-		bytesdata.error = 4;
+		bytesdata.errorcode = 4;
 		releasebuffers_one(bytesdata);
 		return bytesdata;
 	}
@@ -173,17 +174,17 @@ struct args_params_1 getparams_one(PyObject *self, PyObject *args, PyObject *key
 	// All sequences must be the same length.
 	if (!validparamlength) {
 		ErrMsgArrayLengthMismatch();
-		bytesdata.error = 5;
+		bytesdata.errorcode = 5;
 		releasebuffers_one(bytesdata);
 		return bytesdata;
 	}
 
 
 	// Collect the parameter data for return to the calling function.
-	bytesdata.error = 0;
+	bytesdata.errorcode = 0;
 	bytesdata.hasoutputseq = hasoutputseq;
 	bytesdata.nosimd = nosimd;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.bytes2.buf = paramobjdata2.byteseq.buf;
 	bytesdata.pybuffer1 = paramobjdata1.pybuffer;

@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ op_template_general = '''
 
 ##############################################################################
 class bsum_general_%(arrayevenodd)s_%(typecode)s(unittest.TestCase):
-	"""Test asum for basic general function operation.
+	"""Test bsum for basic general function operation.
 	op_template_general
 	"""
 
@@ -60,7 +60,7 @@ class bsum_general_%(arrayevenodd)s_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_general_function_A1(self):
-		"""Test asum  - Array code %(typecode)s. General test.
+		"""Test bsum  - Array code %(typecode)s. General test.
 		"""
 		result = bytesfunc.bsum(self.gentest)
 		self.assertEqual(result, sum(self.gentest))
@@ -68,7 +68,7 @@ class bsum_general_%(arrayevenodd)s_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_general_function_B1(self):
-		"""Test asum  - Array code %(typecode)s. Test optional maxlen parameter.
+		"""Test bsum  - Array code %(typecode)s. Test optional maxlen parameter.
 		"""
 		result = bytesfunc.bsum(self.gentest, maxlen=50)
 		self.assertEqual(result, sum(self.gentest[:50]))
@@ -76,18 +76,25 @@ class bsum_general_%(arrayevenodd)s_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_general_function_C1(self):
-		"""Test asum  - Array code %(typecode)s. Test optional matherrors parameter.
+		"""Test bsum  - Array code %(typecode)s. Test optional matherrors parameter.
 		"""
 		result = bytesfunc.bsum(self.gentest, matherrors=True)
 		self.assertEqual(result, sum(self.gentest))
 
 
+	########################################################
+	def test_bsum_general_function_D1(self):
+		"""Test bsum  - Array code %(typecode)s. Test optional nosimd parameter.
+		"""
+		result = bytesfunc.bsum(self.gentest, nosimd=True)
+		self.assertEqual(result, sum(self.gentest))
+
 
 	########################################################
 	def test_bsum_general_function_E1(self):
-		"""Test asum  - Array code %(typecode)s. Test optional maxlen, matherrors parameters together.
+		"""Test bsum  - Array code %(typecode)s. Test optional maxlen, matherrors, nosimd parameters parameters together.
 		"""
-		result = bytesfunc.bsum(self.gentest, maxlen=50, matherrors=True)
+		result = bytesfunc.bsum(self.gentest, maxlen=50, nosimd=True, matherrors=True)
 		self.assertEqual(result, sum(self.gentest[:50]))
 
 
@@ -104,7 +111,7 @@ op_template_params = '''
 
 ##############################################################################
 class bsum_parameter_%(typecode)s(unittest.TestCase):
-	"""Test asum for basic parameter tests.
+	"""Test bsum for basic parameter tests.
 	op_template_params
 	"""
 
@@ -120,7 +127,7 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_A1(self):
-		"""Test asum  - Array code %(typecode)s. Test invalid parameter type.
+		"""Test bsum  - Array code %(typecode)s. Test invalid parameter type.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum(1)
@@ -132,7 +139,7 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_A2(self):
-		"""Test asum  - Array code %(typecode)s. Test invalid parameter type.
+		"""Test bsum  - Array code %(typecode)s. Test invalid parameter type.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum('xxxxx')
@@ -144,7 +151,7 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_B1(self):
-		"""Test asum  - Array code %(typecode)s. Test missing parameter.
+		"""Test bsum  - Array code %(typecode)s. Test missing parameter.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum()
@@ -156,10 +163,10 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_B2(self):
-		"""Test asum  - Array code %(typecode)s. Test excess parameters.
+		"""Test bsum  - Array code %(typecode)s. Test excess parameters.
 		"""
 		with self.assertRaises(TypeError):
-			result = bytesfunc.bsum(self.gentest, 5, 2, 1)
+			result = bytesfunc.bsum(self.gentest, 5, 2, 2, 1)
 
 		# Check that the exception raised corresponds to the native Python behaviour.
 		with self.assertRaises(TypeError):
@@ -168,7 +175,7 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_C1(self):
-		"""Test asum  - Array code %(typecode)s. Test invalid keyword parameter name.
+		"""Test bsum  - Array code %(typecode)s. Test invalid keyword parameter name.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum(self.gentest, xxxx=5)
@@ -180,7 +187,7 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_D1(self):
-		"""Test asum  - Array code %(typecode)s. Test invalid maxlen keyword type.
+		"""Test bsum  - Array code %(typecode)s. Test invalid maxlen keyword type.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum(self.gentest, maxlen='xxxx')
@@ -192,10 +199,22 @@ class bsum_parameter_%(typecode)s(unittest.TestCase):
 
 	########################################################
 	def test_bsum_param_function_D2(self):
-		"""Test asum  - Array code %(typecode)s. Test invalid matherrors keyword type.
+		"""Test bsum  - Array code %(typecode)s. Test invalid matherrors keyword type.
 		"""
 		with self.assertRaises(TypeError):
 			result = bytesfunc.bsum(self.gentest, matherrors='xxxx')
+
+		# Check that the exception raised corresponds to the native Python behaviour.
+		with self.assertRaises(TypeError):
+			result = sum(1)
+
+
+	########################################################
+	def test_bsum_param_function_D3(self):
+		"""Test bsum  - Array code %(typecode)s. Test invalid nosimd keyword type.
+		"""
+		with self.assertRaises(TypeError):
+			result = bytesfunc.bsum(self.gentest, nosimd='xxxx')
 
 		# Check that the exception raised corresponds to the native Python behaviour.
 		with self.assertRaises(TypeError):

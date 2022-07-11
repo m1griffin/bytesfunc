@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 ##############################################################################
 # Project:  bytesfunc
-# Module:   benchmark_bsum.py
+# Module:   benchmark_bmax.py
 # Purpose:  Benchmark tests for 'bytesfunc' functions.
 # Language: Python 3.5
 # Date:     01-Nov-2019.
-# Ver:      05-Jul-2022.
+# Ver:      11-Jul-2022.
 #
 ###############################################################################
 #
@@ -138,7 +138,7 @@ def BenchmarkPython(pyitercounts, arraysize, arraydata):
 	starttime = time.perf_counter()
 
 	for x in range(pyitercounts):
-		result = sum(datax)
+		result = max(datax)
 
 	endtime = time.perf_counter()
 
@@ -163,7 +163,7 @@ def BenchmarkBF(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax)
+		result = bytesfunc.bmax(datax)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -188,7 +188,7 @@ def BenchmarkBFNoSIMD(bfiternosidmcounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfiternosidmcounts):
-		result = bytesfunc.bsum(datax, nosimd=True)
+		result = bytesfunc.bmax(datax, nosimd=True)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfiternosidmcounts
@@ -214,7 +214,7 @@ def BenchmarkBFSIMD(bfitercounts, arraydata):
 	# Time for bytesfunc version.
 	starttime = time.perf_counter()
 	for i in range(bfitercounts):
-		result = bytesfunc.bsum(datax, nosimd=False)
+		result = bytesfunc.bmax(datax, nosimd=False)
 	endtime = time.perf_counter()
 
 	bftime = (endtime - starttime) / bfitercounts
@@ -277,7 +277,7 @@ def platformdetect():
 	# These values were derived from the platform data reported by the benchmark.
 	signatures = {
 		'i686' : False,
-		'x86_64' : False,
+		'x86_64' : True,
 		'armv7l' : True,
 		'aarch64' : True,
 	}
@@ -291,7 +291,7 @@ HasSIMD = platformdetect()
 ##############################################################################
 
 # Run the benchmarks.
-funcname = 'bsum'
+funcname = 'bmax'
 
 ##############################################################################
 

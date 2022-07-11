@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 
@@ -42,11 +43,11 @@
    a sequence which was filtered as part of a previous step is to be operated on, 
    only part of the sequence may contain valid data.
 */
-Py_ssize_t adjustbytesmaxlen(Py_ssize_t byteslength, Py_ssize_t bytesmaxlen) {
-	if ((bytesmaxlen > 0) && (bytesmaxlen < byteslength)) {
+Py_ssize_t adjustbytesmaxlen(Py_ssize_t arraylen, Py_ssize_t bytesmaxlen) {
+	if ((bytesmaxlen > 0) && (bytesmaxlen < arraylen)) {
 		return bytesmaxlen;
 	} else {
-		return byteslength;
+		return arraylen;
 	}
 }
 
@@ -76,7 +77,7 @@ void makefmtstr(char *basestr, char *funcname, char *formatstr) {
  * dataobj = The object to be tested.
  * Returns TRUE if a bytes object, otherwise returns FALSE.
 */
-char isbytesobjtype(PyObject *dataobj) {
+int isbytesobjtype(PyObject *dataobj) {
 
 	if (dataobj == NULL) { return 0; }
 
@@ -91,7 +92,7 @@ char isbytesobjtype(PyObject *dataobj) {
  * dataobj = The object to be tested.
  * Returns TRUE if a bytearray object, otherwise returns FALSE.
 */
-char isbytearrayobjtype(PyObject *dataobj) {
+int isbytearrayobjtype(PyObject *dataobj) {
 
 	if (dataobj == NULL) { return 0; }
 
@@ -124,12 +125,12 @@ Py_ssize_t adjustseqmaxlen(Py_ssize_t seqlength, Py_ssize_t seqmaxlen) {
 
 // Returns true if the parameter is within the correct range for an unsigned char.
 // B
-char isunsignedcharrange(unsigned long long x) {
+int isunsignedcharrange(unsigned long long x) {
 	return ((x <= UCHAR_MAX) && (x >= 0));
 }
 
 // Is signed integer data in the range of unsigned char data.
-char isunsignedcharrangewithsigned(long long x) {
+int isunsignedcharrangewithsigned(long long x) {
 	return ((x <= UCHAR_MAX) && (x >= 0));
 }
 
@@ -152,7 +153,7 @@ char isunsignedcharrangewithsigned(long long x) {
    Returns 0 if OK, otherwise non-zero.
 
 */
-int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasbuffer, char *paramoverflow) {
+int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, bool *hasbuffer, bool *paramoverflow) {
 
 	// Used to track overflows in integer conversions.
 	int intparamoverflow = 0;
@@ -162,8 +163,8 @@ int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasb
 	Py_buffer datapy;
 
 
-	*hasbuffer = 0;
-	*paramoverflow = 0;
+	*hasbuffer = false;
+	*paramoverflow = false;
 
 	// Parameter is a sequence.
 	if (PyObject_CheckBuffer(dataobj)) {
@@ -189,7 +190,7 @@ int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasb
 			paramobjdata->paramtype = paramobj_bytearray;
 		}
 		paramobjdata->byteseq.buf = datapy.buf;
-		*hasbuffer = 1;
+		*hasbuffer = true;
 		return 0;
 
 	// Not an array, so expect a number.
@@ -201,11 +202,11 @@ int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasb
 			// No overflow, so we can treat it as a signed long long.
 			if (!intparamoverflow) {
 				if (isunsignedcharrangewithsigned(llintparam)) {
-					paramobjdata->ucharparam = (char) llintparam;
+					paramobjdata->ucharparam = (unsigned char) llintparam;
 					paramobjdata->paramtype = paramobj_uchar;
 					return 0;
 				} else {
-					*hasbuffer = 1;
+					*hasbuffer = true;
 					paramobjdata->paramtype = paramobj_error;
 					return -3;
 				}
@@ -218,15 +219,15 @@ int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasb
 				// as a native integer.
 				if ((ullintparam == (unsigned long long)-1) && PyErr_Occurred()) {
 					paramobjdata->paramtype = paramobj_error;
-					*paramoverflow = 1;
+					*paramoverflow = true;
 					return -4;
 				}
 				if (isunsignedcharrange(ullintparam)) {
-					paramobjdata->ucharparam = ullintparam;
+					paramobjdata->ucharparam = (unsigned char) ullintparam;
 					paramobjdata->paramtype = paramobj_uchar;
 					return 0;
 				} else {
-					*hasbuffer = 1;
+					*hasbuffer = true;
 					paramobjdata->paramtype = paramobj_error;
 					return -1;
 				}
@@ -239,8 +240,6 @@ int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasb
 		}
 	}
 
-	// If we reach this point, something has gone wrong.
-	return -6;
 }
 
 

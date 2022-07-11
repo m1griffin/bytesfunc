@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ mathops_head = """//------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -83,40 +83,6 @@ mathops_head = """//------------------------------------------------------------
 /*--------------------------------------------------------------------------- */
 
 """
-
-
-# ==============================================================================
-
-# Used to calculate array alignment, and to determine if an array is long 
-# enough to use SIMD.
-
-alignedlength_macros = """
-/*--------------------------------------------------------------------------- */
-/*   calcalignedlength
-   Calculate the aligned length of the array. This is the length which is
-   evenly divisible by the SIMD register. Any array elements after this
-   one must be dealt with using non-SIMD clean-up code.
-   arraylen = The length of the array in number of elements.
-   simdwidth = The width of the SIMD registers for this data type.
-   Returns the length of the array which can be processed using SIMD.
-*/
-
-#define calcalignedlength(arraylen) (arraylen - (arraylen % CHARSIMDSIZE))
-
-
-/*   enoughforsimd
-   Calculate whether the array to be processed is big enough to be handled by
-   SIMD. We make the minimum size for this bigger than the actual minimum as
-   the overhead for setting up SIMD does not justify very small arrays. The
-   minimum size used here is arbitrary and was not tested with benchmarks.
-   arraylen = The length of the array in number of elements.
-   simdwidth = The width of the SIMD registers for this data type.
-*/
-
-#define enoughforsimd(arraylen) (arraylen >= (CHARSIMDSIZE * 2))
-
-"""
-
 
 # ==============================================================================
 
@@ -246,7 +212,7 @@ void %(funclabel)s_1_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigne
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -288,7 +254,7 @@ void %(funclabel)s_2_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigne
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -330,7 +296,7 @@ void %(funclabel)s_3_x86_simd(Py_ssize_t arraylen, unsigned char param, unsigned
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -372,7 +338,7 @@ void %(funclabel)s_4_x86_simd(Py_ssize_t arraylen, unsigned char param, unsigned
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -406,7 +372,7 @@ void %(funclabel)s_5_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigne
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -441,7 +407,7 @@ void %(funclabel)s_6_x86_simd(Py_ssize_t arraylen, unsigned char *data1, unsigne
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -523,7 +489,7 @@ void %(funclabel)s_1_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -587,7 +553,7 @@ void %(funclabel)s_2_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -655,7 +621,7 @@ void %(funclabel)s_1_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -697,7 +663,7 @@ void %(funclabel)s_2_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -739,7 +705,7 @@ void %(funclabel)s_3_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char param,
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -781,7 +747,7 @@ void %(funclabel)s_4_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char param,
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -815,7 +781,7 @@ void %(funclabel)s_5_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -850,7 +816,7 @@ void %(funclabel)s_6_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -910,7 +876,7 @@ void %(funclabel)s_1_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -953,7 +919,7 @@ void %(funclabel)s_2_%(funcplat)s_simd(Py_ssize_t arraylen, unsigned char *data1
 
 	// Calculate array lengths for arrays whose lengths which are not even
 	// multipes of the SIMD slice length.
-	alignedlength = calcalignedlength(arraylen);
+	alignedlength = calcalignedlength(arraylen, CHARSIMDSIZE);
 
 	// Perform the main operation using SIMD instructions.
 	for (index = 0; index < alignedlength; index += CHARSIMDSIZE) {
@@ -995,7 +961,7 @@ binops_select = """
 void %(funclabel)s_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_1_x86_simd(arraylen, data1, param);
 		#endif
@@ -1021,7 +987,7 @@ void %(funclabel)s_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data
 void %(funclabel)s_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_2_x86_simd(arraylen, data1, param, data3);
 		#endif
@@ -1047,7 +1013,7 @@ void %(funclabel)s_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data
 void %(funclabel)s_3_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_3_x86_simd(arraylen, param, data2);
 		#endif
@@ -1073,7 +1039,7 @@ void %(funclabel)s_3_select(Py_ssize_t arraylen, int nosimd, unsigned char param
 void %(funclabel)s_4_select(Py_ssize_t arraylen, int nosimd, unsigned char param, unsigned char *data2, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_4_x86_simd(arraylen, param, data2, data3);
 		#endif
@@ -1099,7 +1065,7 @@ void %(funclabel)s_4_select(Py_ssize_t arraylen, int nosimd, unsigned char param
 void %(funclabel)s_5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_5_x86_simd(arraylen, data1, data2);
 		#endif
@@ -1125,7 +1091,7 @@ void %(funclabel)s_5_select(Py_ssize_t arraylen, int nosimd, unsigned char *data
 void %(funclabel)s_6_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char *data2, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_6_x86_simd(arraylen, data1, data2, data3);
 		#endif
@@ -1172,7 +1138,7 @@ binops_select_shift = """
 void %(funclabel)s_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_1_x86_simd(arraylen, data1, param);
@@ -1199,7 +1165,7 @@ void %(funclabel)s_1_select(Py_ssize_t arraylen, int nosimd, unsigned char *data
 void %(funclabel)s_2_select(Py_ssize_t arraylen, int nosimd, unsigned char *data1, unsigned char param, unsigned char *data3) {
 
 	#if defined(AF_HASSIMD_X86) || defined(AF_HASSIMD_ARMv7_32BIT) || defined(AF_HASSIMD_ARM_AARCH64)
-	if (!nosimd && enoughforsimd(arraylen)) {
+	if (!nosimd && enoughforsimd(arraylen, CHARSIMDSIZE)) {
 
 		#if defined(AF_HASSIMD_X86)
 			%(funclabel)s_2_x86_simd(arraylen, data1, param, data3);
@@ -1252,7 +1218,7 @@ static PyObject *py_%(funclabel)s(PyObject *self, PyObject *args, PyObject *keyw
 
 	// If there was an error, we count on the parameter parsing function to 
 	// release the buffers if this was necessary.
-	if (bytesdata.error) {
+	if (bytesdata.errorcode) {
 		return NULL;
 	}
 
@@ -1260,27 +1226,27 @@ static PyObject *py_%(funclabel)s(PyObject *self, PyObject *args, PyObject *keyw
 	// Select the correct implementation.
 	switch (bytesdata.paramcat) {
 		case param_arr_num_none : {
-			%(funclabel)s_1_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
+			%(funclabel)s_1_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param);
 			break;
 		}
 		case param_arr_num_arr : {
-			%(funclabel)s_2_select(bytesdata.byteslength, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param, bytesdata.bytes3.B);
+			%(funclabel)s_2_select(bytesdata.arraylen, bytesdata.nosimd, bytesdata.bytes1.B, bytesdata.param, bytesdata.bytes3.B);
 			break;
 		}
 		case param_num_arr_none : {
-			%(funclabel)s_3%(paramselect)s(bytesdata.byteslength,%(paramnosimd)s bytesdata.param, bytesdata.bytes2.B);
+			%(funclabel)s_3%(paramselect)s(bytesdata.arraylen,%(paramnosimd)s bytesdata.param, bytesdata.bytes2.B);
 			break;
 		}
 		case param_num_arr_arr : {
-			%(funclabel)s_4%(paramselect)s(bytesdata.byteslength,%(paramnosimd)s bytesdata.param, bytesdata.bytes2.B, bytesdata.bytes3.B);
+			%(funclabel)s_4%(paramselect)s(bytesdata.arraylen,%(paramnosimd)s bytesdata.param, bytesdata.bytes2.B, bytesdata.bytes3.B);
 			break;
 		}
 		case param_arr_arr_none : {
-			%(funclabel)s_5%(paramselect)s(bytesdata.byteslength,%(paramnosimd)s bytesdata.bytes1.B, bytesdata.bytes2.B);
+			%(funclabel)s_5%(paramselect)s(bytesdata.arraylen,%(paramnosimd)s bytesdata.bytes1.B, bytesdata.bytes2.B);
 			break;
 		}
 		case param_arr_arr_arr : {
-			%(funclabel)s_6%(paramselect)s(bytesdata.byteslength,%(paramnosimd)s bytesdata.bytes1.B, bytesdata.bytes2.B, bytesdata.bytes3.B);
+			%(funclabel)s_6%(paramselect)s(bytesdata.arraylen,%(paramnosimd)s bytesdata.bytes1.B, bytesdata.bytes2.B, bytesdata.bytes3.B);
 			break;
 		}
 	}
@@ -1476,9 +1442,6 @@ for funcname in completefuncnames:
 	with open(filename, 'w') as f:
 
 		f.write(mathops_head % {'funclabel' : funcname})
-
-		# Macros used to assist in various things.
-		f.write(alignedlength_macros)
 
 		f.write(ops_binop % {'funclabel' : funcname,
 						'copname' : copname[funcname]

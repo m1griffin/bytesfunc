@@ -121,9 +121,10 @@ with open('README.rst') as longdescdata:
 
 
 setup(name = 'bytesfunc', 
-	version = '3.2.1',
+	version = '3.3.0',
 	description = 'Fast bytes and bytearray processing functions',
 	long_description = long_description,
+	long_description_content_type='text/x-rst',
 	url = 'https://github.com/m1griffin/bytesfunc',
 	author = 'M Griffin',
 	author_email = 'm12.griffin@gmail.com',

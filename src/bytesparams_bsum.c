@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2020    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -37,7 +38,7 @@
 
 // The list of keyword arguments. All argument must be listed, whether we 
 // intend to use them for keywords or not. 
-static char *kwlist[] = {"data", "matherrors", "maxlen", NULL};
+static char *kwlist[] = {"data", "matherrors", "maxlen", "nosimd", NULL};
 
 
 /*--------------------------------------------------------------------------- */
@@ -50,7 +51,7 @@ static char *kwlist[] = {"data", "matherrors", "maxlen", NULL};
 void releasebuffers_bsum(struct args_params_bsum bytesdata) {
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 }
 
@@ -78,15 +79,17 @@ struct args_params_bsum getparams_bsum(PyObject *self, PyObject *args, PyObject 
 
 	// Number of elements to work on. If zero or less, ignore this parameter.
 	Py_ssize_t bytesmaxlen = 0;
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 
 	// If true, *disabled* overflow checking.
-	unsigned int ignoreerrors = 0;
+	signed int ignoreerrors = 0;
 
+	// If True, SIMD processing is disabled.
+	signed int nosimd = 0;
 
 	char formatstr[FMTSTRLEN];
 
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 
 	// -----------------------------------------------------
 
@@ -95,13 +98,13 @@ struct args_params_bsum getparams_bsum(PyObject *self, PyObject *args, PyObject 
 
 	// Construct the format string. This is constructed dynamically because
 	// we must be able to call this same function from different C extensions.
-	makefmtstr("O|in:", funcname, formatstr);
+	makefmtstr("O|ini:", funcname, formatstr);
 
 	// Import the raw objects. 
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist, &dataobj1, 
-							&ignoreerrors, &bytesmaxlen)) {
+							&ignoreerrors, &bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 1;
+		bytesdata.errorcode = 1;
 		return bytesdata;
 	}
 
@@ -109,7 +112,7 @@ struct args_params_bsum getparams_bsum(PyObject *self, PyObject *args, PyObject 
 	// Parse the first object parameter. 
 	if (get_paramdata(dataobj1, &paramobjdata1, &bytesdata.hasbuffer1, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		releasebuffers_bsum(bytesdata);
 		return bytesdata;
 	}
@@ -118,20 +121,21 @@ struct args_params_bsum getparams_bsum(PyObject *self, PyObject *args, PyObject 
 	// The first parameter must be a bytes or bytearray.
 	if ((paramobjdata1.paramtype != paramobj_bytes) && (paramobjdata1.paramtype != paramobj_bytearray)) {
 		ErrMsgParameterError();
-		bytesdata.error = 3;
+		bytesdata.errorcode = 3;
 		releasebuffers_bsum(bytesdata);
 		return bytesdata;
 	}
 
 
 	// The number of bytes.
-	byteslength = paramobjdata1.pybuffer.len;
+	arraylen = paramobjdata1.pybuffer.len;
 
 
 	// Collect the parameter data for return to the calling function.
-	bytesdata.error = 0;
+	bytesdata.errorcode = 0;
 	bytesdata.ignoreerrors = ignoreerrors;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.nosimd = nosimd;
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.pybuffer1 = paramobjdata1.pybuffer;
 

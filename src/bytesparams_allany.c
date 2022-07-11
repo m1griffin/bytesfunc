@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2018    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -49,7 +50,7 @@ static char *kwlist_allany[] = {"op", "data", "param", "maxlen", "nosimd", NULL}
 void releasebuffers_allany(struct args_params_allany bytesdata) {
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 
 }
@@ -84,7 +85,7 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 
 
 	// How long the array is.
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 
 
 	// Number of elements to work on. If zero or less, ignore this parameter.
@@ -95,7 +96,7 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 	int paramval = 0;
 
 
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 	signed int opcode = 0;
 
 
@@ -114,7 +115,7 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist_allany, &opstr, 
 					&dataobj1, &paramval, &bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 1;
+		bytesdata.errorcode = 1;
 		return bytesdata;
 	}
 
@@ -124,7 +125,7 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 	// Check if the command string is valid.
 	if (opcode < 0) {
 		ErrMsgOperatorNotValidforthisFunction();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		// Release the buffers. 
 		releasebuffers_allany(bytesdata);
 		return bytesdata;
@@ -138,7 +139,7 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 		} else {
 			ErrMsgParameterError();
 		}
-		bytesdata.error = 3;
+		bytesdata.errorcode = 3;
 		releasebuffers_allany(bytesdata);
 		return bytesdata;
 	}
@@ -147,32 +148,32 @@ struct args_params_allany getparams_allany(PyObject *self, PyObject *args, PyObj
 	// The second parameter must be a bytes or bytearray object.
 	if ((paramobjdata1.paramtype != paramobj_bytes) && (paramobjdata1.paramtype != paramobj_bytearray)) {
 		ErrMsgParameterError();
-		bytesdata.error = 4;
+		bytesdata.errorcode = 4;
 		releasebuffers_allany(bytesdata);
 		return bytesdata;
 	}
 
 
 	// Get the raw array length.
-	byteslength = paramobjdata1.pybuffer.len;
+	arraylen = paramobjdata1.pybuffer.len;
 
 
 	// Check that the parameter value is in range.
 	if ((paramval < 0) || (paramval > 255)) {
 		ErrMsgArithOverflowParam();
-		bytesdata.error = 5;
+		bytesdata.errorcode = 5;
 		releasebuffers_allany(bytesdata);
 		return bytesdata;
 	}
 
 
-	bytesdata.error = 0;
+	bytesdata.errorcode = 0;
 	bytesdata.opcode = opcode;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.nosimd = nosimd;
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.pybuffer1 = paramobjdata1.pybuffer;
-	bytesdata.param = paramval;
+	bytesdata.param = (unsigned char) paramval;
 
 
 	return bytesdata;

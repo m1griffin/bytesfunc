@@ -5,7 +5,7 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version: 3.2.1 for 2022-04-23
+:Version: 3.3.0 for 2022-07-11
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
@@ -138,22 +138,20 @@ Ubuntu 22.04             x86_64     64     GCC               3.10
 Debian 11                i686       32     GCC               3.9
 Debian 11                x86_64     64     GCC               3.9
 OpenSuse 15.3            x86_64     64     GCC               3.6
-Alma 8.5                 x86_64     64     GCC               3.6
+Alma 9                   x86_64     64     GCC               3.9
+Alpine 3.16.0            i686       32     GCC               3.10
 FreeBSD 13               x86_64     64     LLVM              3.8
 OpenBSD 7.1              x86_64     64     LLVM              3.9
 MS Windows 10            x86_64     64     MS VS C v.1929    3.10
 MS Windows 11            x86_64     64     MS VS C v.1929    3.10
 Raspberry Pi 2022-04-04  RPi 3      32     GCC               3.9
 Ubuntu 22.04             RPi 4      64     GCC               3.10
-Alpine 3.15.4            VIA C3     32     GCC               3.9
 ======================= ========== ====== =============== ================
 
-* The Raspbian (RPi 3) tests were conducted on a Raspberry Pi 3 ARM CPU running
+* The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
 * The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
   64 bit mode.
-* The Alpine tests were conducted on a VIA C3 (x86 compatible) running in 
-  32 bit mode.
 * All others were conducted using VMs running on x86 hardware. 
 
 ---------------------------------------------------------------------
@@ -211,6 +209,9 @@ existing ones.
 
 Release History
 ===============
+* 3.3.0 - Major performance improvements for bsum through the use of SIMD and
+          other optimizations. Used splint (GCC lint) on all C code and fixed
+          warnings. Other than bsum, no changes in functionality.
 * 3.2.1 - Fixed formatting error in README.rst. 
 * 3.2.0 - Update to testing and support. Tested with new releases of Ubuntu 
           22.04 and OpenBSD 7.1. Changed "simdsupport" to also report the 

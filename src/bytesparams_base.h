@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@
 //------------------------------------------------------------------------------
 
 #include "Python.h"
+
+#include <stdbool.h>
 
 /*--------------------------------------------------------------------------- */
 
@@ -61,13 +63,12 @@ struct paramsdata {
 
 /*--------------------------------------------------------------------------- */
 
-Py_ssize_t adjustbytesmaxlen(Py_ssize_t byteslength, Py_ssize_t bytesmaxlen);
+Py_ssize_t adjustbytesmaxlen(Py_ssize_t arraylen, Py_ssize_t bytesmaxlen);
 	
 void makefmtstr(char *basestr, char *funcname, char *formatstr);
 
-int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, char *hasbuffer, char *paramoverflow);
+int get_paramdata(PyObject *dataobj, struct paramsdata *paramobjdata, bool *hasbuffer, bool *paramoverflow);
 
-char isbytesobjtype(PyObject *dataobj);
-char isbytearrayobjtype(PyObject *dataobj);
+int isbytearrayobjtype(PyObject *dataobj);
 
 /*--------------------------------------------------------------------------- */

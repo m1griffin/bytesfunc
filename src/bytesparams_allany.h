@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2018    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -29,21 +29,20 @@
 
 /*--------------------------------------------------------------------------- */
 
-#define ARGSINIT_ALLANY {0, 0, 0, 0, 0, 0, {NULL}, {NULL}, 0}
+#define ARGSINIT_ALLANY {0, 0, 0, 0, 0, {NULL}, {NULL}, 0}
 
 
 
 // Provide a struct for returning data from parsing Python arguments.
 struct args_params_allany {
-	char error;
-	char bytestype;
+	int errorcode;
 	signed int opcode;
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 	int nosimd;
-	char hasbuffer1;
+	bool hasbuffer1;
 	union dataseq bytes1;
 	Py_buffer pybuffer1;
-	int param;
+	unsigned char param;
 };
 
 /*--------------------------------------------------------------------------- */

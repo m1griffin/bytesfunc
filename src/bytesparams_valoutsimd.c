@@ -7,7 +7,7 @@
 //
 //------------------------------------------------------------------------------
 //
-//   Copyright 2014 - 2019    Michael Griffin    <m12.griffin@gmail.com>
+//   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 //
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #include "byteserrs.h"
 #include "bytesparams_base.h"
@@ -51,7 +52,7 @@ static char *kwlist[] = {"data", "maxlen", "nosimd", NULL};
 void releasebuffers_valoutsimd(struct args_params_valoutsimd bytesdata) {
 	if (bytesdata.hasbuffer1) {
 		PyBuffer_Release(&bytesdata.pybuffer1);
-		bytesdata.hasbuffer1 = 0;
+		bytesdata.hasbuffer1 = false;
 	}
 }
 
@@ -79,17 +80,14 @@ struct args_params_valoutsimd getparams_valoutsimd(PyObject *self, PyObject *arg
 
 	// Number of elements to work on. If zero or less, ignore this parameter.
 	Py_ssize_t bytesmaxlen = 0;
-	Py_ssize_t byteslength;
+	Py_ssize_t arraylen;
 
 	// If True, SIMD processing is disabled.
 	int nosimd = 0;
 
-	// This is used to track the types of each bytes or bytearray object.
-	char bytestype = 0;
-
 	char formatstr[FMTSTRLEN];
 
-	char paramoverflow = 0;
+	bool paramoverflow = false;
 
 	// -----------------------------------------------------
 
@@ -104,14 +102,14 @@ struct args_params_valoutsimd getparams_valoutsimd(PyObject *self, PyObject *arg
 	if (!PyArg_ParseTupleAndKeywords(args, keywds, formatstr, kwlist, &dataobj1, 
 							&bytesmaxlen, &nosimd)) {
 		ErrMsgParameterError();
-		bytesdata.error = 1;
+		bytesdata.errorcode = 1;
 		return bytesdata;
 	}
 
 	// Parse the first object parameter. 
 	if (get_paramdata(dataobj1, &paramobjdata1, &bytesdata.hasbuffer1, &paramoverflow)) {
 		ErrMsgParameterError();
-		bytesdata.error = 2;
+		bytesdata.errorcode = 2;
 		releasebuffers_valoutsimd(bytesdata);
 		return bytesdata;
 	}
@@ -120,23 +118,19 @@ struct args_params_valoutsimd getparams_valoutsimd(PyObject *self, PyObject *arg
 	// The first parameter must be an bytes or bytearray.
 	if ((paramobjdata1.paramtype != paramobj_bytes) && (paramobjdata1.paramtype != paramobj_bytearray)) {
 		ErrMsgParameterError();
-		bytesdata.error = 3;
+		bytesdata.errorcode = 3;
 		releasebuffers_valoutsimd(bytesdata);
 		return bytesdata;
 	}
 
-	// The bytes or bytearray type.
-	bytestype = paramobjdata1.bytescode;
-
 	// Get the raw bytes or bytesarray length.
-	byteslength = paramobjdata1.pybuffer.len;
+	arraylen = paramobjdata1.pybuffer.len;
 
 
 	// Collect the parameter data for return to the calling function.
-	bytesdata.error = 0;
-	bytesdata.bytestype = bytestype;
+	bytesdata.errorcode = 0;
 	bytesdata.nosimd = nosimd;
-	bytesdata.byteslength = adjustbytesmaxlen(byteslength, bytesmaxlen);
+	bytesdata.arraylen = adjustbytesmaxlen(arraylen, bytesmaxlen);
 	bytesdata.bytes1.buf = paramobjdata1.byteseq.buf;
 	bytesdata.pybuffer1 = paramobjdata1.pybuffer;
 

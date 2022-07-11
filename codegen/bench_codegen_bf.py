@@ -7,7 +7,7 @@
 #
 ###############################################################################
 #
-#   Copyright 2014 - 2021    Michael Griffin    <m12.griffin@gmail.com>
+#   Copyright 2014 - 2022    Michael Griffin    <m12.griffin@gmail.com>
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -443,7 +443,7 @@ bytesfuncequ = {
 
 # This defines the bytesfunc code form without SIMD of the benchmark equations.
 bytesfuncequnosimd = {
-'bsum' : 'result = bytesfunc.bsum(datax)',
+'bsum' : 'result = bytesfunc.bsum(datax, nosimd=True)',
 'bmax' : 'result = bytesfunc.bmax(datax, nosimd=True)',
 'bmin' : 'result = bytesfunc.bmin(datax, nosimd=True)',
 'ball' : 'result = bytesfunc.ball("==", datax, yvalue, nosimd=True)',
@@ -465,7 +465,7 @@ bytesfuncequnosimd = {
 
 # This defines the SIMD optimised bytesfunc code form of the benchmark equations.
 bytesfuncequsimd = {
-'bsum' : 'result = bytesfunc.bsum(datax)',
+'bsum' : 'result = bytesfunc.bsum(datax, nosimd=False)',
 'bmax' : 'result = bytesfunc.bmax(datax, nosimd=False)',
 'bmin' : 'result = bytesfunc.bmin(datax, nosimd=False)',
 'ball' : 'result = bytesfunc.ball("==", datax, yvalue, nosimd=False)',
