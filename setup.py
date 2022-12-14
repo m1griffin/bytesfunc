@@ -119,9 +119,12 @@ else:
 with open('README.rst') as longdescdata:
     long_description = longdescdata.read()
 
+# The version number should be the only data in the text file.
+with open('VERSION.TXT') as versiondata:
+	__version__ = versiondata.read().strip('\n\r')
 
 setup(name = 'bytesfunc', 
-	version = '3.3.0',
+	version = __version__,
 	description = 'Fast bytes and bytearray processing functions',
 	long_description = long_description,
 	long_description_content_type='text/x-rst',

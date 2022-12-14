@@ -5,8 +5,8 @@ BytesFunc
 :Authors:
     Michael Griffin
 
-:Version:  3.4.0 for 2022-12-11
-:Copyright: 2014 - 2022
+:Version:  {versionnumber} for {versiondate}
+:Copyright: 2014 - {copyrightyear}
 :License: This document may be distributed under the Apache 2.0 License.
 :Language: Python 3.6 or later
 
@@ -130,28 +130,7 @@ Platform support
 BytesFunc is written in 'C' and uses the standard C libraries to implement the 
 underlying math functions. BytesFunc has been tested on the following platforms.
 
-======================= ========== ====== =============== ================
-OS                       Hardware   Bits   Compiler        Python Version
-======================= ========== ====== =============== ================
-Debian 11                i686         32     GCC               3.9.2
-Debian 11                x86_64       64     GCC               3.9.2
-Ubuntu 22.04             x86_64       64     GCC               3.10.6
-Ubuntu 22.10             x86_64       64     GCC               3.10.7
-opensuse-leap 15.4       x86_64       64     GCC               3.6.15
-almalinux 9.0            x86_64       64     GCC               3.9.10
-alpine 3.16.2            i686         32     GCC               3.10.5
-FreeBSD 13.1             amd64        64     Clang             3.9.15
-OpenBSD 7.2              amd64        64     Clang             3.9.15
-MS Windows 10            AMD64        64     MSC               3.11.0
-MS Windows 11            AMD64        64     MSC               3.11.0
-Raspbian 11              armv7l       32     GCC               3.9.2
-Ubuntu 22.04             aarch64      64     GCC               3.10.6
-======================= ========== ====== =============== ================
-
-amd64 is another name for x86_64 and does not indicate the CPU brand.
-armv7l is 32 bit ARM. The test hardware is a Raspberry Pi 3.
-aarch64 is 64 bit ARM. The test hardware is a Raspberry Pi 4.
-
+{bfuncdoc_ossupportdata}
 
 * The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
@@ -214,53 +193,4 @@ existing ones.
 
 Release History
 ===============
-* 3.4.0 - Added pyproject.toml file to satisfy Python 3.11 requirements.
-          Updated build scripts to use python3 -m build instead of calling
-          setup.py directly. Test targets were updated, Ubuntu 20.04 was 
-          dropped, Ubuntu 22.10 was added, FreeBSD python version upgraded 
-          to 3.9, OpenBSD upgraded to 7.2, Windows 10 Python upgraded to 3.11,
-          Windows 11 Python upgraded to 3.11. Added __version__ attribute to 
-          allow checking package version number at run time. Added version 
-          unit test. Updated setup.py and other files to allow the version 
-          number to be automatically updated from a single source at build 
-          time.
-* 3.3.0 - Major performance improvements for bsum through the use of SIMD and
-          other optimizations. Used splint (GCC lint) on all C code and fixed
-          warnings. Other than bsum, no changes in functionality.
-* 3.2.1 - Fixed formatting error in README.rst. 
-* 3.2.0 - Update to testing and support. Tested with new releases of Ubuntu 
-          22.04 and OpenBSD 7.1. Changed "simdsupport" to also report the 
-          architecture the binary was compiled for. "Simdsupport" is only
-          used for testing and benchmarking and is not a stable part of
-          the release.
-* 3.1.2 - Bump to correct minor documentation error in README.rst. 
-* 3.1.1 - Update to testing and support. Raspberry Pi 32 bit OS updated to
-          version 2022-04-04. Update to setup.py to improve ARM version 
-          detection.
-* 3.1.0 - Update to testing and support. On Windows 10 the Python version is
-          3.10. Centos has been replaced by AlmaLinux due to Red Hat ending 
-          long term support for Centos. Ubuntu Server 21.04 replaced by 21.10.
-          No actual code changes.
-* 3.0.0 - Major speed improvement to lshfit and rshift on x86-64 due to adding
-          SIMD support. Debian test platforms were updated to latest versions 
-          (11). 
-* 2.2.0 - Updated benchmarks to make each one a separate file. Centos and
-          OpenSuse test platforms updated to latest versions.
-* 2.1.1 - Documentation updated and version number bumped to reflect testing 
-          with Ubuntu 21.04, FreeBSD 13.0, and OpenBSD 6.9. No code changes.
-* 2.1.0 - Changed setup.py to detect Raspberry Pi 4 and set the compiler args
-          accordingly. Added support for Pi 4. Dropped testing of 64 bit 
-          mode on Pi 3. 
-* 2.0.1 - Documentation updated to reflect testing with the release version
-          of Ubuntu 20.04 ARM (Rasberry Pi), Ubuntu 2010 (x86-64), OpenBSD 6.8,
-          and Python 3.9 on Windows. No code changes and no change in version 
-          number.
-* 2.0.0 - Documentation updated to reflect testing with the release version
-          of Ubuntu 20.04. No code changes and no change in version number.
-* 2.0.0 - Added SIMD support for ARMv8 AARCH64. This is 64 bit ARM on a
-          Raspberry Pi3 when running 64 bit Ubuntu. Raspbian is 32 bit only
-          and has 64 bit SIMD vectors. 64 bit ARM has 128 bit SIMD vectors
-          and so offers improved performance.
-* 1.0.0 - First release.
-
-
+{release_history}

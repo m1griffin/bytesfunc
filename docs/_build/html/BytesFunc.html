@@ -1,24 +1,24 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>BytesFunc &#8212; BytesFunc  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Welcome to BytesFunc’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -28,95 +28,108 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="bytesfunc">
+  <section id="bytesfunc">
 <h1><a class="toc-backref" href="#id2">BytesFunc</a><a class="headerlink" href="#bytesfunc" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Authors:</th><td class="field-body">Michael Griffin</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">3.3.0 for 2022-07-11</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Copyright:</th><td class="field-body">2014 - 2022</td>
-</tr>
-<tr class="field-even field"><th class="field-name">License:</th><td class="field-body">This document may be distributed under the Apache License V2.0.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Language:</th><td class="field-body">Python 3.6 or later</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Authors</dt>
+<dd class="field-odd"><p>Michael Griffin</p>
+</dd>
+<dt class="field-even">Version</dt>
+<dd class="field-even"><p>3.4.0 for 2022-12-11</p>
+</dd>
+<dt class="field-odd">Copyright</dt>
+<dd class="field-odd"><p>2014 - 2022</p>
+</dd>
+<dt class="field-even">License</dt>
+<dd class="field-even"><p>This document may be distributed under the Apache License V2.0.</p>
+</dd>
+<dt class="field-odd">Language</dt>
+<dd class="field-odd"><p>Python 3.6 or later</p>
+</dd>
+</dl>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#bytesfunc" id="id2">BytesFunc</a><ul>
-<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
-<li><a class="reference internal" href="#function-summary" id="id4">Function Summary</a><ul>
-<li><a class="reference internal" href="#brief-description" id="id5">Brief Description</a></li>
-<li><a class="reference internal" href="#python-equivalent" id="id6">Python Equivalent</a></li>
+<li><p><a class="reference internal" href="#bytesfunc" id="id2">BytesFunc</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id3">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#function-summary" id="id4">Function Summary</a></p>
+<ul>
+<li><p><a class="reference internal" href="#brief-description" id="id5">Brief Description</a></p></li>
+<li><p><a class="reference internal" href="#python-equivalent" id="id6">Python Equivalent</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#description" id="id7">Description</a><ul>
-<li><a class="reference internal" href="#parameters" id="id8">Parameters</a><ul>
-<li><a class="reference internal" href="#parameter-formats" id="id9">Parameter Formats</a></li>
+<li><p><a class="reference internal" href="#description" id="id7">Description</a></p>
+<ul>
+<li><p><a class="reference internal" href="#parameters" id="id8">Parameters</a></p>
+<ul>
+<li><p><a class="reference internal" href="#parameter-formats" id="id9">Parameter Formats</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#function-documentation-details" id="id10">Function Documentation Details</a><ul>
-<li><a class="reference internal" href="#and" id="id11">and_</a></li>
-<li><a class="reference internal" href="#ball" id="id12">ball</a></li>
-<li><a class="reference internal" href="#bany" id="id13">bany</a></li>
-<li><a class="reference internal" href="#bmax" id="id14">bmax</a></li>
-<li><a class="reference internal" href="#bmin" id="id15">bmin</a></li>
-<li><a class="reference internal" href="#bsum" id="id16">bsum</a></li>
-<li><a class="reference internal" href="#eq" id="id17">eq</a></li>
-<li><a class="reference internal" href="#findindex" id="id18">findindex</a></li>
-<li><a class="reference internal" href="#ge" id="id19">ge</a></li>
-<li><a class="reference internal" href="#gt" id="id20">gt</a></li>
-<li><a class="reference internal" href="#invert" id="id21">invert</a></li>
-<li><a class="reference internal" href="#le" id="id22">le</a></li>
-<li><a class="reference internal" href="#lshift" id="id23">lshift</a></li>
-<li><a class="reference internal" href="#lt" id="id24">lt</a></li>
-<li><a class="reference internal" href="#ne" id="id25">ne</a></li>
-<li><a class="reference internal" href="#or" id="id26">or_</a></li>
-<li><a class="reference internal" href="#rshift" id="id27">rshift</a></li>
-<li><a class="reference internal" href="#xor" id="id28">xor</a></li>
+<li><p><a class="reference internal" href="#function-documentation-details" id="id10">Function Documentation Details</a></p>
+<ul>
+<li><p><a class="reference internal" href="#and" id="id11">and_</a></p></li>
+<li><p><a class="reference internal" href="#ball" id="id12">ball</a></p></li>
+<li><p><a class="reference internal" href="#bany" id="id13">bany</a></p></li>
+<li><p><a class="reference internal" href="#bmax" id="id14">bmax</a></p></li>
+<li><p><a class="reference internal" href="#bmin" id="id15">bmin</a></p></li>
+<li><p><a class="reference internal" href="#bsum" id="id16">bsum</a></p></li>
+<li><p><a class="reference internal" href="#eq" id="id17">eq</a></p></li>
+<li><p><a class="reference internal" href="#findindex" id="id18">findindex</a></p></li>
+<li><p><a class="reference internal" href="#ge" id="id19">ge</a></p></li>
+<li><p><a class="reference internal" href="#gt" id="id20">gt</a></p></li>
+<li><p><a class="reference internal" href="#invert" id="id21">invert</a></p></li>
+<li><p><a class="reference internal" href="#le" id="id22">le</a></p></li>
+<li><p><a class="reference internal" href="#lshift" id="id23">lshift</a></p></li>
+<li><p><a class="reference internal" href="#lt" id="id24">lt</a></p></li>
+<li><p><a class="reference internal" href="#ne" id="id25">ne</a></p></li>
+<li><p><a class="reference internal" href="#or" id="id26">or_</a></p></li>
+<li><p><a class="reference internal" href="#rshift" id="id27">rshift</a></p></li>
+<li><p><a class="reference internal" href="#xor" id="id28">xor</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#parameter-details" id="id29">Parameter Details</a><ul>
-<li><a class="reference internal" href="#comparison-operators" id="id30">Comparison Operators</a></li>
-<li><a class="reference internal" href="#numeric-parameters" id="id31">Numeric Parameters</a></li>
-<li><a class="reference internal" href="#using-less-than-the-entire-sequence" id="id32">Using Less than the Entire Sequence</a></li>
-<li><a class="reference internal" href="#suppressing-or-ignoring-math-errors" id="id33">Suppressing or Ignoring Math Errors</a></li>
-<li><a class="reference internal" href="#differences-with-native-python" id="id34">Differences with Native Python</a></li>
+<li><p><a class="reference internal" href="#parameter-details" id="id29">Parameter Details</a></p>
+<ul>
+<li><p><a class="reference internal" href="#comparison-operators" id="id30">Comparison Operators</a></p></li>
+<li><p><a class="reference internal" href="#numeric-parameters" id="id31">Numeric Parameters</a></p></li>
+<li><p><a class="reference internal" href="#using-less-than-the-entire-sequence" id="id32">Using Less than the Entire Sequence</a></p></li>
+<li><p><a class="reference internal" href="#suppressing-or-ignoring-math-errors" id="id33">Suppressing or Ignoring Math Errors</a></p></li>
+<li><p><a class="reference internal" href="#differences-with-native-python" id="id34">Differences with Native Python</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#simd-support" id="id35">SIMD Support</a><ul>
-<li><a class="reference internal" href="#general" id="id36">General</a></li>
-<li><a class="reference internal" href="#disabling-simd" id="id37">Disabling SIMD</a></li>
-<li><a class="reference internal" href="#platform-support" id="id38">Platform Support</a></li>
-<li><a class="reference internal" href="#raspberry-pi-32-versus-64-bit" id="id39">Raspberry Pi 32 versus 64 bit</a></li>
-<li><a class="reference internal" href="#simd-function-support" id="id40">SIMD Function Support</a></li>
-<li><a class="reference internal" href="#simd-support-attributes" id="id41">SIMD Support Attributes</a></li>
+<li><p><a class="reference internal" href="#simd-support" id="id35">SIMD Support</a></p>
+<ul>
+<li><p><a class="reference internal" href="#general" id="id36">General</a></p></li>
+<li><p><a class="reference internal" href="#disabling-simd" id="id37">Disabling SIMD</a></p></li>
+<li><p><a class="reference internal" href="#platform-support" id="id38">Platform Support</a></p></li>
+<li><p><a class="reference internal" href="#raspberry-pi-32-versus-64-bit" id="id39">Raspberry Pi 32 versus 64 bit</a></p></li>
+<li><p><a class="reference internal" href="#simd-function-support" id="id40">SIMD Function Support</a></p></li>
+<li><p><a class="reference internal" href="#simd-support-attributes" id="id41">SIMD Support Attributes</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#performance" id="id42">Performance</a><ul>
-<li><a class="reference internal" href="#variables-affecting-performance" id="id43">Variables affecting Performance</a></li>
-<li><a class="reference internal" href="#typical-performance-readings" id="id44">Typical Performance Readings</a><ul>
-<li><a class="reference internal" href="#x86-64-benchmarks" id="id45">x86-64 Benchmarks</a></li>
-<li><a class="reference internal" href="#armv7-benchmarks" id="id46">ARMv7 Benchmarks</a></li>
-<li><a class="reference internal" href="#armv8-benchmarks" id="id47">ARMv8 Benchmarks</a></li>
+<li><p><a class="reference internal" href="#performance" id="id42">Performance</a></p>
+<ul>
+<li><p><a class="reference internal" href="#variables-affecting-performance" id="id43">Variables affecting Performance</a></p></li>
+<li><p><a class="reference internal" href="#typical-performance-readings" id="id44">Typical Performance Readings</a></p>
+<ul>
+<li><p><a class="reference internal" href="#x86-64-benchmarks" id="id45">x86-64 Benchmarks</a></p></li>
+<li><p><a class="reference internal" href="#armv7-benchmarks" id="id46">ARMv7 Benchmarks</a></p></li>
+<li><p><a class="reference internal" href="#armv8-benchmarks" id="id47">ARMv8 Benchmarks</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#platform-effects" id="id48">Platform Effects</a></li>
+<li><p><a class="reference internal" href="#platform-effects" id="id48">Platform Effects</a></p></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id1" id="id49">Platform support</a><ul>
-<li><a class="reference internal" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" id="id50">List of tested Operation Systems, Compilers, and CPU Architectures</a></li>
-<li><a class="reference internal" href="#platform-oddities" id="id51">Platform Oddities</a></li>
+<li><p><a class="reference internal" href="#id1" id="id49">Platform support</a></p>
+<ul>
+<li><p><a class="reference internal" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" id="id50">List of tested Operation Systems, Compilers, and CPU Architectures</a></p></li>
+<li><p><a class="reference internal" href="#platform-oddities" id="id51">Platform Oddities</a></p></li>
 </ul>
 </li>
 </ul>
@@ -124,7 +137,7 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The BytesFunc module provides high speed array processing functions for use with
 Python ‘bytes’ and ‘bytearray’ objects. These functions are patterned after the
@@ -132,182 +145,182 @@ functions in the standard Python “operator” module together with some additi
 ones from other sources.</p>
 <p>The purpose of these functions is to perform mathematical calculations on
 “bytes” and “bytearray” objects significantly faster than using native Python.</p>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="function-summary">
+<section id="function-summary">
 <h2><a class="toc-backref" href="#id4">Function Summary</a><a class="headerlink" href="#function-summary" title="Permalink to this headline">¶</a></h2>
 <p>The compare operators used for ‘ball’, ‘bany’, and ‘findindex’ are examples
 only, and other compare operations are available. Many functions will accept
 other parameter combinations of sequences and numeric parameters. See the
 details for each function for what parameter combinations are valid.</p>
-<div class="section" id="brief-description">
+<section id="brief-description">
 <h3><a class="toc-backref" href="#id5">Brief Description</a><a class="headerlink" href="#brief-description" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="14%" />
-<col width="86%" />
+<col style="width: 14%" />
+<col style="width: 86%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Function</th>
-<th class="head">Equivalent to</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Equivalent to</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>Perform a bitwise AND across the sequence.</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>Perform a bitwise AND across the sequence.</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>True if all elements of the sequence meet the match criteria.</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>True if all elements of the sequence meet the match criteria.</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>True if any elements of the sequence meet the match criteria.</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>True if any elements of the sequence meet the match criteria.</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>Return the maximum value in the sequence.</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>Return the maximum value in the sequence.</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>Return the minimum value in the sequence.</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>Return the minimum value in the sequence.</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>Return the sum of the sequence.</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td><p>Return the sum of the sequence.</p></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>True if all elements of the sequence equal the compare value.</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>True if all elements of the sequence equal the compare value.</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>Returns the index of the first value in an array to meet the
-specified criteria.</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>Returns the index of the first value in an array to meet the
+specified criteria.</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>True if all elements of the sequence are greater than or equal to
-the compare value.</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>True if all elements of the sequence are greater than or equal to
+the compare value.</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>True if all elements of the sequence are greater than the compare
-value.</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>True if all elements of the sequence are greater than the compare
+value.</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>Perform a bitwise invert across the sequence.</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>Perform a bitwise invert across the sequence.</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>True if all elements of the sequence are less than or equal to the
-compare value.</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>True if all elements of the sequence are less than or equal to the
+compare value.</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>Perform a bitwise left shift across the sequence.</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>Perform a bitwise left shift across the sequence.</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>True if all elements of the sequence are less than the compare
-value.</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>True if all elements of the sequence are less than the compare
+value.</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>True if all elements of the sequence are not equal the compare
-value.</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>True if all elements of the sequence are not equal the compare
+value.</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>Perform a bitwise OR across the sequence.</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>Perform a bitwise OR across the sequence.</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>Perform a bitwise right shift across the sequence.</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>Perform a bitwise right shift across the sequence.</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>Perform a bitwise XOR across the sequence.</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>Perform a bitwise XOR across the sequence.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="python-equivalent">
+</section>
+<section id="python-equivalent">
 <h3><a class="toc-backref" href="#id6">Python Equivalent</a><a class="headerlink" href="#python-equivalent" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="18%" />
-<col width="82%" />
+<col style="width: 18%" />
+<col style="width: 82%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Function</th>
-<th class="head">Equivalent to</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Equivalent to</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>[x &amp; param for x in sequence1]</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>[x &amp; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>all([(x &gt; param) for x in array])</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>all([(x &gt; param) for x in array])</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>any([(x &gt; param) for x in array])</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>any([(x &gt; param) for x in array])</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>max(sequence)</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>max(sequence)</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>min(sequence)</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>min(sequence)</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>sum(sequence)</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td><p>sum(sequence)</p></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>all([x == param for x in sequence])</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>all([x == param for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>[x for x,y in enumerate(array) if y &gt; param][0]</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>[x for x,y in enumerate(array) if y &gt; param][0]</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>all([x &gt;= param for x in sequence])</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>all([x &gt;= param for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>all([x &gt; param for x in sequence])</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>all([x &gt; param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>[~x for x in sequence1]</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>[~x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>all([x &lt;= param for x in sequence])</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>all([x &lt;= param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>[x &lt;&lt; param for x in sequence1]</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>[x &lt;&lt; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>all([x &lt; param for x in sequence])</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>all([x &lt; param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>all([x != param for x in sequence])</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>all([x != param for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>[x | param for x in sequence1]</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>[x | param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>[x &gt;&gt; param for x in sequence1]</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>[x &gt;&gt; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>[x ^ param for x in sequence1]</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>[x ^ param for x in sequence1]</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="description">
+<section id="description">
 <h2><a class="toc-backref" href="#id7">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="parameters">
+<section id="parameters">
 <h3><a class="toc-backref" href="#id8">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="parameter-formats">
+<section id="parameter-formats">
 <h4><a class="toc-backref" href="#id9">Parameter Formats</a><a class="headerlink" href="#parameter-formats" title="Permalink to this headline">¶</a></h4>
 <p>Parameters come in several forms.</p>
 <ul class="simple">
-<li>Sequences. Sequences are either “bytes” or “bytearray” objects. Bytes
+<li><p>Sequences. Sequences are either “bytes” or “bytearray” objects. Bytes
 sequences are immutable and must not be used for output destinations.
-Bytearray sequences are mutable, and may be used for inputs or outputs.</li>
-<li>Numeric parameters. Numeric input parameters are individual integers and must
-be in the range of 0 to 255.</li>
-<li>Comparison operators. Comparison operators are unicode strings in the form
+Bytearray sequences are mutable, and may be used for inputs or outputs.</p></li>
+<li><p>Numeric parameters. Numeric input parameters are individual integers and must
+be in the range of 0 to 255.</p></li>
+<li><p>Comparison operators. Comparison operators are unicode strings in the form
 used by Python for compare operations. These must be quoted strings, and not
-bare Python symbols. See the section below for a list of these.</li>
-<li>Sequence length control. Sequence length control allows only part of a
-sequence to be used as an input. See the section below for details.</li>
-<li>Overflow detection disable. Overflow detection control is used for disable
-integer overflow. See the section below for details.</li>
+bare Python symbols. See the section below for a list of these.</p></li>
+<li><p>Sequence length control. Sequence length control allows only part of a
+sequence to be used as an input. See the section below for details.</p></li>
+<li><p>Overflow detection disable. Overflow detection control is used for disable
+integer overflow. See the section below for details.</p></li>
 </ul>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
@@ -330,27 +343,27 @@ integer overflow. See the section below for details.</li>
 <span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">findindex</span><span class="p">(</span><span class="s1">&#39;&gt;=&#39;</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="function-documentation-details">
+</section>
+</section>
+<section id="function-documentation-details">
 <h3><a class="toc-backref" href="#id10">Function Documentation Details</a><a class="headerlink" href="#function-documentation-details" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="and">
+<section id="and">
 <h4><a class="toc-backref" href="#id11">and_</a><a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h4>
 <p>Calculate and_ over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x &amp; param for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x &amp; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>[param &amp; x for x in sequence1]</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>[param &amp; x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>[x &amp; y for x,y in zip(sequence1, sequence2)]</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>[x &amp; y for x,y in zip(sequence1, sequence2)]</p></td>
 </tr>
 </tbody>
 </table>
@@ -366,32 +379,32 @@ integer overflow. See the section below for details.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The first input data bytes or bytearray sequence to be
+<li><p>sequence1 - The first input data bytes or bytearray sequence to be
 examined. If no output sequence is provided the results will overwrite
-the input data.</li>
-<li>param - A non-sequence numeric parameter.</li>
-<li>sequence2 - A second input data sequence. Each element in this sequence is
-applied to the corresponding element in the first sequence.</li>
-<li>outpsequence - The output sequence. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+the input data.</p></li>
+<li><p>param - A non-sequence numeric parameter.</p></li>
+<li><p>sequence2 - A second input data sequence. Each element in this sequence is
+applied to the corresponding element in the first sequence.</p></li>
+<li><p>outpsequence - The output sequence. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-<div class="section" id="ball">
+</section>
+<section id="ball">
 <h4><a class="toc-backref" href="#id12">ball</a><a class="headerlink" href="#ball" title="Permalink to this headline">¶</a></h4>
 <p>Calculate ball over the values a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([(x &gt; param) for x in array])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([(x &gt; param) for x in array])</p></td>
 </tr>
 </tbody>
 </table>
@@ -402,36 +415,36 @@ optional. The default is FALSE.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>opstr - The arithmetic comparison operation as a string.</dt>
-<dd>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</dd>
+<li><dl class="simple">
+<dt>opstr - The arithmetic comparison operation as a string.</dt><dd><p>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</p>
+</dd>
 </dl>
 </li>
-<li>sequence - An input bytes or bytearray to be examined.</li>
-<li>param - A non-array numeric parameter.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A non-array numeric parameter.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If any comparison operations result in true,
 the return value will be true. If all of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="bany">
+</section>
+<section id="bany">
 <h4><a class="toc-backref" href="#id13">bany</a><a class="headerlink" href="#bany" title="Permalink to this headline">¶</a></h4>
 <p>Calculate bany over the values a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>any([(x &gt; param) for x in array])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>any([(x &gt; param) for x in array])</p></td>
 </tr>
 </tbody>
 </table>
@@ -442,36 +455,36 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>opstr - The arithmetic comparison operation as a string.</dt>
-<dd>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</dd>
+<li><dl class="simple">
+<dt>opstr - The arithmetic comparison operation as a string.</dt><dd><p>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</p>
+</dd>
 </dl>
 </li>
-<li>sequence - An input bytes or bytearray to be examined.</li>
-<li>param - A non-array numeric parameter.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A non-array numeric parameter.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="bmax">
+</section>
+<section id="bmax">
 <h4><a class="toc-backref" href="#id14">bmax</a><a class="headerlink" href="#bmax" title="Permalink to this headline">¶</a></h4>
 <p>Calculate bmax over the values in an array.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>max(sequence)</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>max(sequence)</p></td>
 </tr>
 </tbody>
 </table>
@@ -482,27 +495,27 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence - The input bytes or bytearray to be examined.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - The input bytes or bytearray to be examined.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result = The maximum of all the values in the sequence.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result = The maximum of all the values in the sequence.</p></li>
 </ul>
-</div>
-<div class="section" id="bmin">
+</section>
+<section id="bmin">
 <h4><a class="toc-backref" href="#id15">bmin</a><a class="headerlink" href="#bmin" title="Permalink to this headline">¶</a></h4>
 <p>Calculate bmin over the values in an array.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>min(sequence)</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>min(sequence)</p></td>
 </tr>
 </tbody>
 </table>
@@ -513,27 +526,27 @@ The default is False (SIMD acceleration is enabled if present).</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence - The input bytes or bytearray to be examined.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - The input bytes or bytearray to be examined.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result = The minimum of all the values in the sequence.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result = The minimum of all the values in the sequence.</p></li>
 </ul>
-</div>
-<div class="section" id="bsum">
+</section>
+<section id="bsum">
 <h4><a class="toc-backref" href="#id16">bsum</a><a class="headerlink" href="#bsum" title="Permalink to this headline">¶</a></h4>
 <p>Calculate the arithmetic sum of an bytes or bytearray sequence.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>sum(sequence)</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>sum(sequence)</p></td>
 </tr>
 </tbody>
 </table>
@@ -545,35 +558,35 @@ The default is False (SIMD acceleration is enabled if present).</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence - An input bytes or bytearray to be examined.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - An input bytes or bytearray to be examined.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>matherrors - If True, checks for numerical errors including integer
-overflow are ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present. The
-default is False (SIMD acceleration is enabled if present).</li>
-<li>result - The sum of the sequence.</li>
+parameter is ignored.</p></li>
+<li><p>matherrors - If True, checks for numerical errors including integer
+overflow are ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present. The
+default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - The sum of the sequence.</p></li>
 </ul>
-</div>
-<div class="section" id="eq">
+</section>
+<section id="eq">
 <h4><a class="toc-backref" href="#id17">eq</a><a class="headerlink" href="#eq" title="Permalink to this headline">¶</a></h4>
 <p>Calculate eq over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x == param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x == param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param == x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param == x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x == y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x == y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -586,37 +599,37 @@ default is False (SIMD acceleration is enabled if present).</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="findindex">
+</section>
+<section id="findindex">
 <h4><a class="toc-backref" href="#id18">findindex</a><a class="headerlink" href="#findindex" title="Permalink to this headline">¶</a></h4>
 <p>Calculate findindex over the values a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x for x,y in enumerate(array) if y &gt; param][0]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x for x,y in enumerate(array) if y &gt; param][0]</p></td>
 </tr>
 </tbody>
 </table>
@@ -627,39 +640,39 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>opstr - The arithmetic comparison operation as a string.</dt>
-<dd>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</dd>
+<li><dl class="simple">
+<dt>opstr - The arithmetic comparison operation as a string.</dt><dd><p>These are: ‘==’, ‘&gt;’, ‘&gt;=’, ‘&lt;’, ‘&lt;=’, ‘!=’.</p>
+</dd>
 </dl>
 </li>
-<li>sequence - An input bytes or bytearray to be examined.</li>
-<li>param - A non-array numeric parameter.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+<li><p>sequence - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A non-array numeric parameter.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - The resulting index. This will be negative if no match was found.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - The resulting index. This will be negative if no match was found.</p></li>
 </ul>
-</div>
-<div class="section" id="ge">
+</section>
+<section id="ge">
 <h4><a class="toc-backref" href="#id19">ge</a><a class="headerlink" href="#ge" title="Permalink to this headline">¶</a></h4>
 <p>Calculate ge over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x &gt;= param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x &gt;= param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param &gt;= x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param &gt;= x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x &gt;= y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x &gt;= y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -672,43 +685,43 @@ The default is False (SIMD acceleration is enabled if present).</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="gt">
+</section>
+<section id="gt">
 <h4><a class="toc-backref" href="#id20">gt</a><a class="headerlink" href="#gt" title="Permalink to this headline">¶</a></h4>
 <p>Calculate gt over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x &gt; param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x &gt; param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param &gt; x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param &gt; x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x &gt; y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x &gt; y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -721,37 +734,37 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="invert">
+</section>
+<section id="invert">
 <h4><a class="toc-backref" href="#id21">invert</a><a class="headerlink" href="#invert" title="Permalink to this headline">¶</a></h4>
 <p>Calculate invert over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[~x for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[~x for x in sequence1]</p></td>
 </tr>
 </tbody>
 </table>
@@ -763,35 +776,35 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The input bytes or bytearray to be examined. If no output
+<li><p>sequence1 - The input bytes or bytearray to be examined. If no output
 bytearray is provided the results will overwrite the input data, in which
-case it must be a bytearray.</li>
-<li>outpseq - The output bytearray. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+case it must be a bytearray.</p></li>
+<li><p>outpseq - The output bytearray. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-<div class="section" id="le">
+</section>
+<section id="le">
 <h4><a class="toc-backref" href="#id22">le</a><a class="headerlink" href="#le" title="Permalink to this headline">¶</a></h4>
 <p>Calculate le over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x &lt;= param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x &lt;= param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param &lt;= x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param &lt;= x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x &lt;= y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x &lt;= y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -804,43 +817,43 @@ optional. The default is FALSE.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="lshift">
+</section>
+<section id="lshift">
 <h4><a class="toc-backref" href="#id23">lshift</a><a class="headerlink" href="#lshift" title="Permalink to this headline">¶</a></h4>
 <p>Calculate lshift over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x &lt;&lt; param for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x &lt;&lt; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>[param &lt;&lt; x for x in sequence1]</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>[param &lt;&lt; x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>[x &lt;&lt; y for x,y in zip(sequence1, sequence2)]</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>[x &lt;&lt; y for x,y in zip(sequence1, sequence2)]</p></td>
 </tr>
 </tbody>
 </table>
@@ -856,38 +869,38 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The first input data bytes or bytearray sequence to be
+<li><p>sequence1 - The first input data bytes or bytearray sequence to be
 examined. If no output sequence is provided the results will overwrite
-the input data.</li>
-<li>param - A non-sequence numeric parameter.</li>
-<li>sequence2 - A second input data sequence. Each element in this sequence is
-applied to the corresponding element in the first sequence.</li>
-<li>outpsequence - The output sequence. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+the input data.</p></li>
+<li><p>param - A non-sequence numeric parameter.</p></li>
+<li><p>sequence2 - A second input data sequence. Each element in this sequence is
+applied to the corresponding element in the first sequence.</p></li>
+<li><p>outpsequence - The output sequence. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-<div class="section" id="lt">
+</section>
+<section id="lt">
 <h4><a class="toc-backref" href="#id24">lt</a><a class="headerlink" href="#lt" title="Permalink to this headline">¶</a></h4>
 <p>Calculate lt over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x &lt; param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x &lt; param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param &lt; x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param &lt; x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x &lt; y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x &lt; y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -900,43 +913,43 @@ optional. The default is FALSE.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="ne">
+</section>
+<section id="ne">
 <h4><a class="toc-backref" href="#id25">ne</a><a class="headerlink" href="#ne" title="Permalink to this headline">¶</a></h4>
 <p>Calculate ne over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="31%" />
-<col width="69%" />
+<col style="width: 31%" />
+<col style="width: 69%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>all([x != param for x in sequence])</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>all([x != param for x in sequence])</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>all([param != x for x in sequence])</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>all([param != x for x in sequence])</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>all([x != y for x,y in zip(sequence1, sequence2)])</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>all([x != y for x,y in zip(sequence1, sequence2)])</p></td>
 </tr>
 </tbody>
 </table>
@@ -949,43 +962,43 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - An input bytes or bytearray to be examined.</li>
-<li>sequence2 - An input bytes or bytearray to be examined.</li>
-<li>param - A integer numeric input parameter in the range 0 - 255.</li>
-<li>The first and second parameters are compared to each other. If one
+<li><p>sequence1 - An input bytes or bytearray to be examined.</p></li>
+<li><p>sequence2 - An input bytes or bytearray to be examined.</p></li>
+<li><p>param - A integer numeric input parameter in the range 0 - 255.</p></li>
+<li><p>The first and second parameters are compared to each other. If one
 parameter is a sequence and the other is an integer, the integer
 is compared to each element in the sequence. If both parameters are
 sequences, each element of one sequence is compared to the
-corresponding element of the other sequence.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+corresponding element of the other sequence.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled if present.
-The default is False (SIMD acceleration is enabled if present).</li>
-<li>result - A boolean value corresponding to the result of all the
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled if present.
+The default is False (SIMD acceleration is enabled if present).</p></li>
+<li><p>result - A boolean value corresponding to the result of all the
 comparison operations. If all comparison operations result in true,
 the return value will be true. If any of them result in false, the
-return value will be false.</li>
+return value will be false.</p></li>
 </ul>
-</div>
-<div class="section" id="or">
+</section>
+<section id="or">
 <h4><a class="toc-backref" href="#id26">or_</a><a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h4>
 <p>Calculate or_ over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x | param for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x | param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>[param | x for x in sequence1]</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>[param | x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>[x | y for x,y in zip(sequence1, sequence2)]</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>[x | y for x,y in zip(sequence1, sequence2)]</p></td>
 </tr>
 </tbody>
 </table>
@@ -1001,38 +1014,38 @@ return value will be false.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The first input data bytes or bytearray sequence to be
+<li><p>sequence1 - The first input data bytes or bytearray sequence to be
 examined. If no output sequence is provided the results will overwrite
-the input data.</li>
-<li>param - A non-sequence numeric parameter.</li>
-<li>sequence2 - A second input data sequence. Each element in this sequence is
-applied to the corresponding element in the first sequence.</li>
-<li>outpsequence - The output sequence. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+the input data.</p></li>
+<li><p>param - A non-sequence numeric parameter.</p></li>
+<li><p>sequence2 - A second input data sequence. Each element in this sequence is
+applied to the corresponding element in the first sequence.</p></li>
+<li><p>outpsequence - The output sequence. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-<div class="section" id="rshift">
+</section>
+<section id="rshift">
 <h4><a class="toc-backref" href="#id27">rshift</a><a class="headerlink" href="#rshift" title="Permalink to this headline">¶</a></h4>
 <p>Calculate rshift over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x &gt;&gt; param for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x &gt;&gt; param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>[param &gt;&gt; x for x in sequence1]</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>[param &gt;&gt; x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>[x &gt;&gt; y for x,y in zip(sequence1, sequence2)]</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>[x &gt;&gt; y for x,y in zip(sequence1, sequence2)]</p></td>
 </tr>
 </tbody>
 </table>
@@ -1048,38 +1061,38 @@ optional. The default is FALSE.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The first input data bytes or bytearray sequence to be
+<li><p>sequence1 - The first input data bytes or bytearray sequence to be
 examined. If no output sequence is provided the results will overwrite
-the input data.</li>
-<li>param - A non-sequence numeric parameter.</li>
-<li>sequence2 - A second input data sequence. Each element in this sequence is
-applied to the corresponding element in the first sequence.</li>
-<li>outpsequence - The output sequence. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+the input data.</p></li>
+<li><p>param - A non-sequence numeric parameter.</p></li>
+<li><p>sequence2 - A second input data sequence. Each element in this sequence is
+applied to the corresponding element in the first sequence.</p></li>
+<li><p>outpsequence - The output sequence. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-<div class="section" id="xor">
+</section>
+<section id="xor">
 <h4><a class="toc-backref" href="#id28">xor</a><a class="headerlink" href="#xor" title="Permalink to this headline">¶</a></h4>
 <p>Calculate xor over the values in a bytes or bytearray object.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="32%" />
-<col width="68%" />
+<col style="width: 32%" />
+<col style="width: 68%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Equivalent to:</td>
-<td>[x ^ param for x in sequence1]</td>
+<tbody>
+<tr class="row-odd"><td><p>Equivalent to:</p></td>
+<td><p>[x ^ param for x in sequence1]</p></td>
 </tr>
-<tr class="row-even"><td>or</td>
-<td>[param ^ x for x in sequence1]</td>
+<tr class="row-even"><td><p>or</p></td>
+<td><p>[param ^ x for x in sequence1]</p></td>
 </tr>
-<tr class="row-odd"><td>or</td>
-<td>[x ^ y for x,y in zip(sequence1, sequence2)]</td>
+<tr class="row-odd"><td><p>or</p></td>
+<td><p>[x ^ y for x,y in zip(sequence1, sequence2)]</p></td>
 </tr>
 </tbody>
 </table>
@@ -1095,69 +1108,69 @@ optional. The default is FALSE.</li>
 </pre></div>
 </div>
 <ul class="simple">
-<li>sequence1 - The first input data bytes or bytearray sequence to be
+<li><p>sequence1 - The first input data bytes or bytearray sequence to be
 examined. If no output sequence is provided the results will overwrite
-the input data.</li>
-<li>param - A non-sequence numeric parameter.</li>
-<li>sequence2 - A second input data sequence. Each element in this sequence is
-applied to the corresponding element in the first sequence.</li>
-<li>outpsequence - The output sequence. This parameter is optional.</li>
-<li>maxlen - Limit the length of the sequence used. This must be a valid
+the input data.</p></li>
+<li><p>param - A non-sequence numeric parameter.</p></li>
+<li><p>sequence2 - A second input data sequence. Each element in this sequence is
+applied to the corresponding element in the first sequence.</p></li>
+<li><p>outpsequence - The output sequence. This parameter is optional.</p></li>
+<li><p>maxlen - Limit the length of the sequence used. This must be a valid
 positive integer. If a zero or negative length, or a value which is
 greater than the actual length of the sequence is specified, this
-parameter is ignored.</li>
-<li>nosimd - If True, SIMD acceleration is disabled. This parameter is
-optional. The default is FALSE.</li>
+parameter is ignored.</p></li>
+<li><p>nosimd - If True, SIMD acceleration is disabled. This parameter is
+optional. The default is FALSE.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="parameter-details">
+</section>
+</section>
+<section id="parameter-details">
 <h3><a class="toc-backref" href="#id29">Parameter Details</a><a class="headerlink" href="#parameter-details" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="comparison-operators">
+<section id="comparison-operators">
 <h4><a class="toc-backref" href="#id30">Comparison Operators</a><a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h4>
 <p>Some functions use comparison operators. These are unicode strings containing
 the Python compare operators and include following:</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="24%" />
-<col width="76%" />
+<col style="width: 24%" />
+<col style="width: 76%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operator</th>
-<th class="head">Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>‘&lt;’</td>
-<td>Less than.</td>
+<tbody>
+<tr class="row-even"><td><p>‘&lt;’</p></td>
+<td><p>Less than.</p></td>
 </tr>
-<tr class="row-odd"><td>‘&lt;=’</td>
-<td>Less than or equal to.</td>
+<tr class="row-odd"><td><p>‘&lt;=’</p></td>
+<td><p>Less than or equal to.</p></td>
 </tr>
-<tr class="row-even"><td>‘&gt;’</td>
-<td>Greater than.</td>
+<tr class="row-even"><td><p>‘&gt;’</p></td>
+<td><p>Greater than.</p></td>
 </tr>
-<tr class="row-odd"><td>‘&gt;=’</td>
-<td>Greater than or equal to.</td>
+<tr class="row-odd"><td><p>‘&gt;=’</p></td>
+<td><p>Greater than or equal to.</p></td>
 </tr>
-<tr class="row-even"><td>‘==’</td>
-<td>Equal to.</td>
+<tr class="row-even"><td><p>‘==’</p></td>
+<td><p>Equal to.</p></td>
 </tr>
-<tr class="row-odd"><td>‘!=’</td>
-<td>Not equal to.</td>
+<tr class="row-odd"><td><p>‘!=’</p></td>
+<td><p>Not equal to.</p></td>
 </tr>
 </tbody>
 </table>
 <p>All comparison operators must contain only the above characters and may not
 include any leading or trailing spaces or other characters.</p>
-</div>
-<div class="section" id="numeric-parameters">
+</section>
+<section id="numeric-parameters">
 <h4><a class="toc-backref" href="#id31">Numeric Parameters</a><a class="headerlink" href="#numeric-parameters" title="Permalink to this headline">¶</a></h4>
 <p>“Bytes” and “bytearray” objects are sequences of 8 bit bytes with each element
 being in the range of 0 to 255. When a function accepts a non-sequence numeric
 parameter, this must also be in the range of 0 to 255.</p>
-</div>
-<div class="section" id="using-less-than-the-entire-sequence">
+</section>
+<section id="using-less-than-the-entire-sequence">
 <h4><a class="toc-backref" href="#id32">Using Less than the Entire Sequence</a><a class="headerlink" href="#using-less-than-the-entire-sequence" title="Permalink to this headline">¶</a></h4>
 <p>If the size of the sequence is larger than the desired length of the calculation,
 it may be limited to the first part of the sequence by using the ‘maxlen’
@@ -1167,8 +1180,8 @@ on, with the following ones left unchanged.:</p>
 <span class="n">result</span> <span class="o">=</span> <span class="n">bytesfunc</span><span class="o">.</span><span class="n">bmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="suppressing-or-ignoring-math-errors">
+</section>
+<section id="suppressing-or-ignoring-math-errors">
 <h4><a class="toc-backref" href="#id33">Suppressing or Ignoring Math Errors</a><a class="headerlink" href="#suppressing-or-ignoring-math-errors" title="Permalink to this headline">¶</a></h4>
 <p>Some functions can be made to ignore some mathematical errors (e.g. integer
 overflow) by setting the ‘matherrors’ keyword parameter to True.:</p>
@@ -1180,8 +1193,8 @@ overflow) by setting the ‘matherrors’ keyword parameter to True.:</p>
 integer overflow) is the intended effect, or for reasons of a minor performance
 improvement in some cases. Benchmark your calculation before deciding if this
 is worth while.</p>
-</div>
-<div class="section" id="differences-with-native-python">
+</section>
+<section id="differences-with-native-python">
 <h4><a class="toc-backref" href="#id34">Differences with Native Python</a><a class="headerlink" href="#differences-with-native-python" title="Permalink to this headline">¶</a></h4>
 <p>In some cases ‘BytesFunc’ will not produce exactly the same result as Python.
 There are several reasons for this, the primary one being that BytesFunc
@@ -1193,19 +1206,19 @@ with programs written in C.</p>
 <p>Think of BytesFunc as exposing C style semantics in a form convenient to use
 in Python. Some convenience which Python provides (e.g. no limit to the size of
 integers) is traded off for large performance increases.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="simd-support">
+<section id="simd-support">
 <h2><a class="toc-backref" href="#id35">SIMD Support</a><a class="headerlink" href="#simd-support" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="general">
+<section id="general">
 <h3><a class="toc-backref" href="#id36">General</a><a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
 <p>SIMD (Single Instruction Multiple Data) is a set of CPU features which allow
 multiple operations to take place in parallel. Some, but not all, functions may
 make use of these instructions to speed up execution.</p>
-</div>
-<div class="section" id="disabling-simd">
+</section>
+<section id="disabling-simd">
 <h3><a class="toc-backref" href="#id37">Disabling SIMD</a><a class="headerlink" href="#disabling-simd" title="Permalink to this headline">¶</a></h3>
 <p>Those functions which do support SIMD features will automatically make use of
 them by default unless this feature is disabled. There is normally no reason
@@ -1214,14 +1227,14 @@ be forced to fall back to conventional execution mode.</p>
 <p>If the optional parameter “nosimd” is set to true (“nosimd=True”), SIMD
 execution will be disabled. The default is “False”.</p>
 <p>To repeat, there is normally no reason to wish to disable SIMD.</p>
-</div>
-<div class="section" id="platform-support">
+</section>
+<section id="platform-support">
 <h3><a class="toc-backref" href="#id38">Platform Support</a><a class="headerlink" href="#platform-support" title="Permalink to this headline">¶</a></h3>
 <p>SIMD instructions are presently supported only on the following:</p>
 <ul class="simple">
-<li>64 bit x86 (i.e. AMD64) using GCC.</li>
-<li>32 bit ARMv7 using GCC (tested on Raspberry Pi 3).</li>
-<li>64 bit ARMv8 AARCH64 using GCC (tested on Raspberry Pi 4).</li>
+<li><p>64 bit x86 (i.e. AMD64) using GCC.</p></li>
+<li><p>32 bit ARMv7 using GCC (tested on Raspberry Pi 3).</p></li>
+<li><p>64 bit ARMv8 AARCH64 using GCC (tested on Raspberry Pi 4).</p></li>
 </ul>
 <p>Other compilers or platforms will still run the same functions and should
 produce the same results, but they will not benefit from SIMD acceleration.</p>
@@ -1229,8 +1242,8 @@ produce the same results, but they will not benefit from SIMD acceleration.</p>
 the performance benchmarks to see what the relative speed differences are. With
 wider data types (e.g. double precision floating point) SIMD provides only
 marginal speed ups anyway.</p>
-</div>
-<div class="section" id="raspberry-pi-32-versus-64-bit">
+</section>
+<section id="raspberry-pi-32-versus-64-bit">
 <h3><a class="toc-backref" href="#id39">Raspberry Pi 32 versus 64 bit</a><a class="headerlink" href="#raspberry-pi-32-versus-64-bit" title="Permalink to this headline">¶</a></h3>
 <p>The Raspberry Pi uses an ARM CPU. This can operate in 32 or 64 bit mode. When
 in 32 bit mode, the Raspberry Pi 3 operates in ARMv7 mode. This has 64 bit ARM
@@ -1250,128 +1263,128 @@ which require different compiler arguments, the “setup.py” file may need to 
 modified in order to use SIMD acceleration.</p>
 <p>However, the straight ‘C’ code should still compile and run, and still provide
 performance many times faster than when using native Python.</p>
-</div>
-<div class="section" id="simd-function-support">
+</section>
+<section id="simd-function-support">
 <h3><a class="toc-backref" href="#id40">SIMD Function Support</a><a class="headerlink" href="#simd-function-support" title="Permalink to this headline">¶</a></h3>
 <p>The following table shows which functions are supported by SIMD on which CPU
 architectures.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="37%" />
-<col width="17%" />
-<col width="23%" />
-<col width="23%" />
+<col style="width: 37%" />
+<col style="width: 17%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Function</th>
-<th class="head">x86</th>
-<th class="head">ARMv7</th>
-<th class="head">ARMv8</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>x86</p></th>
+<th class="head"><p>ARMv7</p></th>
+<th class="head"><p>ARMv8</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>&#160;</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>X</td>
-<td>X</td>
-<td>X</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
+<td><p>X</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="simd-support-attributes">
+</section>
+<section id="simd-support-attributes">
 <h3><a class="toc-backref" href="#id41">SIMD Support Attributes</a><a class="headerlink" href="#simd-support-attributes" title="Permalink to this headline">¶</a></h3>
 <p>“Simdsupport” provides information on the SIMD level compiled into this
 version of the library. There are two attributes, ‘hassimd’ and ‘simdarch’.</p>
 <ul class="simple">
-<li>‘hassimd’ is TRUE if the CPU supports the required SIMD features.</li>
-<li><dl class="first docutils">
-<dt>‘simdarch’ contains a string indicating the CPU architecture the library</dt>
-<dd>was compiled for.</dd>
+<li><p>‘hassimd’ is TRUE if the CPU supports the required SIMD features.</p></li>
+<li><dl class="simple">
+<dt>‘simdarch’ contains a string indicating the CPU architecture the library</dt><dd><p>was compiled for.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -1387,22 +1400,22 @@ version of the library. There are two attributes, ‘hassimd’ and ‘simdarch�
 </div>
 <p>This was created primarily for unit testing and benchmarking and should
 not be considered to be a permanent or stable part of the library.</p>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="performance">
+<section id="performance">
 <h2><a class="toc-backref" href="#id42">Performance</a><a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="variables-affecting-performance">
+<section id="variables-affecting-performance">
 <h3><a class="toc-backref" href="#id43">Variables affecting Performance</a><a class="headerlink" href="#variables-affecting-performance" title="Permalink to this headline">¶</a></h3>
 <p>The purpose of the BytesFunc module is to execute common operations faster than
 native Python. The relative speed will depend upon a number of factors:</p>
 <ul class="simple">
-<li>The function.</li>
-<li>Function options. Turning checking off will result in faster performance.</li>
-<li>The data in the sequence and the parameters.</li>
-<li>The size of the sequence.</li>
-<li>The platform, including CPU type (e.g. x86 or ARM), operating system,
-and compiler.</li>
+<li><p>The function.</p></li>
+<li><p>Function options. Turning checking off will result in faster performance.</p></li>
+<li><p>The data in the sequence and the parameters.</p></li>
+<li><p>The size of the sequence.</p></li>
+<li><p>The platform, including CPU type (e.g. x86 or ARM), operating system,
+and compiler.</p></li>
 </ul>
 <p>The speeds listed below should be used as rough guidelines only. More exact
 results will require application specific testing. The numbers shown are the
@@ -1419,8 +1432,8 @@ x86-64 Linux compiled with GCC.</p>
 <p>Note: Some more complex BytesFunc functions do not work exactly the same way as
 the native Python equivalents. This means that the benchmark results should be
 taken as general guidelines rather than precise comparisons.</p>
-</div>
-<div class="section" id="typical-performance-readings">
+</section>
+<section id="typical-performance-readings">
 <h3><a class="toc-backref" href="#id44">Typical Performance Readings</a><a class="headerlink" href="#typical-performance-readings" title="Permalink to this headline">¶</a></h3>
 <p>In this set of tests, all error checking was turned on and SIMD
 acceleration was enabled where this did not conflict with the preceding
@@ -1432,361 +1445,361 @@ of absolute performance as these are relative, not absolute numbers.</p>
 <p>An SIMD versus non-SIMD factor of 10.0 means the SIMD version was 10 times
 faster than the non-SIMD version. An SIMD versus non-SIMD factor of 0.0 means
 the function did not support SIMD on the tested platform.</p>
-<div class="section" id="x86-64-benchmarks">
+<section id="x86-64-benchmarks">
 <h4><a class="toc-backref" href="#id45">x86-64 Benchmarks</a><a class="headerlink" href="#x86-64-benchmarks" title="Permalink to this headline">¶</a></h4>
 <p>The following tests were conducted on an x86-64 CPU.</p>
 <p>Relative Performance - Python Time / Bytesfunc Time.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 17%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">function</th>
-<th class="head">Bytesfunc vs Python</th>
-<th class="head">SIMD vs non-SIMD</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>function</p></th>
+<th class="head"><p>Bytesfunc vs Python</p></th>
+<th class="head"><p>SIMD vs non-SIMD</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>911.2</td>
-<td>9.3</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>1129.5</p></td>
+<td><p>12.3</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>735.3</td>
-<td>15.6</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>641.4</p></td>
+<td><p>13.8</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>737.1</td>
-<td>15.9</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>663.9</p></td>
+<td><p>13.8</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>78.9</td>
-<td>2.7</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>85.7</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>76.7</td>
-<td>2.6</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>86.1</p></td>
+<td><p>3.0</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>16.0</td>
-<td>&#160;</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td><p>14.7</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>751.3</td>
-<td>15.7</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>745.7</p></td>
+<td><p>15.7</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>1055.4</td>
-<td>14.8</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>764.9</p></td>
+<td><p>12.5</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>744.6</td>
-<td>14.9</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>752.8</p></td>
+<td><p>15.1</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>592.6</td>
-<td>11.7</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>577.0</p></td>
+<td><p>11.9</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>726.3</td>
-<td>9.6</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>1166.2</p></td>
+<td><p>11.0</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>740.4</td>
-<td>15.0</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>728.0</p></td>
+<td><p>15.1</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>1285.9</td>
-<td>6.3</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>1823.9</p></td>
+<td><p>9.2</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>578.2</td>
-<td>11.7</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>553.8</p></td>
+<td><p>11.6</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>758.3</td>
-<td>15.3</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>801.7</p></td>
+<td><p>15.4</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>946.7</td>
-<td>10.2</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>1122.0</p></td>
+<td><p>12.4</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>892.1</td>
-<td>6.2</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>1266.2</p></td>
+<td><p>8.1</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>1007.0</td>
-<td>9.2</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>1222.2</p></td>
+<td><p>12.0</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="58%" />
-<col width="42%" />
+<col style="width: 58%" />
+<col style="width: 42%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Stat</th>
-<th class="head">Value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Stat</p></th>
+<th class="head"><p>Value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Average:</td>
-<td>702</td>
+<tbody>
+<tr class="row-even"><td><p>Average:</p></td>
+<td><p>786</p></td>
 </tr>
-<tr class="row-odd"><td>Maximum:</td>
-<td>1286</td>
+<tr class="row-odd"><td><p>Maximum:</p></td>
+<td><p>1824</p></td>
 </tr>
-<tr class="row-even"><td>Minimum:</td>
-<td>16.0</td>
+<tr class="row-even"><td><p>Minimum:</p></td>
+<td><p>14.7</p></td>
 </tr>
-<tr class="row-odd"><td>Array size:</td>
-<td>100000</td>
+<tr class="row-odd"><td><p>Array size:</p></td>
+<td><p>100000</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="armv7-benchmarks">
+</section>
+<section id="armv7-benchmarks">
 <h4><a class="toc-backref" href="#id46">ARMv7 Benchmarks</a><a class="headerlink" href="#armv7-benchmarks" title="Permalink to this headline">¶</a></h4>
 <p>The following tests were conducted on an ARM CPU in 32 bit mode (ARMv7) on a
 Raspberry Pi 3.</p>
 <p>Relative Performance - Python Time / Bytesfunc Time.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 17%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">function</th>
-<th class="head">Bytesfunc vs Python</th>
-<th class="head">SIMD vs non-SIMD</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>function</p></th>
+<th class="head"><p>Bytesfunc vs Python</p></th>
+<th class="head"><p>SIMD vs non-SIMD</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>1100.2</td>
-<td>3.7</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>1103.9</p></td>
+<td><p>3.7</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>343.5</td>
-<td>2.6</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>347.6</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>331.3</td>
-<td>2.4</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>331.7</p></td>
+<td><p>2.4</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>268.2</td>
-<td>5.0</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>265.9</p></td>
+<td><p>5.0</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>265.0</td>
-<td>5.0</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>261.4</p></td>
+<td><p>5.0</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>75.5</td>
-<td>3.3</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td><p>71.5</p></td>
+<td><p>2.9</p></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>350.7</td>
-<td>2.6</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>349.6</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>511.0</td>
-<td>3.2</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>508.1</p></td>
+<td><p>3.2</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>361.8</td>
-<td>2.6</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>359.9</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>362.3</td>
-<td>2.6</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>359.2</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>897.2</td>
-<td>3.7</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>914.4</p></td>
+<td><p>3.7</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>362.3</td>
-<td>2.6</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>360.0</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>1351.8</td>
-<td>4.2</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>1358.1</p></td>
+<td><p>4.2</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>362.5</td>
-<td>2.6</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>357.0</p></td>
+<td><p>2.6</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>332.4</td>
-<td>2.4</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>328.2</p></td>
+<td><p>2.4</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>1109.0</td>
-<td>3.7</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>1121.2</p></td>
+<td><p>3.7</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>949.2</td>
-<td>4.3</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>960.1</p></td>
+<td><p>5.1</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>1141.1</td>
-<td>3.7</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>1170.3</p></td>
+<td><p>3.7</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="58%" />
-<col width="42%" />
+<col style="width: 58%" />
+<col style="width: 42%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Stat</th>
-<th class="head">Value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Stat</p></th>
+<th class="head"><p>Value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Average:</td>
-<td>582</td>
+<tbody>
+<tr class="row-even"><td><p>Average:</p></td>
+<td><p>585</p></td>
 </tr>
-<tr class="row-odd"><td>Maximum:</td>
-<td>1352</td>
+<tr class="row-odd"><td><p>Maximum:</p></td>
+<td><p>1358</p></td>
 </tr>
-<tr class="row-even"><td>Minimum:</td>
-<td>75.5</td>
+<tr class="row-even"><td><p>Minimum:</p></td>
+<td><p>71.5</p></td>
 </tr>
-<tr class="row-odd"><td>Array size:</td>
-<td>100000</td>
+<tr class="row-odd"><td><p>Array size:</p></td>
+<td><p>100000</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="armv8-benchmarks">
+</section>
+<section id="armv8-benchmarks">
 <h4><a class="toc-backref" href="#id47">ARMv8 Benchmarks</a><a class="headerlink" href="#armv8-benchmarks" title="Permalink to this headline">¶</a></h4>
 <p>The following tests were conducted on an ARM CPU in 64 bit mode (ARMv8) on a
 Raspberry Pi 4.</p>
 <p>Relative Performance - Python Time / Bytesfunc Time.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="30%" />
-<col width="54%" />
+<col style="width: 17%" />
+<col style="width: 30%" />
+<col style="width: 54%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">function</th>
-<th class="head">Bytesfunc vs Python</th>
-<th class="head">SIMD vs non-SIMD</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>function</p></th>
+<th class="head"><p>Bytesfunc vs Python</p></th>
+<th class="head"><p>SIMD vs non-SIMD</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>and_</td>
-<td>769.2</td>
-<td>6.5</td>
+<tbody>
+<tr class="row-even"><td><p>and_</p></td>
+<td><p>998.9</p></td>
+<td><p>7.5</p></td>
 </tr>
-<tr class="row-odd"><td>ball</td>
-<td>500.2</td>
-<td>6.0</td>
+<tr class="row-odd"><td><p>ball</p></td>
+<td><p>501.7</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-even"><td>bany</td>
-<td>532.0</td>
-<td>6.1</td>
+<tr class="row-even"><td><p>bany</p></td>
+<td><p>543.4</p></td>
+<td><p>6.2</p></td>
 </tr>
-<tr class="row-odd"><td>bmax</td>
-<td>358.4</td>
-<td>13.8</td>
+<tr class="row-odd"><td><p>bmax</p></td>
+<td><p>364.9</p></td>
+<td><p>13.9</p></td>
 </tr>
-<tr class="row-even"><td>bmin</td>
-<td>372.8</td>
-<td>13.8</td>
+<tr class="row-even"><td><p>bmin</p></td>
+<td><p>361.5</p></td>
+<td><p>13.9</p></td>
 </tr>
-<tr class="row-odd"><td>bsum</td>
-<td>113.6</td>
-<td>6.3</td>
+<tr class="row-odd"><td><p>bsum</p></td>
+<td><p>115.8</p></td>
+<td><p>6.6</p></td>
 </tr>
-<tr class="row-even"><td>eq</td>
-<td>501.8</td>
-<td>6.0</td>
+<tr class="row-even"><td><p>eq</p></td>
+<td><p>506.5</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-odd"><td>findindex</td>
-<td>730.8</td>
-<td>6.1</td>
+<tr class="row-odd"><td><p>findindex</p></td>
+<td><p>687.0</p></td>
+<td><p>6.1</p></td>
 </tr>
-<tr class="row-even"><td>ge</td>
-<td>533.0</td>
-<td>6.0</td>
+<tr class="row-even"><td><p>ge</p></td>
+<td><p>533.2</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-odd"><td>gt</td>
-<td>528.6</td>
-<td>6.0</td>
+<tr class="row-odd"><td><p>gt</p></td>
+<td><p>528.5</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-even"><td>invert</td>
-<td>853.3</td>
-<td>9.2</td>
+<tr class="row-even"><td><p>invert</p></td>
+<td><p>698.4</p></td>
+<td><p>9.2</p></td>
 </tr>
-<tr class="row-odd"><td>le</td>
-<td>537.4</td>
-<td>6.0</td>
+<tr class="row-odd"><td><p>le</p></td>
+<td><p>532.1</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-even"><td>lshift</td>
-<td>1164.8</td>
-<td>6.7</td>
+<tr class="row-even"><td><p>lshift</p></td>
+<td><p>1332.2</p></td>
+<td><p>7.6</p></td>
 </tr>
-<tr class="row-odd"><td>lt</td>
-<td>582.1</td>
-<td>6.0</td>
+<tr class="row-odd"><td><p>lt</p></td>
+<td><p>527.2</p></td>
+<td><p>6.0</p></td>
 </tr>
-<tr class="row-even"><td>ne</td>
-<td>569.0</td>
-<td>6.1</td>
+<tr class="row-even"><td><p>ne</p></td>
+<td><p>554.3</p></td>
+<td><p>6.2</p></td>
 </tr>
-<tr class="row-odd"><td>or_</td>
-<td>896.8</td>
-<td>6.2</td>
+<tr class="row-odd"><td><p>or_</p></td>
+<td><p>740.1</p></td>
+<td><p>6.3</p></td>
 </tr>
-<tr class="row-even"><td>rshift</td>
-<td>657.9</td>
-<td>5.9</td>
+<tr class="row-even"><td><p>rshift</p></td>
+<td><p>713.0</p></td>
+<td><p>6.2</p></td>
 </tr>
-<tr class="row-odd"><td>xor</td>
-<td>761.8</td>
-<td>6.8</td>
+<tr class="row-odd"><td><p>xor</p></td>
+<td><p>1099.4</p></td>
+<td><p>8.2</p></td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="58%" />
-<col width="42%" />
+<col style="width: 58%" />
+<col style="width: 42%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Stat</th>
-<th class="head">Value</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Stat</p></th>
+<th class="head"><p>Value</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Average:</td>
-<td>609</td>
+<tbody>
+<tr class="row-even"><td><p>Average:</p></td>
+<td><p>630</p></td>
 </tr>
-<tr class="row-odd"><td>Maximum:</td>
-<td>1165</td>
+<tr class="row-odd"><td><p>Maximum:</p></td>
+<td><p>1332</p></td>
 </tr>
-<tr class="row-even"><td>Minimum:</td>
-<td>113.6</td>
+<tr class="row-even"><td><p>Minimum:</p></td>
+<td><p>115.8</p></td>
 </tr>
-<tr class="row-odd"><td>Array size:</td>
-<td>100000</td>
+<tr class="row-odd"><td><p>Array size:</p></td>
+<td><p>100000</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="platform-effects">
+</section>
+</section>
+<section id="platform-effects">
 <h3><a class="toc-backref" href="#id48">Platform Effects</a><a class="headerlink" href="#platform-effects" title="Permalink to this headline">¶</a></h3>
 <p>The platform, including CPU, OS, compiler, and compiler version can
 affect performance, and this influence can change significantly for
@@ -1794,121 +1807,124 @@ different functions.</p>
 <p>If your application requires exact performance data, then benchmark
 your application in the specific platform (hardware, OS, and compiler)
 that you will be using.</p>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="id1">
+<section id="id1">
 <h2><a class="toc-backref" href="#id49">Platform support</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="list-of-tested-operation-systems-compilers-and-cpu-architectures">
+<section id="list-of-tested-operation-systems-compilers-and-cpu-architectures">
 <h3><a class="toc-backref" href="#id50">List of tested Operation Systems, Compilers, and CPU Architectures</a><a class="headerlink" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" title="Permalink to this headline">¶</a></h3>
 <p>BytesFunc is written in ‘C’ and uses the standard C libraries to implement the
 underlying math functions. BytesFunc has been tested on the following platforms.</p>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="14%" />
-<col width="9%" />
-<col width="21%" />
-<col width="23%" />
+<col style="width: 33%" />
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 21%" />
+<col style="width: 23%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">OS</th>
-<th class="head">Hardware</th>
-<th class="head">Bits</th>
-<th class="head">Compiler</th>
-<th class="head">Python Version</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>OS</p></th>
+<th class="head"><p>Hardware</p></th>
+<th class="head"><p>Bits</p></th>
+<th class="head"><p>Compiler</p></th>
+<th class="head"><p>Python Version</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Ubuntu 20.04 LTS</td>
-<td>x86_64</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.8</td>
+<tbody>
+<tr class="row-even"><td><p>Debian 11</p></td>
+<td><p>i686</p></td>
+<td><p>32</p></td>
+<td><p>GCC</p></td>
+<td><p>3.9.2</p></td>
 </tr>
-<tr class="row-odd"><td>Ubuntu 22.04</td>
-<td>x86_64</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.10</td>
+<tr class="row-odd"><td><p>Debian 11</p></td>
+<td><p>x86_64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.9.2</p></td>
 </tr>
-<tr class="row-even"><td>Debian 11</td>
-<td>i686</td>
-<td>32</td>
-<td>GCC</td>
-<td>3.9</td>
+<tr class="row-even"><td><p>Ubuntu 22.04</p></td>
+<td><p>x86_64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.10.6</p></td>
 </tr>
-<tr class="row-odd"><td>Debian 11</td>
-<td>x86_64</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.9</td>
+<tr class="row-odd"><td><p>Ubuntu 22.10</p></td>
+<td><p>x86_64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.10.7</p></td>
 </tr>
-<tr class="row-even"><td>OpenSuse 15.3</td>
-<td>x86_64</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.6</td>
+<tr class="row-even"><td><p>opensuse-leap 15.4</p></td>
+<td><p>x86_64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.6.15</p></td>
 </tr>
-<tr class="row-odd"><td>Alma 9</td>
-<td>x86_64</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.9</td>
+<tr class="row-odd"><td><p>almalinux 9.0</p></td>
+<td><p>x86_64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.9.10</p></td>
 </tr>
-<tr class="row-even"><td>Alpine 3.16.0</td>
-<td>i686</td>
-<td>32</td>
-<td>GCC</td>
-<td>3.10</td>
+<tr class="row-even"><td><p>alpine 3.16.2</p></td>
+<td><p>i686</p></td>
+<td><p>32</p></td>
+<td><p>GCC</p></td>
+<td><p>3.10.5</p></td>
 </tr>
-<tr class="row-odd"><td>FreeBSD 13</td>
-<td>x86_64</td>
-<td>64</td>
-<td>LLVM</td>
-<td>3.8</td>
+<tr class="row-odd"><td><p>FreeBSD 13.1</p></td>
+<td><p>amd64</p></td>
+<td><p>64</p></td>
+<td><p>Clang</p></td>
+<td><p>3.9.15</p></td>
 </tr>
-<tr class="row-even"><td>OpenBSD 7.1</td>
-<td>x86_64</td>
-<td>64</td>
-<td>LLVM</td>
-<td>3.9</td>
+<tr class="row-even"><td><p>OpenBSD 7.2</p></td>
+<td><p>amd64</p></td>
+<td><p>64</p></td>
+<td><p>Clang</p></td>
+<td><p>3.9.15</p></td>
 </tr>
-<tr class="row-odd"><td>MS Windows 10</td>
-<td>x86_64</td>
-<td>64</td>
-<td>MS VS C v.1929</td>
-<td>3.10</td>
+<tr class="row-odd"><td><p>MS Windows 10</p></td>
+<td><p>AMD64</p></td>
+<td><p>64</p></td>
+<td><p>MSC</p></td>
+<td><p>3.11.0</p></td>
 </tr>
-<tr class="row-even"><td>MS Windows 11</td>
-<td>x86_64</td>
-<td>64</td>
-<td>MS VS C v.1929</td>
-<td>3.10</td>
+<tr class="row-even"><td><p>MS Windows 11</p></td>
+<td><p>AMD64</p></td>
+<td><p>64</p></td>
+<td><p>MSC</p></td>
+<td><p>3.11.0</p></td>
 </tr>
-<tr class="row-odd"><td>Raspberry Pi 2022-04-04</td>
-<td>RPi 3</td>
-<td>32</td>
-<td>GCC</td>
-<td>3.9</td>
+<tr class="row-odd"><td><p>Raspbian 11</p></td>
+<td><p>armv7l</p></td>
+<td><p>32</p></td>
+<td><p>GCC</p></td>
+<td><p>3.9.2</p></td>
 </tr>
-<tr class="row-even"><td>Ubuntu 22.04</td>
-<td>RPi 4</td>
-<td>64</td>
-<td>GCC</td>
-<td>3.10</td>
+<tr class="row-even"><td><p>Ubuntu 22.04</p></td>
+<td><p>aarch64</p></td>
+<td><p>64</p></td>
+<td><p>GCC</p></td>
+<td><p>3.10.6</p></td>
 </tr>
 </tbody>
 </table>
+<p>amd64 is another name for x86_64 and does not indicate the CPU brand.
+armv7l is 32 bit ARM. The test hardware is a Raspberry Pi 3.
+aarch64 is 64 bit ARM. The test hardware is a Raspberry Pi 4.</p>
 <ul class="simple">
-<li>The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
-in 32 bit mode.</li>
-<li>The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
-64 bit mode.</li>
-<li>All others were conducted using VMs running on x86 hardware.</li>
+<li><p>The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
+in 32 bit mode.</p></li>
+<li><p>The Ubuntu ARM tests were conducted on a Raspberry Pi 4 ARM CPU running in
+64 bit mode.</p></li>
+<li><p>All others were conducted using VMs running on x86 hardware.</p></li>
 </ul>
-</div>
-<div class="section" id="platform-oddities">
+</section>
+<section id="platform-oddities">
 <h3><a class="toc-backref" href="#id51">Platform Oddities</a><a class="headerlink" href="#platform-oddities" title="Permalink to this headline">¶</a></h3>
 <p>As most operators are implemented using native behaviour, details of some
 operations may depend on the CPU architecture.</p>
@@ -1928,12 +1944,13 @@ of left shift).</p>
 <p>The conclusion is that bit shift operations which use a shift amount which is
 not in the range of 0 to “maximum number” may produce undefined results.
 So valid bit shift amounts should be 0 to 7.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -1969,17 +1986,23 @@ So valid bit shift amounts should be 0 to 7.</p>
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -1988,8 +2011,8 @@ So valid bit shift amounts should be 0 to 7.</p>
       &copy;2021, mgriffin.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/BytesFunc.rst.txt"

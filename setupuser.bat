@@ -31,8 +31,9 @@ SET PATH=c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\
 echo Running bytesfunc build as a local install. 
 echo Compiler messages are redirected to bf_compile_results.txt
 
-ECHO Running the setup.py
+ECHO Running python build.
 
-setup.py install --user 2> bf_compile_results.txt
+python -m build  1>> bf_compile_results.txt 2>> bf_compile_errors.txt
 
 echo Setup complete. Check bf_compile_results.txt for errors.
+

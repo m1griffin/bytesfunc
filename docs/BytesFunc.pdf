@@ -524,12 +524,12 @@ endobj
 endobj
 102 0 obj
 <<
-/Border [ 0 0 0 ] /Contents () /Dest [ 125 0 R /XYZ 62.69291 342.0236 0 ] /Rect [ 82.69291 534.0236 159.3829 546.0236 ] /Subtype /Link /Type /Annot
+/Border [ 0 0 0 ] /Contents () /Dest [ 125 0 R /XYZ 62.69291 312.0236 0 ] /Rect [ 82.69291 534.0236 159.3829 546.0236 ] /Subtype /Link /Type /Annot
 >>
 endobj
 103 0 obj
 <<
-/Border [ 0 0 0 ] /Contents () /Dest [ 125 0 R /XYZ 62.69291 342.0236 0 ] /Rect [ 521.4627 534.7736 532.5827 546.7736 ] /Subtype /Link /Type /Annot
+/Border [ 0 0 0 ] /Contents () /Dest [ 125 0 R /XYZ 62.69291 312.0236 0 ] /Rect [ 521.4627 534.7736 532.5827 546.7736 ] /Subtype /Link /Type /Annot
 >>
 endobj
 104 0 obj
@@ -751,7 +751,7 @@ endobj
 endobj
 127 0 obj
 <<
-/Author (Michael Griffin) /CreationDate (D:20220711005414+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20220711005414+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+/Author (Michael Griffin) /CreationDate (D:20221211232234+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20221211232234+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (\(unspecified\)) /Title (BytesFunc) /Trapped /False
 >>
 endobj
@@ -1011,7 +1011,7 @@ endobj
 endobj
 177 0 obj
 <<
-/Dest [ 125 0 R /XYZ 62.69291 342.0236 0 ] /Parent 175 0 R /Prev 176 0 R /Title (Platform Oddities)
+/Dest [ 125 0 R /XYZ 62.69291 312.0236 0 ] /Parent 175 0 R /Prev 176 0 R /Title (Platform Oddities)
 >>
 endobj
 178 0 obj
@@ -1023,7 +1023,7 @@ endobj
 endobj
 179 0 obj
 <<
-/Length 1643
+/Length 1663
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -1036,6 +1036,7 @@ Q
 Q
 q
 1 0 0 1 62.69291 716.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1055,8 +1056,10 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 701.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1070,14 +1073,16 @@ q
 1 0 0 1 91.03937 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.3.0 for 2022-07-11) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.4.0 for 2022-12-11) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
 1 0 0 1 62.69291 686.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1097,8 +1102,10 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 671.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1117,8 +1124,10 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 656.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1138,12 +1147,13 @@ Q
 q
 Q
 Q
+Q
  
 endstream
 endobj
 180 0 obj
 <<
-/Length 7971
+/Length 7975
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -1155,6 +1165,7 @@ Q
 Q
 q
 1 0 0 1 62.69291 90.02362 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1628,17 +1639,19 @@ Q
 q
 Q
 Q
+Q
  
 endstream
 endobj
 181 0 obj
 <<
-/Length 7696
+/Length 7704
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 531.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -1813,6 +1826,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 502.6772 cm
 n 0 14.17323 m 469.8898 14.17323 l S
@@ -1865,6 +1879,7 @@ q
 Q
 q
 1 0 0 1 62.69291 90.33071 cm
+q
 1 1 1 rg
 n 0 162 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -2042,17 +2057,19 @@ n 0 0 m 0 162 l S
 n 469.8898 0 m 469.8898 162 l S
 Q
 Q
+Q
  
 endstream
 endobj
 182 0 obj
 <<
-/Length 9120
+/Length 9128
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 585.0236 cm
+q
 1 1 1 rg
 n 0 180 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -2236,6 +2253,7 @@ n 469.8898 0 m 469.8898 180 l S
 n 0 0 m 469.8898 0 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 585.0236 cm
 Q
@@ -2250,6 +2268,7 @@ q
 Q
 q
 1 0 0 1 62.69291 201.0236 cm
+q
 1 1 1 rg
 n 0 342 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -2587,6 +2606,7 @@ n 0 0 m 0 342 l S
 n 469.8898 0 m 469.8898 342 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 201.0236 cm
 Q
@@ -2599,7 +2619,7 @@ endstream
 endobj
 183 0 obj
 <<
-/Length 6053
+/Length 6077
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -2636,6 +2656,7 @@ q
 Q
 q
 1 0 0 1 62.69291 627.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2655,11 +2676,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 621.0236 cm
 Q
 q
 1 0 0 1 62.69291 597.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2679,11 +2702,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 591.0236 cm
 Q
 q
 1 0 0 1 62.69291 555.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2703,11 +2728,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 549.0236 cm
 Q
 q
 1 0 0 1 62.69291 525.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2727,11 +2754,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 519.0236 cm
 Q
 q
 1 0 0 1 62.69291 495.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2749,6 +2778,7 @@ BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .899982 Tw (Overflow detection disable. Overf
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -2861,6 +2891,7 @@ q
 Q
 q
 1 0 0 1 62.69291 94.42362 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -2922,6 +2953,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 94.42362 cm
 Q
@@ -2930,7 +2962,7 @@ endstream
 endobj
 184 0 obj
 <<
-/Length 7728
+/Length 7784
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -2970,6 +3002,7 @@ q
 Q
 q
 1 0 0 1 62.69291 597.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -2989,11 +3022,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 591.8236 cm
 Q
 q
 1 0 0 1 62.69291 579.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3013,11 +3048,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 573.8236 cm
 Q
 q
 1 0 0 1 62.69291 549.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3037,11 +3074,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 543.8236 cm
 Q
 q
 1 0 0 1 62.69291 531.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3061,11 +3100,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 525.8236 cm
 Q
 q
 1 0 0 1 62.69291 489.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3085,11 +3126,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 483.8236 cm
 Q
 q
 1 0 0 1 62.69291 471.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3107,6 +3150,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -3130,6 +3174,7 @@ q
 Q
 q
 1 0 0 1 62.69291 402.8236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -3157,6 +3202,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -3198,6 +3244,7 @@ q
 Q
 q
 1 0 0 1 62.69291 286.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3216,6 +3263,7 @@ Q
 Q
 q
 1 0 0 1 23 -3 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 0 2 Tm  T* ET
@@ -3228,7 +3276,9 @@ Q
 q
 Q
 Q
+Q
 q
+Q
 Q
 Q
 q
@@ -3236,6 +3286,7 @@ q
 Q
 q
 1 0 0 1 62.69291 268.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3255,11 +3306,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 262.6236 cm
 Q
 q
 1 0 0 1 62.69291 250.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3279,11 +3332,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 244.6236 cm
 Q
 q
 1 0 0 1 62.69291 208.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3303,11 +3358,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 202.6236 cm
 Q
 q
 1 0 0 1 62.69291 178.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3327,11 +3384,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 172.6236 cm
 Q
 q
 1 0 0 1 62.69291 136.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3349,6 +3408,7 @@ BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL 3.075984 Tw (result - A boolean value corresp
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -3375,12 +3435,13 @@ endstream
 endobj
 185 0 obj
 <<
-/Length 7694
+/Length 7752
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 747.0236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -3408,6 +3469,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -3449,6 +3511,7 @@ q
 Q
 q
 1 0 0 1 62.69291 630.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3467,6 +3530,7 @@ Q
 Q
 q
 1 0 0 1 23 -3 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 0 2 Tm  T* ET
@@ -3479,7 +3543,9 @@ Q
 q
 Q
 Q
+Q
 q
+Q
 Q
 Q
 q
@@ -3487,6 +3553,7 @@ q
 Q
 q
 1 0 0 1 62.69291 612.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3506,11 +3573,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 606.8236 cm
 Q
 q
 1 0 0 1 62.69291 594.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3530,11 +3599,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 588.8236 cm
 Q
 q
 1 0 0 1 62.69291 552.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3554,11 +3625,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 546.8236 cm
 Q
 q
 1 0 0 1 62.69291 522.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3578,11 +3651,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 516.8236 cm
 Q
 q
 1 0 0 1 62.69291 480.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3596,10 +3671,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -3623,6 +3699,7 @@ q
 Q
 q
 1 0 0 1 62.69291 411.8236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -3651,6 +3728,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -3692,6 +3770,7 @@ q
 Q
 q
 1 0 0 1 62.69291 310.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3711,11 +3790,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 304.6236 cm
 Q
 q
 1 0 0 1 62.69291 268.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3735,11 +3816,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 262.6236 cm
 Q
 q
 1 0 0 1 62.69291 238.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3759,11 +3842,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 232.6236 cm
 Q
 q
 1 0 0 1 62.69291 220.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3781,6 +3866,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (result = The maximum of all the values in the
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -3804,6 +3890,7 @@ q
 Q
 q
 1 0 0 1 62.69291 151.6236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -3834,6 +3921,7 @@ n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 151.6236 cm
 Q
@@ -3849,7 +3937,7 @@ endstream
 endobj
 186 0 obj
 <<
-/Length 7786
+/Length 7834
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -3882,6 +3970,7 @@ q
 Q
 q
 1 0 0 1 62.69291 689.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3901,11 +3990,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 683.8236 cm
 Q
 q
 1 0 0 1 62.69291 647.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3925,11 +4016,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 641.8236 cm
 Q
 q
 1 0 0 1 62.69291 617.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3949,11 +4042,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 611.8236 cm
 Q
 q
 1 0 0 1 62.69291 599.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -3971,6 +4066,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (result = The minimum of all the values in the
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -3994,6 +4090,7 @@ q
 Q
 q
 1 0 0 1 62.69291 530.8236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -4022,6 +4119,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -4063,6 +4161,7 @@ q
 Q
 q
 1 0 0 1 62.69291 417.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4082,11 +4181,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 411.6236 cm
 Q
 q
 1 0 0 1 62.69291 375.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4106,11 +4207,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 369.6236 cm
 Q
 q
 1 0 0 1 62.69291 357.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4130,11 +4233,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 351.6236 cm
 Q
 q
 1 0 0 1 62.69291 327.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4154,11 +4259,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 321.6236 cm
 Q
 q
 1 0 0 1 62.69291 309.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4176,6 +4283,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (result - The sum of the sequence.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -4199,6 +4307,7 @@ q
 Q
 q
 1 0 0 1 62.69291 204.6236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -4263,6 +4372,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 204.6236 cm
 Q
@@ -4302,6 +4412,7 @@ q
 Q
 q
 1 0 0 1 62.69291 79.42362 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4321,6 +4432,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 76.86614 cm
 Q
@@ -4329,12 +4441,13 @@ endstream
 endobj
 187 0 obj
 <<
-/Length 8699
+/Length 8761
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 753.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4354,11 +4467,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 747.0236 cm
 Q
 q
 1 0 0 1 62.69291 735.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4378,11 +4493,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 729.0236 cm
 Q
 q
 1 0 0 1 62.69291 681.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4402,11 +4519,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 675.0236 cm
 Q
 q
 1 0 0 1 62.69291 639.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4426,11 +4545,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 633.0236 cm
 Q
 q
 1 0 0 1 62.69291 609.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4450,11 +4571,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 603.0236 cm
 Q
 q
 1 0 0 1 62.69291 567.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4468,10 +4591,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -4495,6 +4619,7 @@ q
 Q
 q
 1 0 0 1 62.69291 498.0236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -4522,6 +4647,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -4563,6 +4689,7 @@ q
 Q
 q
 1 0 0 1 62.69291 381.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4581,6 +4708,7 @@ Q
 Q
 q
 1 0 0 1 23 -3 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 0 2 Tm  T* ET
@@ -4593,7 +4721,9 @@ Q
 q
 Q
 Q
+Q
 q
+Q
 Q
 Q
 q
@@ -4601,6 +4731,7 @@ q
 Q
 q
 1 0 0 1 62.69291 363.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4620,11 +4751,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 357.8236 cm
 Q
 q
 1 0 0 1 62.69291 345.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4644,11 +4777,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 339.8236 cm
 Q
 q
 1 0 0 1 62.69291 303.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4668,11 +4803,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 297.8236 cm
 Q
 q
 1 0 0 1 62.69291 273.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4692,11 +4829,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 267.8236 cm
 Q
 q
 1 0 0 1 62.69291 255.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4714,6 +4853,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (result - The resulting index. This will be ne
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -4737,6 +4877,7 @@ q
 Q
 q
 1 0 0 1 62.69291 150.8236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -4798,6 +4939,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 150.8236 cm
 Q
@@ -4834,7 +4976,7 @@ endstream
 endobj
 188 0 obj
 <<
-/Length 8362
+/Length 8420
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -4867,6 +5009,7 @@ q
 Q
 q
 1 0 0 1 62.69291 689.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4886,11 +5029,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 683.8236 cm
 Q
 q
 1 0 0 1 62.69291 671.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4910,11 +5055,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 665.8236 cm
 Q
 q
 1 0 0 1 62.69291 653.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4934,11 +5081,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 647.8236 cm
 Q
 q
 1 0 0 1 62.69291 599.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4958,11 +5107,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 593.8236 cm
 Q
 q
 1 0 0 1 62.69291 557.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4982,11 +5133,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 551.8236 cm
 Q
 q
 1 0 0 1 62.69291 527.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5006,11 +5159,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 521.8236 cm
 Q
 q
 1 0 0 1 62.69291 485.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5024,10 +5179,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -5051,6 +5207,7 @@ q
 Q
 q
 1 0 0 1 62.69291 380.8236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -5112,6 +5269,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 380.8236 cm
 Q
@@ -5151,6 +5309,7 @@ q
 Q
 q
 1 0 0 1 62.69291 255.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5170,11 +5329,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 249.6236 cm
 Q
 q
 1 0 0 1 62.69291 237.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5194,11 +5355,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 231.6236 cm
 Q
 q
 1 0 0 1 62.69291 219.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5218,11 +5381,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 213.6236 cm
 Q
 q
 1 0 0 1 62.69291 165.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5242,11 +5407,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 159.6236 cm
 Q
 q
 1 0 0 1 62.69291 123.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5266,11 +5433,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 117.6236 cm
 Q
 q
 1 0 0 1 62.69291 93.62362 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5290,6 +5459,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 87.62362 cm
 Q
@@ -5298,12 +5468,13 @@ endstream
 endobj
 189 0 obj
 <<
-/Length 7915
+/Length 7965
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 729.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5317,10 +5488,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -5344,6 +5516,7 @@ q
 Q
 q
 1 0 0 1 62.69291 660.0236 cm
+q
 1 1 1 rg
 n 0 18 469.8898 -18 re f*
 0 0 0 rg
@@ -5372,6 +5545,7 @@ n 0 18 m 469.8898 18 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 18 l S
 n 469.8898 0 m 469.8898 18 l S
+Q
 Q
 Q
 q
@@ -5413,6 +5587,7 @@ q
 Q
 q
 1 0 0 1 62.69291 534.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5432,11 +5607,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 528.8236 cm
 Q
 q
 1 0 0 1 62.69291 516.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5456,11 +5633,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 510.8236 cm
 Q
 q
 1 0 0 1 62.69291 474.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5480,11 +5659,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 468.8236 cm
 Q
 q
 1 0 0 1 62.69291 456.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5502,6 +5683,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -5525,6 +5707,7 @@ q
 Q
 q
 1 0 0 1 62.69291 351.8236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -5586,6 +5769,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 351.8236 cm
 Q
@@ -5625,6 +5809,7 @@ q
 Q
 q
 1 0 0 1 62.69291 226.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5644,11 +5829,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 220.6236 cm
 Q
 q
 1 0 0 1 62.69291 208.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5668,11 +5855,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 202.6236 cm
 Q
 q
 1 0 0 1 62.69291 190.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5692,11 +5881,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 184.6236 cm
 Q
 q
 1 0 0 1 62.69291 136.6236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5716,11 +5907,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 130.6236 cm
 Q
 q
 1 0 0 1 62.69291 94.62362 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5740,6 +5933,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 88.62362 cm
 Q
@@ -5748,12 +5942,13 @@ endstream
 endobj
 190 0 obj
 <<
-/Length 7585
+/Length 7627
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 741.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5773,11 +5968,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 735.0236 cm
 Q
 q
 1 0 0 1 62.69291 699.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5791,10 +5988,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -5818,6 +6016,7 @@ q
 Q
 q
 1 0 0 1 62.69291 594.0236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -5879,6 +6078,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 594.0236 cm
 Q
@@ -5918,6 +6118,7 @@ q
 Q
 q
 1 0 0 1 62.69291 420.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5937,11 +6138,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 414.8236 cm
 Q
 q
 1 0 0 1 62.69291 402.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5961,11 +6164,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 396.8236 cm
 Q
 q
 1 0 0 1 62.69291 372.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -5985,11 +6190,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 366.8236 cm
 Q
 q
 1 0 0 1 62.69291 354.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6009,11 +6216,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 348.8236 cm
 Q
 q
 1 0 0 1 62.69291 312.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6033,11 +6242,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 306.8236 cm
 Q
 q
 1 0 0 1 62.69291 294.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6055,6 +6266,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -6078,6 +6290,7 @@ q
 Q
 q
 1 0 0 1 62.69291 189.8236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -6139,6 +6352,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 189.8236 cm
 Q
@@ -6178,7 +6392,7 @@ endstream
 endobj
 191 0 obj
 <<
-/Length 8527
+/Length 8591
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -6187,6 +6401,7 @@ q
 Q
 q
 1 0 0 1 62.69291 753.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6206,11 +6421,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 747.0236 cm
 Q
 q
 1 0 0 1 62.69291 735.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6230,11 +6447,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 729.0236 cm
 Q
 q
 1 0 0 1 62.69291 717.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6254,11 +6473,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 711.0236 cm
 Q
 q
 1 0 0 1 62.69291 663.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6278,11 +6499,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 657.0236 cm
 Q
 q
 1 0 0 1 62.69291 621.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6302,11 +6525,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 615.0236 cm
 Q
 q
 1 0 0 1 62.69291 591.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6326,11 +6551,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 585.0236 cm
 Q
 q
 1 0 0 1 62.69291 549.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6344,10 +6571,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -6371,6 +6599,7 @@ q
 Q
 q
 1 0 0 1 62.69291 444.0236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -6435,6 +6664,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 444.0236 cm
 Q
@@ -6474,6 +6704,7 @@ q
 Q
 q
 1 0 0 1 62.69291 318.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6493,11 +6724,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 312.8236 cm
 Q
 q
 1 0 0 1 62.69291 300.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6517,11 +6750,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 294.8236 cm
 Q
 q
 1 0 0 1 62.69291 282.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6541,11 +6776,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 276.8236 cm
 Q
 q
 1 0 0 1 62.69291 228.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6565,11 +6802,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 222.8236 cm
 Q
 q
 1 0 0 1 62.69291 186.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6589,11 +6828,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 180.8236 cm
 Q
 q
 1 0 0 1 62.69291 156.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6613,11 +6854,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 150.8236 cm
 Q
 q
 1 0 0 1 62.69291 114.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6631,10 +6874,11 @@ q
 1 0 0 1 23 -3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw .732093 Tw (operations result in true, the return value will be true. If any of them result in false, the return value) Tj T* 0 Tw (will be false.) Tj T* ET
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL -0.137515 Tw (result - A boolean value corresponding to the result of all the comparison operations. If all comparison) Tj T* 0 Tw -0.137512 Tw (operations result in true, the return value will be true. If any of them result in false, the return value will) Tj T* 0 Tw (be false.) Tj T* ET
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -6645,7 +6889,7 @@ endstream
 endobj
 192 0 obj
 <<
-/Length 7171
+/Length 7207
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -6667,6 +6911,7 @@ q
 Q
 q
 1 0 0 1 62.69291 672.0236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -6731,6 +6976,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 672.0236 cm
 Q
@@ -6770,6 +7016,7 @@ q
 Q
 q
 1 0 0 1 62.69291 498.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6789,11 +7036,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 492.8236 cm
 Q
 q
 1 0 0 1 62.69291 480.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6813,11 +7062,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 474.8236 cm
 Q
 q
 1 0 0 1 62.69291 450.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6837,11 +7088,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 444.8236 cm
 Q
 q
 1 0 0 1 62.69291 432.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6861,11 +7114,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 426.8236 cm
 Q
 q
 1 0 0 1 62.69291 390.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6885,11 +7140,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 384.8236 cm
 Q
 q
 1 0 0 1 62.69291 372.8236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -6907,6 +7164,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -6930,6 +7188,7 @@ q
 Q
 q
 1 0 0 1 62.69291 267.8236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -6991,6 +7250,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 267.8236 cm
 Q
@@ -7030,6 +7290,7 @@ q
 Q
 q
 1 0 0 1 62.69291 94.62362 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7049,6 +7310,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 88.62362 cm
 Q
@@ -7057,12 +7319,13 @@ endstream
 endobj
 193 0 obj
 <<
-/Length 8643
+/Length 8695
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 753.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7082,11 +7345,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 747.0236 cm
 Q
 q
 1 0 0 1 62.69291 723.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7106,11 +7371,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 717.0236 cm
 Q
 q
 1 0 0 1 62.69291 705.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7130,11 +7397,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 699.0236 cm
 Q
 q
 1 0 0 1 62.69291 663.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7154,11 +7423,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 657.0236 cm
 Q
 q
 1 0 0 1 62.69291 645.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7176,6 +7447,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -7199,6 +7471,7 @@ q
 Q
 q
 1 0 0 1 62.69291 544.2661 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -7263,6 +7536,7 @@ n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 544.2661 cm
 Q
@@ -7302,6 +7576,7 @@ q
 Q
 q
 1 0 0 1 62.69291 371.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7321,11 +7596,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 365.0661 cm
 Q
 q
 1 0 0 1 62.69291 353.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7345,11 +7622,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 347.0661 cm
 Q
 q
 1 0 0 1 62.69291 323.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7369,11 +7648,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 317.0661 cm
 Q
 q
 1 0 0 1 62.69291 305.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7393,11 +7674,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 299.0661 cm
 Q
 q
 1 0 0 1 62.69291 263.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7417,11 +7700,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 257.0661 cm
 Q
 q
 1 0 0 1 62.69291 245.0661 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7439,6 +7724,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (nosimd - If True, SIMD acceleration is disabl
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -7468,6 +7754,7 @@ q
 Q
 q
 1 0 0 1 62.69291 80.06614 cm
+q
 1 1 1 rg
 n 0 72 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -7557,17 +7844,19 @@ n 0 0 m 0 72 l S
 n 469.8898 0 m 469.8898 72 l S
 Q
 Q
+Q
  
 endstream
 endobj
 194 0 obj
 <<
-/Length 5461
+/Length 5465
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 711.0236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -7629,6 +7918,7 @@ n 114.2975 0 m 114.2975 54 l S
 n 0 0 m 0 54 l S
 n 469.8898 0 m 469.8898 54 l S
 n 0 0 m 469.8898 0 l S
+Q
 Q
 Q
 q
@@ -7777,7 +8067,7 @@ endstream
 endobj
 195 0 obj
 <<
-/Length 8684
+/Length 8700
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -7829,6 +8119,7 @@ q
 Q
 q
 1 0 0 1 62.69291 591.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7848,11 +8139,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 585.0236 cm
 Q
 q
 1 0 0 1 62.69291 573.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7872,11 +8165,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 567.0236 cm
 Q
 q
 1 0 0 1 62.69291 555.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -7894,6 +8189,7 @@ BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (64 bit ARMv8 AARCH64 using GCC \(tested on Ra
 Q
 Q
 q
+Q
 Q
 Q
 q
@@ -7979,6 +8275,7 @@ q
 Q
 q
 1 0 0 1 62.69291 93.02362 cm
+q
 1 1 1 rg
 n 0 126 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -8223,17 +8520,19 @@ n 0 0 m 0 126 l S
 n 469.8898 0 m 469.8898 126 l S
 Q
 Q
+Q
  
 endstream
 endobj
 196 0 obj
 <<
-/Length 9632
+/Length 9664
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 549.0236 cm
+q
 1 1 1 rg
 n 0 216 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -8621,6 +8920,7 @@ n 469.8898 0 m 469.8898 216 l S
 n 0 0 m 469.8898 0 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 549.0236 cm
 Q
@@ -8645,6 +8945,7 @@ q
 Q
 q
 1 0 0 1 62.69291 471.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8664,11 +8965,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 465.0236 cm
 Q
 q
 1 0 0 1 62.69291 438.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8687,6 +8990,7 @@ Q
 Q
 q
 1 0 0 1 23 -3 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 0 2 Tm  T* ET
@@ -8700,7 +9004,9 @@ Q
 q
 Q
 Q
+Q
 q
+Q
 Q
 Q
 q
@@ -8798,6 +9104,7 @@ q
 Q
 q
 1 0 0 1 62.69291 138.2772 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8817,11 +9124,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 132.2772 cm
 Q
 q
 1 0 0 1 62.69291 120.2772 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8841,11 +9150,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 114.2772 cm
 Q
 q
 1 0 0 1 62.69291 102.2772 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8865,11 +9176,13 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 96.27717 cm
 Q
 q
 1 0 0 1 62.69291 84.27717 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8889,6 +9202,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 78.27717 cm
 Q
@@ -8897,12 +9211,13 @@ endstream
 endobj
 197 0 obj
 <<
-/Length 9475
+/Length 9504
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 753.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -8922,6 +9237,7 @@ Q
 q
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 753.0236 cm
 Q
@@ -8936,7 +9252,7 @@ q
 1 0 0 1 62.69291 633.0236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 50 Tm /F1 10 Tf 12 TL 1.043059 Tw (Both relative performance \(the speed-up as compared to Python\) and absolute performance \(the actual) Tj T* 0 Tw .930697 Tw (execution speed of Python and BytesFunc\) will vary significantly depending upon the compiler \(which is) Tj T* 0 Tw 3.238651 Tw (OS platform dependent\) and whether compiled to 32 or 64 bit. If your precise actual benchmark) Tj T* 0 Tw .91811 Tw (performance results matter, be sure to conduct your testing using the actual OS and compiler your final) Tj T* 0 Tw (program will be deployed on. The values listed below were measured on x86-64 Linux compiled with GCC.) Tj T* ET
+BT 1 0 0 1 0 50 Tm /F1 10 Tf 12 TL 1.043059 Tw (Both relative performance \(the speed-up as compared to Python\) and absolute performance \(the actual) Tj T* 0 Tw .930697 Tw (execution speed of Python and BytesFunc\) will vary significantly depending upon the compiler \(which is) Tj T* 0 Tw 3.238651 Tw (OS platform dependent\) and whether compiled to 32 or 64 bit. If your precise actual benchmark) Tj T* 0 Tw .91811 Tw (performance results matter, be sure to conduct your testing using the actual OS and compiler your final) Tj T* 0 Tw -0.087515 Tw (program will be deployed on. The values listed below were measured on x86-64 Linux compiled with GCC.) Tj T* 0 Tw ET
 Q
 Q
 q
@@ -8998,6 +9314,7 @@ q
 Q
 q
 1 0 0 1 62.69291 90.02362 cm
+q
 1 1 1 rg
 n 0 288 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -9079,14 +9396,14 @@ q
 1 0 0 1 85.41799 255 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (911.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1129.5) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 255 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (9.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (12.3) Tj T* ET
 Q
 Q
 q
@@ -9100,14 +9417,14 @@ q
 1 0 0 1 85.41799 237 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (735.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (641.4) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 237 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.8) Tj T* ET
 Q
 Q
 q
@@ -9121,14 +9438,14 @@ q
 1 0 0 1 85.41799 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (737.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (663.9) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.8) Tj T* ET
 Q
 Q
 q
@@ -9142,14 +9459,14 @@ q
 1 0 0 1 85.41799 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (78.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (85.7) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.6) Tj T* ET
 Q
 Q
 q
@@ -9163,14 +9480,14 @@ q
 1 0 0 1 85.41799 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (76.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (86.1) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.0) Tj T* ET
 Q
 Q
 q
@@ -9184,7 +9501,7 @@ q
 1 0 0 1 85.41799 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (16.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (14.7) Tj T* ET
 Q
 Q
 q
@@ -9198,7 +9515,7 @@ q
 1 0 0 1 85.41799 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (751.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (745.7) Tj T* ET
 Q
 Q
 q
@@ -9219,14 +9536,14 @@ q
 1 0 0 1 85.41799 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1055.4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (764.9) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (14.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (12.5) Tj T* ET
 Q
 Q
 q
@@ -9240,14 +9557,14 @@ q
 1 0 0 1 85.41799 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (744.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (752.8) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (14.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.1) Tj T* ET
 Q
 Q
 q
@@ -9261,14 +9578,14 @@ q
 1 0 0 1 85.41799 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (592.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (577.0) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (11.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (11.9) Tj T* ET
 Q
 Q
 q
@@ -9282,14 +9599,14 @@ q
 1 0 0 1 85.41799 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (726.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1166.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (9.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (11.0) Tj T* ET
 Q
 Q
 q
@@ -9303,14 +9620,14 @@ q
 1 0 0 1 85.41799 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (740.4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (728.0) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.1) Tj T* ET
 Q
 Q
 q
@@ -9324,14 +9641,14 @@ q
 1 0 0 1 85.41799 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1285.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1823.9) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (9.2) Tj T* ET
 Q
 Q
 q
@@ -9345,14 +9662,14 @@ q
 1 0 0 1 85.41799 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (578.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (553.8) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (11.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (11.6) Tj T* ET
 Q
 Q
 q
@@ -9366,14 +9683,14 @@ q
 1 0 0 1 85.41799 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (758.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (801.7) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (15.4) Tj T* ET
 Q
 Q
 q
@@ -9404,17 +9721,19 @@ n 0 0 m 0 288 l S
 n 469.8898 0 m 469.8898 288 l S
 Q
 Q
+Q
  
 endstream
 endobj
 198 0 obj
 <<
-/Length 12162
+/Length 12181
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
 1 0 0 1 62.69291 711.0236 cm
+q
 1 1 1 rg
 n 0 54 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -9434,14 +9753,14 @@ q
 1 0 0 1 85.41799 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (946.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1122.0) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (10.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (12.4) Tj T* ET
 Q
 Q
 q
@@ -9455,14 +9774,14 @@ q
 1 0 0 1 85.41799 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (892.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1266.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (8.1) Tj T* ET
 Q
 Q
 q
@@ -9476,14 +9795,14 @@ q
 1 0 0 1 85.41799 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1007.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1222.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (9.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (12.0) Tj T* ET
 Q
 Q
 q
@@ -9501,6 +9820,7 @@ n 469.8898 0 m 469.8898 54 l S
 n 0 0 m 469.8898 0 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 711.0236 cm
 Q
@@ -9509,6 +9829,7 @@ q
 Q
 q
 1 0 0 1 62.69291 615.0236 cm
+q
 1 1 1 rg
 n 0 90 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -9557,7 +9878,7 @@ q
 1 0 0 1 278.0414 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (702) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (786) Tj T* ET
 Q
 Q
 q
@@ -9571,7 +9892,7 @@ q
 1 0 0 1 278.0414 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1286) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1824) Tj T* ET
 Q
 Q
 q
@@ -9585,7 +9906,7 @@ q
 1 0 0 1 278.0414 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (16.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (14.7) Tj T* ET
 Q
 Q
 q
@@ -9616,6 +9937,7 @@ n 0 90 m 469.8898 90 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 90 l S
 n 469.8898 0 m 469.8898 90 l S
+Q
 Q
 Q
 q
@@ -9646,6 +9968,7 @@ q
 Q
 q
 1 0 0 1 62.69291 204.0236 cm
+q
 1 1 1 rg
 n 0 342 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -9733,7 +10056,7 @@ q
 1 0 0 1 85.41799 309 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1100.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1103.9) Tj T* ET
 Q
 Q
 q
@@ -9754,7 +10077,7 @@ q
 1 0 0 1 85.41799 291 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (343.5) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (347.6) Tj T* ET
 Q
 Q
 q
@@ -9775,7 +10098,7 @@ q
 1 0 0 1 85.41799 273 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (331.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (331.7) Tj T* ET
 Q
 Q
 q
@@ -9796,7 +10119,7 @@ q
 1 0 0 1 85.41799 255 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (268.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (265.9) Tj T* ET
 Q
 Q
 q
@@ -9817,7 +10140,7 @@ q
 1 0 0 1 85.41799 237 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (265.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (261.4) Tj T* ET
 Q
 Q
 q
@@ -9838,14 +10161,14 @@ q
 1 0 0 1 85.41799 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (75.5) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (71.5) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (2.9) Tj T* ET
 Q
 Q
 q
@@ -9859,7 +10182,7 @@ q
 1 0 0 1 85.41799 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (350.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (349.6) Tj T* ET
 Q
 Q
 q
@@ -9880,7 +10203,7 @@ q
 1 0 0 1 85.41799 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (511.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (508.1) Tj T* ET
 Q
 Q
 q
@@ -9901,7 +10224,7 @@ q
 1 0 0 1 85.41799 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (361.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (359.9) Tj T* ET
 Q
 Q
 q
@@ -9922,7 +10245,7 @@ q
 1 0 0 1 85.41799 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (362.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (359.2) Tj T* ET
 Q
 Q
 q
@@ -9943,7 +10266,7 @@ q
 1 0 0 1 85.41799 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (897.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (914.4) Tj T* ET
 Q
 Q
 q
@@ -9964,7 +10287,7 @@ q
 1 0 0 1 85.41799 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (362.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (360.0) Tj T* ET
 Q
 Q
 q
@@ -9985,7 +10308,7 @@ q
 1 0 0 1 85.41799 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1351.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1358.1) Tj T* ET
 Q
 Q
 q
@@ -10006,7 +10329,7 @@ q
 1 0 0 1 85.41799 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (362.5) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (357.0) Tj T* ET
 Q
 Q
 q
@@ -10027,7 +10350,7 @@ q
 1 0 0 1 85.41799 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (332.4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (328.2) Tj T* ET
 Q
 Q
 q
@@ -10048,7 +10371,7 @@ q
 1 0 0 1 85.41799 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1109.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1121.2) Tj T* ET
 Q
 Q
 q
@@ -10069,14 +10392,14 @@ q
 1 0 0 1 85.41799 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (949.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (960.1) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (4.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (5.1) Tj T* ET
 Q
 Q
 q
@@ -10090,7 +10413,7 @@ q
 1 0 0 1 85.41799 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1141.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1170.3) Tj T* ET
 Q
 Q
 q
@@ -10131,6 +10454,7 @@ n 0 0 m 0 342 l S
 n 469.8898 0 m 469.8898 342 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 204.0236 cm
 Q
@@ -10139,6 +10463,7 @@ q
 Q
 q
 1 0 0 1 62.69291 108.0236 cm
+q
 1 1 1 rg
 n 0 90 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -10187,7 +10512,7 @@ q
 1 0 0 1 278.0414 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (582) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (585) Tj T* ET
 Q
 Q
 q
@@ -10201,7 +10526,7 @@ q
 1 0 0 1 278.0414 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1352) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1358) Tj T* ET
 Q
 Q
 q
@@ -10215,7 +10540,7 @@ q
 1 0 0 1 278.0414 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (75.5) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (71.5) Tj T* ET
 Q
 Q
 q
@@ -10248,6 +10573,7 @@ n 0 0 m 0 90 l S
 n 469.8898 0 m 469.8898 90 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 108.0236 cm
 Q
@@ -10256,7 +10582,7 @@ endstream
 endobj
 199 0 obj
 <<
-/Length 9944
+/Length 9953
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -10285,6 +10611,7 @@ q
 Q
 q
 1 0 0 1 62.69291 366.0236 cm
+q
 1 1 1 rg
 n 0 342 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -10372,14 +10699,14 @@ q
 1 0 0 1 85.41799 309 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (769.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (998.9) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 309 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.5) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (7.5) Tj T* ET
 Q
 Q
 q
@@ -10393,7 +10720,7 @@ q
 1 0 0 1 85.41799 291 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (500.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (501.7) Tj T* ET
 Q
 Q
 q
@@ -10414,14 +10741,14 @@ q
 1 0 0 1 85.41799 273 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (532.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (543.4) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 273 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.2) Tj T* ET
 Q
 Q
 q
@@ -10435,14 +10762,14 @@ q
 1 0 0 1 85.41799 255 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (358.4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (364.9) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 255 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.9) Tj T* ET
 Q
 Q
 q
@@ -10456,14 +10783,14 @@ q
 1 0 0 1 85.41799 237 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (372.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (361.5) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 237 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (13.9) Tj T* ET
 Q
 Q
 q
@@ -10477,14 +10804,14 @@ q
 1 0 0 1 85.41799 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (113.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (115.8) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.6) Tj T* ET
 Q
 Q
 q
@@ -10498,7 +10825,7 @@ q
 1 0 0 1 85.41799 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (501.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (506.5) Tj T* ET
 Q
 Q
 q
@@ -10519,7 +10846,7 @@ q
 1 0 0 1 85.41799 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (730.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (687.0) Tj T* ET
 Q
 Q
 q
@@ -10540,7 +10867,7 @@ q
 1 0 0 1 85.41799 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (533.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (533.2) Tj T* ET
 Q
 Q
 q
@@ -10561,7 +10888,7 @@ q
 1 0 0 1 85.41799 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (528.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (528.5) Tj T* ET
 Q
 Q
 q
@@ -10582,7 +10909,7 @@ q
 1 0 0 1 85.41799 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (853.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (698.4) Tj T* ET
 Q
 Q
 q
@@ -10603,7 +10930,7 @@ q
 1 0 0 1 85.41799 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (537.4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (532.1) Tj T* ET
 Q
 Q
 q
@@ -10624,14 +10951,14 @@ q
 1 0 0 1 85.41799 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1164.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1332.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.7) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (7.6) Tj T* ET
 Q
 Q
 q
@@ -10645,7 +10972,7 @@ q
 1 0 0 1 85.41799 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (582.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (527.2) Tj T* ET
 Q
 Q
 q
@@ -10666,14 +10993,14 @@ q
 1 0 0 1 85.41799 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (569.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (554.3) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.2) Tj T* ET
 Q
 Q
 q
@@ -10687,14 +11014,14 @@ q
 1 0 0 1 85.41799 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (896.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (740.1) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.2) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.3) Tj T* ET
 Q
 Q
 q
@@ -10708,14 +11035,14 @@ q
 1 0 0 1 85.41799 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (657.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (713.0) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (5.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.2) Tj T* ET
 Q
 Q
 q
@@ -10729,14 +11056,14 @@ q
 1 0 0 1 85.41799 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (761.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1099.4) Tj T* ET
 Q
 Q
 q
 1 0 0 1 224.3995 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (6.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (8.2) Tj T* ET
 Q
 Q
 q
@@ -10770,6 +11097,7 @@ n 0 0 m 0 342 l S
 n 469.8898 0 m 469.8898 342 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 366.0236 cm
 Q
@@ -10778,6 +11106,7 @@ q
 Q
 q
 1 0 0 1 62.69291 270.0236 cm
+q
 1 1 1 rg
 n 0 90 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -10826,7 +11155,7 @@ q
 1 0 0 1 278.0414 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (609) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (630) Tj T* ET
 Q
 Q
 q
@@ -10840,7 +11169,7 @@ q
 1 0 0 1 278.0414 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1165) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (1332) Tj T* ET
 Q
 Q
 q
@@ -10854,7 +11183,7 @@ q
 1 0 0 1 278.0414 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (113.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (115.8) Tj T* ET
 Q
 Q
 q
@@ -10885,6 +11214,7 @@ n 0 90 m 469.8898 90 l S
 n 0 0 m 469.8898 0 l S
 n 0 0 m 0 90 l S
 n 469.8898 0 m 469.8898 90 l S
+Q
 Q
 Q
 q
@@ -10919,7 +11249,7 @@ endstream
 endobj
 200 0 obj
 <<
-/Length 11956
+/Length 12289
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -10947,6 +11277,7 @@ q
 Q
 q
 1 0 0 1 62.69291 408.0236 cm
+q
 1 1 1 rg
 n 0 252 469.8898 -18 re f*
 .878431 .878431 .878431 rg
@@ -11039,21 +11370,21 @@ q
 1 0 0 1 6 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 20.04 LTS) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Debian 11) Tj T* ET
 Q
 Q
 q
 1 0 0 1 160.3924 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (i686) Tj T* ET
 Q
 Q
 q
 1 0 0 1 227.5195 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (32) Tj T* ET
 Q
 Q
 q
@@ -11067,14 +11398,14 @@ q
 1 0 0 1 368.4864 219 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 22.04) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Debian 11) Tj T* ET
 Q
 Q
 q
@@ -11102,28 +11433,28 @@ q
 1 0 0 1 368.4864 201 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Debian 11) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 22.04) Tj T* ET
 Q
 Q
 q
 1 0 0 1 160.3924 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (i686) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
 Q
 Q
 q
 1 0 0 1 227.5195 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (32) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (64) Tj T* ET
 Q
 Q
 q
@@ -11137,14 +11468,14 @@ q
 1 0 0 1 368.4864 183 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10.6) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Debian 11) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Ubuntu 22.10) Tj T* ET
 Q
 Q
 q
@@ -11172,14 +11503,14 @@ q
 1 0 0 1 368.4864 165 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10.7) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (OpenSuse 15.3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (opensuse-leap 15.4) Tj T* ET
 Q
 Q
 q
@@ -11207,14 +11538,14 @@ q
 1 0 0 1 368.4864 147 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.6) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.6.15) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Alma 9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (almalinux 9.0) Tj T* ET
 Q
 Q
 q
@@ -11242,14 +11573,14 @@ q
 1 0 0 1 368.4864 129 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.10) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Alpine 3.16.0) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (alpine 3.16.2) Tj T* ET
 Q
 Q
 q
@@ -11277,21 +11608,21 @@ q
 1 0 0 1 368.4864 111 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10.5) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (FreeBSD 13) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (FreeBSD 13.1) Tj T* ET
 Q
 Q
 q
 1 0 0 1 160.3924 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (amd64) Tj T* ET
 Q
 Q
 q
@@ -11305,28 +11636,28 @@ q
 1 0 0 1 267.7957 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (LLVM) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Clang) Tj T* ET
 Q
 Q
 q
 1 0 0 1 368.4864 93 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.8) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.15) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (OpenBSD 7.1) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (OpenBSD 7.2) Tj T* ET
 Q
 Q
 q
 1 0 0 1 160.3924 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (amd64) Tj T* ET
 Q
 Q
 q
@@ -11340,14 +11671,14 @@ q
 1 0 0 1 267.7957 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (LLVM) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Clang) Tj T* ET
 Q
 Q
 q
 1 0 0 1 368.4864 75 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.15) Tj T* ET
 Q
 Q
 q
@@ -11361,7 +11692,7 @@ q
 1 0 0 1 160.3924 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (AMD64) Tj T* ET
 Q
 Q
 q
@@ -11375,14 +11706,14 @@ q
 1 0 0 1 267.7957 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (MS VS C v.1929) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (MSC) Tj T* ET
 Q
 Q
 q
 1 0 0 1 368.4864 57 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.11.0) Tj T* ET
 Q
 Q
 q
@@ -11396,7 +11727,7 @@ q
 1 0 0 1 160.3924 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (x86_64) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (AMD64) Tj T* ET
 Q
 Q
 q
@@ -11410,28 +11741,28 @@ q
 1 0 0 1 267.7957 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (MS VS C v.1929) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (MSC) Tj T* ET
 Q
 Q
 q
 1 0 0 1 368.4864 39 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.11.0) Tj T* ET
 Q
 Q
 q
 1 0 0 1 6 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Raspberry Pi 2022-04-04) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Raspbian 11) Tj T* ET
 Q
 Q
 q
 1 0 0 1 160.3924 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (RPi 3) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (armv7l) Tj T* ET
 Q
 Q
 q
@@ -11452,7 +11783,7 @@ q
 1 0 0 1 368.4864 21 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.9.2) Tj T* ET
 Q
 Q
 q
@@ -11466,7 +11797,7 @@ q
 1 0 0 1 160.3924 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (RPi 4) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (aarch64) Tj T* ET
 Q
 Q
 q
@@ -11487,7 +11818,7 @@ q
 1 0 0 1 368.4864 3 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10) Tj T* ET
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (3.10.6) Tj T* ET
 Q
 Q
 q
@@ -11518,17 +11849,26 @@ n 0 0 m 0 252 l S
 n 469.8898 0 m 469.8898 252 l S
 Q
 Q
+Q
 q
 1 0 0 1 62.69291 408.0236 cm
 Q
 q
-1 0 0 1 62.69291 402.0236 cm
+1 0 0 1 62.69291 378.0236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .450514 Tw (amd64 is another name for x86_64 and does not indicate the CPU brand. armv7l is 32 bit ARM. The test) Tj T* 0 Tw (hardware is a Raspberry Pi 3. aarch64 is 64 bit ARM. The test hardware is a Raspberry Pi 4.) Tj T* ET
+Q
 Q
 q
-1 0 0 1 62.69291 402.0236 cm
+1 0 0 1 62.69291 372.0236 cm
 Q
 q
-1 0 0 1 62.69291 390.0236 cm
+1 0 0 1 62.69291 372.0236 cm
+Q
+q
+1 0 0 1 62.69291 360.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -11548,11 +11888,13 @@ Q
 q
 Q
 Q
-q
-1 0 0 1 62.69291 384.0236 cm
 Q
 q
-1 0 0 1 62.69291 372.0236 cm
+1 0 0 1 62.69291 354.0236 cm
+Q
+q
+1 0 0 1 62.69291 342.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -11572,11 +11914,13 @@ Q
 q
 Q
 Q
-q
-1 0 0 1 62.69291 366.0236 cm
 Q
 q
-1 0 0 1 62.69291 354.0236 cm
+1 0 0 1 62.69291 336.0236 cm
+Q
+q
+1 0 0 1 62.69291 324.0236 cm
+q
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -11596,52 +11940,53 @@ Q
 q
 Q
 Q
-q
-1 0 0 1 62.69291 354.0236 cm
 Q
 q
 1 0 0 1 62.69291 324.0236 cm
-q
-BT 1 0 0 1 0 3 Tm 18 TL /F2 15 Tf 0 0 0 rg (Platform Oddities) Tj T* ET
-Q
 Q
 q
 1 0 0 1 62.69291 294.0236 cm
 q
-0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL -0.133349 Tw (As most operators are implemented using native behaviour, details of some operations may depend on the) Tj T* 0 Tw (CPU architecture.) Tj T* ET
+BT 1 0 0 1 0 3 Tm 18 TL /F2 15 Tf 0 0 0 rg (Platform Oddities) Tj T* ET
 Q
 Q
 q
 1 0 0 1 62.69291 264.0236 cm
 q
 0 0 0 rg
-BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .24856 Tw (Lshift and rshift will exhibit a behaviour that depends on the CPU type whether it is 32 or 64 bit, and array) Tj T* 0 Tw (size.) Tj T* ET
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL -0.133349 Tw (As most operators are implemented using native behaviour, details of some operations may depend on the) Tj T* 0 Tw (CPU architecture.) Tj T* ET
 Q
 Q
 q
 1 0 0 1 62.69291 234.0236 cm
 q
 0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .24856 Tw (Lshift and rshift will exhibit a behaviour that depends on the CPU type whether it is 32 or 64 bit, and array) Tj T* 0 Tw (size.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 204.0236 cm
+q
+0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .474157 Tw (For 32 bit x86 systems, if the array word size is 32 bits or less, the shift is masked to 5 bits. That is, shift) Tj T* 0 Tw (amounts greater than 32 will "roll over", repeating smaller shifts.) Tj T* ET
 Q
 Q
 q
-1 0 0 1 62.69291 192.0236 cm
+1 0 0 1 62.69291 162.0236 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL .632209 Tw (On 64 bit systems, this behaviour will vary depending on whether SIMD is used or not. Arrays which are) Tj T* 0 Tw 3.035697 Tw (not even multiples of SIMD register sizes may exibit different behaviour at different array indexes) Tj T* 0 Tw (\(depending on whether SIMD or non-SIMD instructions were used for those parts of the array\).) Tj T* ET
 Q
 Q
 q
-1 0 0 1 62.69291 150.0236 cm
+1 0 0 1 62.69291 120.0236 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL 2.017984 Tw (ARM does not display this roll-over behaviour, and so may give different results than x86. However,) Tj T* 0 Tw .49936 Tw (negative shift values may result in the shift operation being conducted in the opposite direction \(e.g. right) Tj T* 0 Tw (shift instead of left shift\).) Tj T* ET
 Q
 Q
 q
-1 0 0 1 62.69291 120.0236 cm
+1 0 0 1 62.69291 90.02362 cm
 q
 0 0 0 rg
 BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL 1.761488 Tw (The conclusion is that bit shift operations which use a shift amount which is not in the range of 0 to) Tj T* 0 Tw ("maximum number" may produce undefined results. So valid bit shift amounts should be 0 to 7.) Tj T* ET
@@ -11951,54 +12296,54 @@ xref
 0000029604 00000 n 
 0000029727 00000 n 
 0000029962 00000 n 
-0000031658 00000 n 
-0000039682 00000 n 
-0000047431 00000 n 
-0000056604 00000 n 
-0000062710 00000 n 
-0000070491 00000 n 
-0000078238 00000 n 
-0000086077 00000 n 
-0000094829 00000 n 
-0000103244 00000 n 
-0000111212 00000 n 
-0000118850 00000 n 
-0000127430 00000 n 
-0000134654 00000 n 
-0000143350 00000 n 
-0000148864 00000 n 
-0000157601 00000 n 
-0000167286 00000 n 
-0000176814 00000 n 
-0000189030 00000 n 
-0000199027 00000 n 
-0000211037 00000 n 
-0000211314 00000 n 
-0000211349 00000 n 
-0000211384 00000 n 
-0000211419 00000 n 
-0000211454 00000 n 
-0000211489 00000 n 
-0000211524 00000 n 
-0000211559 00000 n 
-0000211594 00000 n 
-0000211629 00000 n 
-0000211665 00000 n 
-0000211701 00000 n 
-0000211737 00000 n 
-0000211773 00000 n 
-0000211809 00000 n 
-0000211845 00000 n 
-0000211881 00000 n 
-0000211917 00000 n 
-0000211953 00000 n 
-0000211989 00000 n 
-0000212025 00000 n 
-0000212061 00000 n 
+0000031678 00000 n 
+0000039706 00000 n 
+0000047463 00000 n 
+0000056644 00000 n 
+0000062774 00000 n 
+0000070611 00000 n 
+0000078416 00000 n 
+0000086303 00000 n 
+0000095117 00000 n 
+0000103590 00000 n 
+0000111608 00000 n 
+0000119288 00000 n 
+0000127932 00000 n 
+0000135192 00000 n 
+0000143940 00000 n 
+0000149458 00000 n 
+0000158211 00000 n 
+0000167928 00000 n 
+0000177485 00000 n 
+0000189720 00000 n 
+0000199726 00000 n 
+0000212069 00000 n 
+0000212346 00000 n 
+0000212381 00000 n 
+0000212416 00000 n 
+0000212451 00000 n 
+0000212486 00000 n 
+0000212521 00000 n 
+0000212556 00000 n 
+0000212591 00000 n 
+0000212626 00000 n 
+0000212661 00000 n 
+0000212697 00000 n 
+0000212733 00000 n 
+0000212769 00000 n 
+0000212805 00000 n 
+0000212841 00000 n 
+0000212877 00000 n 
+0000212913 00000 n 
+0000212949 00000 n 
+0000212985 00000 n 
+0000213021 00000 n 
+0000213057 00000 n 
+0000213093 00000 n 
 trailer
 <<
 /ID 
-[<5b9f6e931468b34a44a024babd9da07c><5b9f6e931468b34a44a024babd9da07c>]
+[<347a8cf89036d9d9aebf796a888b5834><347a8cf89036d9d9aebf796a888b5834>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 127 0 R
@@ -12006,5 +12351,5 @@ trailer
 /Size 224
 >>
 startxref
-212097
+213129
 %%EOF

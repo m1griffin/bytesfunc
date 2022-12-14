@@ -3,6 +3,9 @@ functions. These functions are patterned after the functions in the standard
 Python Itertools module together with some additional ones import other sources.
 """
 
+# The version number should be updated automatically by the build script.
+__version__ = '3.4.0'
+
 from bytesfunc.bmax import bmax
 from bytesfunc.bmin import bmin
 from bytesfunc.bsum import bsum

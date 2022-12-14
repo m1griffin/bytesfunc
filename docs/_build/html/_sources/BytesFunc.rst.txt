@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.3.0 for 2022-07-11
+:Version: 3.4.0 for 2022-12-11
 :Copyright: 2014 - 2022
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
@@ -1040,33 +1040,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                 911.2                   9.3
- ball                  735.3                  15.6
- bany                  737.1                  15.9
- bmax                   78.9                   2.7
- bmin                   76.7                   2.6
- bsum                   16.0
- eq                    751.3                  15.7
- findindex            1055.4                  14.8
- ge                    744.6                  14.9
- gt                    592.6                  11.7
- invert                726.3                   9.6
- le                    740.4                  15.0
- lshift               1285.9                   6.3
- lt                    578.2                  11.7
- ne                    758.3                  15.3
- or\_                  946.7                  10.2
- rshift                892.1                   6.2
- xor                  1007.0                   9.2
+ and\_                1129.5                  12.3
+ ball                  641.4                  13.8
+ bany                  663.9                  13.8
+ bmax                   85.7                   2.6
+ bmin                   86.1                   3.0
+ bsum                   14.7
+ eq                    745.7                  15.7
+ findindex             764.9                  12.5
+ ge                    752.8                  15.1
+ gt                    577.0                  11.9
+ invert               1166.2                  11.0
+ le                    728.0                  15.1
+ lshift               1823.9                   9.2
+ lt                    553.8                  11.6
+ ne                    801.7                  15.4
+ or\_                 1122.0                  12.4
+ rshift               1266.2                   8.1
+ xor                  1222.2                  12.0
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    702
-Maximum:    1286
-Minimum:    16.0
+Average:    786
+Maximum:    1824
+Minimum:    14.7
 Array size: 100000
 =========== ========
 
@@ -1087,33 +1087,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                1100.2                   3.7
- ball                  343.5                   2.6
- bany                  331.3                   2.4
- bmax                  268.2                   5.0
- bmin                  265.0                   5.0
- bsum                   75.5                   3.3
- eq                    350.7                   2.6
- findindex             511.0                   3.2
- ge                    361.8                   2.6
- gt                    362.3                   2.6
- invert                897.2                   3.7
- le                    362.3                   2.6
- lshift               1351.8                   4.2
- lt                    362.5                   2.6
- ne                    332.4                   2.4
- or\_                 1109.0                   3.7
- rshift                949.2                   4.3
- xor                  1141.1                   3.7
+ and\_                1103.9                   3.7
+ ball                  347.6                   2.6
+ bany                  331.7                   2.4
+ bmax                  265.9                   5.0
+ bmin                  261.4                   5.0
+ bsum                   71.5                   2.9
+ eq                    349.6                   2.6
+ findindex             508.1                   3.2
+ ge                    359.9                   2.6
+ gt                    359.2                   2.6
+ invert                914.4                   3.7
+ le                    360.0                   2.6
+ lshift               1358.1                   4.2
+ lt                    357.0                   2.6
+ ne                    328.2                   2.4
+ or\_                 1121.2                   3.7
+ rshift                960.1                   5.1
+ xor                  1170.3                   3.7
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    582
-Maximum:    1352
-Minimum:    75.5
+Average:    585
+Maximum:    1358
+Minimum:    71.5
 Array size: 100000
 =========== ========
 
@@ -1134,33 +1134,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                 769.2                   6.5
- ball                  500.2                   6.0
- bany                  532.0                   6.1
- bmax                  358.4                  13.8
- bmin                  372.8                  13.8
- bsum                  113.6                   6.3
- eq                    501.8                   6.0
- findindex             730.8                   6.1
- ge                    533.0                   6.0
- gt                    528.6                   6.0
- invert                853.3                   9.2
- le                    537.4                   6.0
- lshift               1164.8                   6.7
- lt                    582.1                   6.0
- ne                    569.0                   6.1
- or\_                  896.8                   6.2
- rshift                657.9                   5.9
- xor                   761.8                   6.8
+ and\_                 998.9                   7.5
+ ball                  501.7                   6.0
+ bany                  543.4                   6.2
+ bmax                  364.9                  13.9
+ bmin                  361.5                  13.9
+ bsum                  115.8                   6.6
+ eq                    506.5                   6.0
+ findindex             687.0                   6.1
+ ge                    533.2                   6.0
+ gt                    528.5                   6.0
+ invert                698.4                   9.2
+ le                    532.1                   6.0
+ lshift               1332.2                   7.6
+ lt                    527.2                   6.0
+ ne                    554.3                   6.2
+ or\_                  740.1                   6.3
+ rshift                713.0                   6.2
+ xor                  1099.4                   8.2
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    609
-Maximum:    1165
-Minimum:    113.6
+Average:    630
+Maximum:    1332
+Minimum:    115.8
 Array size: 100000
 =========== ========
 
@@ -1196,20 +1196,25 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 ======================= ========== ====== =============== ================
 OS                       Hardware   Bits   Compiler        Python Version
 ======================= ========== ====== =============== ================
-Ubuntu 20.04 LTS         x86_64     64     GCC               3.8
-Ubuntu 22.04             x86_64     64     GCC               3.10
-Debian 11                i686       32     GCC               3.9
-Debian 11                x86_64     64     GCC               3.9
-OpenSuse 15.3            x86_64     64     GCC               3.6
-Alma 9                   x86_64     64     GCC               3.9
-Alpine 3.16.0            i686       32     GCC               3.10
-FreeBSD 13               x86_64     64     LLVM              3.8
-OpenBSD 7.1              x86_64     64     LLVM              3.9
-MS Windows 10            x86_64     64     MS VS C v.1929    3.10
-MS Windows 11            x86_64     64     MS VS C v.1929    3.10
-Raspberry Pi 2022-04-04  RPi 3      32     GCC               3.9
-Ubuntu 22.04             RPi 4      64     GCC               3.10
+Debian 11                i686         32     GCC               3.9.2
+Debian 11                x86_64       64     GCC               3.9.2
+Ubuntu 22.04             x86_64       64     GCC               3.10.6
+Ubuntu 22.10             x86_64       64     GCC               3.10.7
+opensuse-leap 15.4       x86_64       64     GCC               3.6.15
+almalinux 9.0            x86_64       64     GCC               3.9.10
+alpine 3.16.2            i686         32     GCC               3.10.5
+FreeBSD 13.1             amd64        64     Clang             3.9.15
+OpenBSD 7.2              amd64        64     Clang             3.9.15
+MS Windows 10            AMD64        64     MSC               3.11.0
+MS Windows 11            AMD64        64     MSC               3.11.0
+Raspbian 11              armv7l       32     GCC               3.9.2
+Ubuntu 22.04             aarch64      64     GCC               3.10.6
 ======================= ========== ====== =============== ================
+
+amd64 is another name for x86_64 and does not indicate the CPU brand.
+armv7l is 32 bit ARM. The test hardware is a Raspberry Pi 3.
+aarch64 is 64 bit ARM. The test hardware is a Raspberry Pi 4.
+
 
 * The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running
   in 32 bit mode. 
