@@ -39,10 +39,10 @@
 <dd class="field-odd"><p>Michael Griffin</p>
 </dd>
 <dt class="field-even">Version</dt>
-<dd class="field-even"><p>3.4.0 for 2022-12-11</p>
+<dd class="field-even"><p>3.4.1 for 2023-04-22</p>
 </dd>
 <dt class="field-odd">Copyright</dt>
-<dd class="field-odd"><p>2014 - 2022</p>
+<dd class="field-odd"><p>2014 - 2023</p>
 </dd>
 <dt class="field-even">License</dt>
 <dd class="field-even"><p>This document may be distributed under the Apache License V2.0.</p>
@@ -130,6 +130,7 @@
 <ul>
 <li><p><a class="reference internal" href="#list-of-tested-operation-systems-compilers-and-cpu-architectures" id="id50">List of tested Operation Systems, Compilers, and CPU Architectures</a></p></li>
 <li><p><a class="reference internal" href="#platform-oddities" id="id51">Platform Oddities</a></p></li>
+<li><p><a class="reference internal" href="#installing-on-linux-with-pip-and-pep-668" id="id52">Installing on Linux with PIP and PEP-668</a></p></li>
 </ul>
 </li>
 </ul>
@@ -1851,11 +1852,11 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 <td><p>GCC</p></td>
 <td><p>3.10.6</p></td>
 </tr>
-<tr class="row-odd"><td><p>Ubuntu 22.10</p></td>
+<tr class="row-odd"><td><p>Ubuntu 23.04</p></td>
 <td><p>x86_64</p></td>
 <td><p>64</p></td>
 <td><p>GCC</p></td>
-<td><p>3.10.7</p></td>
+<td><p>3.11.2</p></td>
 </tr>
 <tr class="row-even"><td><p>opensuse-leap 15.4</p></td>
 <td><p>x86_64</p></td>
@@ -1863,29 +1864,29 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 <td><p>GCC</p></td>
 <td><p>3.6.15</p></td>
 </tr>
-<tr class="row-odd"><td><p>almalinux 9.0</p></td>
+<tr class="row-odd"><td><p>almalinux 9.1</p></td>
 <td><p>x86_64</p></td>
 <td><p>64</p></td>
 <td><p>GCC</p></td>
-<td><p>3.9.10</p></td>
+<td><p>3.9.14</p></td>
 </tr>
-<tr class="row-even"><td><p>alpine 3.16.2</p></td>
+<tr class="row-even"><td><p>alpine 3.17.3</p></td>
 <td><p>i686</p></td>
 <td><p>32</p></td>
 <td><p>GCC</p></td>
-<td><p>3.10.5</p></td>
+<td><p>3.10.11</p></td>
 </tr>
-<tr class="row-odd"><td><p>FreeBSD 13.1</p></td>
+<tr class="row-odd"><td><p>FreeBSD 13.2</p></td>
 <td><p>amd64</p></td>
 <td><p>64</p></td>
 <td><p>Clang</p></td>
-<td><p>3.9.15</p></td>
+<td><p>3.9.16</p></td>
 </tr>
-<tr class="row-even"><td><p>OpenBSD 7.2</p></td>
+<tr class="row-even"><td><p>OpenBSD 7.3</p></td>
 <td><p>amd64</p></td>
 <td><p>64</p></td>
 <td><p>Clang</p></td>
-<td><p>3.9.15</p></td>
+<td><p>3.10.10</p></td>
 </tr>
 <tr class="row-odd"><td><p>MS Windows 10</p></td>
 <td><p>AMD64</p></td>
@@ -1944,6 +1945,29 @@ of left shift).</p>
 <p>The conclusion is that bit shift operations which use a shift amount which is
 not in the range of 0 to “maximum number” may produce undefined results.
 So valid bit shift amounts should be 0 to 7.</p>
+</section>
+<section id="installing-on-linux-with-pip-and-pep-668">
+<h3><a class="toc-backref" href="#id52">Installing on Linux with PIP and PEP-668</a><a class="headerlink" href="#installing-on-linux-with-pip-and-pep-668" title="Permalink to this headline">¶</a></h3>
+<p>PEP-668 (PEPs describe changes to Python) introduced a new feature which can
+affect how packages are installed with PIP. If PIP is configured to be
+EXTERNALLY-MANAGED it will refuse to install a package outside of a virtual
+environment.</p>
+<p>The intention of this is to prevent conflicts between packages which are
+installed using the system package manager, and ones which are installed using
+PIP.</p>
+<p>Linux distros which are affeced by this include the latest versions of Debian
+and Ubuntu.</p>
+<p>As this package is a library which is intended to be used by other
+applications, there is no one right way to install it, whether inside or
+outside of a virtual environment. Review the options available with PIP to see
+what is suitable for your application.</p>
+<p>For testing purposes this package was installed by setting the environment
+variable PIP_BREAK_SYSTEM_PACKAGES to “1”, which effectively disables this
+feature in PIP.</p>
+<p>example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">PIP_BREAK_SYSTEM_PACKAGES</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

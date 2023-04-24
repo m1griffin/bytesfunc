@@ -456,3 +456,30 @@ The conclusion is that bit shift operations which use a shift amount which is
 not in the range of 0 to "maximum number" may produce undefined results.
 So valid bit shift amounts should be 0 to 7.
 
+
+Installing on Linux with PIP and PEP-668
+----------------------------------------
+PEP-668 (PEPs describe changes to Python) introduced a new feature which can
+affect how packages are installed with PIP. If PIP is configured to be 
+EXTERNALLY-MANAGED it will refuse to install a package outside of a virtual
+environment.
+
+The intention of this is to prevent conflicts between packages which are 
+installed using the system package manager, and ones which are installed using
+PIP.
+
+Linux distros which are affeced by this include the latest versions of Debian
+and Ubuntu.
+
+As this package is a library which is intended to be used by other 
+applications, there is no one right way to install it, whether inside or 
+outside of a virtual environment. Review the options available with PIP to see
+what is suitable for your application.
+
+For testing purposes this package was installed by setting the environment
+variable PIP_BREAK_SYSTEM_PACKAGES to "1", which effectively disables this
+feature in PIP. 
+
+example::
+
+	export PIP_BREAK_SYSTEM_PACKAGES=1
