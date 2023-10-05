@@ -6,7 +6,7 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.4.1 for 2023-04-22
+:Version: 3.4.2 for 2023-10-05
 :Copyright: 2014 - 2023
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
@@ -1040,33 +1040,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                1129.5                  12.3
- ball                  641.4                  13.8
- bany                  663.9                  13.8
- bmax                   85.7                   2.6
- bmin                   86.1                   3.0
- bsum                   14.7
- eq                    745.7                  15.7
- findindex             764.9                  12.5
- ge                    752.8                  15.1
- gt                    577.0                  11.9
- invert               1166.2                  11.0
- le                    728.0                  15.1
- lshift               1823.9                   9.2
- lt                    553.8                  11.6
- ne                    801.7                  15.4
- or\_                 1122.0                  12.4
- rshift               1266.2                   8.1
- xor                  1222.2                  12.0
+ and\_                1186.2                  11.0
+ ball                  652.8                  13.9
+ bany                  678.5                  13.8
+ bmax                   86.3                   2.5
+ bmin                   84.6                   2.6
+ bsum                   16.3
+ eq                    728.7                  15.6
+ findindex             912.6                  13.8
+ ge                    771.4                  15.1
+ gt                    596.6                  11.9
+ invert                810.5                  10.0
+ le                    745.1                  15.0
+ lshift               1910.2                   8.8
+ lt                    589.0                  11.9
+ ne                    767.4                  15.4
+ or\_                 1222.1                  12.1
+ rshift               1340.3                   8.7
+ xor                  1478.0                  11.2
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    786
-Maximum:    1824
-Minimum:    14.7
+Average:    810
+Maximum:    1910
+Minimum:    16.3
 Array size: 100000
 =========== ========
 
@@ -1196,19 +1196,19 @@ underlying math functions. BytesFunc has been tested on the following platforms.
 ======================= ========== ====== =============== ================
 OS                       Hardware   Bits   Compiler        Python Version
 ======================= ========== ====== =============== ================
-Debian 11                i686         32     GCC               3.9.2
-Debian 11                x86_64       64     GCC               3.9.2
-Ubuntu 22.04             x86_64       64     GCC               3.10.6
-Ubuntu 23.04             x86_64       64     GCC               3.11.2
+Debian 12                i686         32     GCC               3.11.2
+Debian 12                x86_64       64     GCC               3.11.2
+Ubuntu 22.04             x86_64       64     GCC               3.10.12
+Ubuntu 23.04             x86_64       64     GCC               3.11.4
 opensuse-leap 15.4       x86_64       64     GCC               3.6.15
-almalinux 9.1            x86_64       64     GCC               3.9.14
-alpine 3.17.3            i686         32     GCC               3.10.11
-FreeBSD 13.2             amd64        64     Clang             3.9.16
-OpenBSD 7.3              amd64        64     Clang             3.10.10
-MS Windows 10            AMD64        64     MSC               3.11.0
-MS Windows 11            AMD64        64     MSC               3.11.0
+almalinux 9.2            x86_64       64     GCC               3.9.16
+alpine 3.18.4            i686         32     GCC               3.11.6
+FreeBSD 13.2             amd64        64     Clang             3.9.18
+OpenBSD 7.3              amd64        64     Clang             3.10.13
+MS Windows 10            AMD64        64     MSC               3.12.0
+MS Windows 11            AMD64        64     MSC               3.12.0
 Raspbian 11              armv7l       32     GCC               3.9.2
-Ubuntu 22.04             aarch64      64     GCC               3.10.6
+Ubuntu 22.04             aarch64      64     GCC               3.10.12
 ======================= ========== ====== =============== ================
 
 amd64 is another name for x86_64 and does not indicate the CPU brand.
