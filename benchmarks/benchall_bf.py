@@ -201,7 +201,7 @@ def escapename(funcname):
 	text input. 
 	''' 
 	if funcname.endswith('_'):
-		return funcname.rstrip('_') + '\_'
+		return funcname.rstrip('_') + '\\_'
 	else:
 		return funcname
 

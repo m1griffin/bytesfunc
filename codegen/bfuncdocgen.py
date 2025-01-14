@@ -87,9 +87,9 @@ def sanitizer(x):
 		return x
 
 	if 'and_' in x:
-		return x.replace('and_', 'and\_')
+		return x.replace('and_', 'and\\_')
 	elif 'or_' in x:
-		return x.replace('or_', 'or\_')
+		return x.replace('or_', 'or\\_')
 	else:
 		return x
 
