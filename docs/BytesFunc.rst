@@ -6,8 +6,8 @@ BytesFunc
     Michael Griffin
     
 
-:Version: 3.4.2 for 2023-10-05
-:Copyright: 2014 - 2023
+:Version: 3.4.4 for 2025-01-14
+:Copyright: 2014 - 2025
 :License: This document may be distributed under the Apache License V2.0.
 :Language: Python 3.6 or later
 
@@ -1040,33 +1040,33 @@ Relative Performance - Python Time / Bytesfunc Time.
 ============ ===================== ======================================
   function    Bytesfunc vs Python   SIMD vs non-SIMD
 ============ ===================== ======================================
- and\_                1186.2                  11.0
- ball                  652.8                  13.9
- bany                  678.5                  13.8
- bmax                   86.3                   2.5
- bmin                   84.6                   2.6
- bsum                   16.3
- eq                    728.7                  15.6
- findindex             912.6                  13.8
- ge                    771.4                  15.1
- gt                    596.6                  11.9
- invert                810.5                  10.0
- le                    745.1                  15.0
- lshift               1910.2                   8.8
- lt                    589.0                  11.9
- ne                    767.4                  15.4
- or\_                 1222.1                  12.1
- rshift               1340.3                   8.7
- xor                  1478.0                  11.2
+ and\_                1664.9                  13.3
+ ball                  470.3                   7.7
+ bany                  490.6                   7.7
+ bmax                   58.8                   3.2
+ bmin                   57.3                   3.2
+ bsum                   12.6
+ eq                    460.5                   7.4
+ findindex             733.4                   7.3
+ ge                    462.0                   7.3
+ gt                    320.4                   5.3
+ invert               1604.3                  13.5
+ le                    472.9                   7.3
+ lshift               2289.1                  25.1
+ lt                    307.4                   5.2
+ ne                    459.6                   7.3
+ or\_                 1556.0                  23.7
+ rshift               1614.4                  24.3
+ xor                  1598.9                  25.3
 ============ ===================== ======================================
 
 
 =========== ========
 Stat         Value
 =========== ========
-Average:    810
-Maximum:    1910
-Minimum:    16.3
+Average:    813
+Maximum:    2289
+Minimum:    12.6
 Array size: 100000
 =========== ========
 
@@ -1193,27 +1193,29 @@ List of tested Operation Systems, Compilers, and CPU Architectures
 BytesFunc is written in 'C' and uses the standard C libraries to implement the 
 underlying math functions. BytesFunc has been tested on the following platforms.
 
-======================= ========== ====== =============== ================
-OS                       Hardware   Bits   Compiler        Python Version
-======================= ========== ====== =============== ================
-Debian 12                i686         32     GCC               3.11.2
-Debian 12                x86_64       64     GCC               3.11.2
-Ubuntu 22.04             x86_64       64     GCC               3.10.12
-Ubuntu 23.04             x86_64       64     GCC               3.11.4
-opensuse-leap 15.4       x86_64       64     GCC               3.6.15
-almalinux 9.2            x86_64       64     GCC               3.9.16
-alpine 3.18.4            i686         32     GCC               3.11.6
-FreeBSD 13.2             amd64        64     Clang             3.9.18
-OpenBSD 7.3              amd64        64     Clang             3.10.13
-MS Windows 10            AMD64        64     MSC               3.12.0
-MS Windows 11            AMD64        64     MSC               3.12.0
-Raspbian 11              armv7l       32     GCC               3.9.2
-Ubuntu 22.04             aarch64      64     GCC               3.10.12
-======================= ========== ====== =============== ================
+======================= ======= ==== ======== =======
+OS                       Arch   Bits Compiler Python 
+======================= ======= ==== ======== =======
+almalinux 9.5           x86_64   64  GCC      3.9.19   
+alpine 3.20.3           i686     32  GCC      3.12.7  
+Debian 12               i686     32  GCC      3.11.2   
+Debian 12               x86_64   64  GCC      3.11.2   
+FreeBSD 14.1            amd64    64  Clang    3.11.10
+OpenBSD 7.6             amd64    64  Clang    3.11.10
+Raspbian 12             armv7l   32  GCC      3.11.2 
+Ubuntu 24.04            aarch64  64  GCC      3.12.3 
+Debian 12               aarch64  64  GCC      3.11.2 
+opensuse-leap 15.6      x86_64   64  GCC      3.6.15    
+Ubuntu 24.04            x86_64   64  GCC      3.12.3 
+Ubuntu 24.10            x86_64   64  GCC      3.12.7 
+MS Windows 11           AMD64    64  MSC      3.13.1 
+======================= ======= ==== ======== =======
 
-amd64 is another name for x86_64 and does not indicate the CPU brand.
-armv7l is 32 bit ARM. The test hardware is a Raspberry Pi 3.
-aarch64 is 64 bit ARM. The test hardware is a Raspberry Pi 4.
+amd64 and x86_64 are two names for the same thing.
+armv7l is 32 bit ARM. aarch64 is 64 bit ARM.
+The ARM test hardware consists of Raspberry PI
+models 3, 4, and 5.
+
 
 
 * The Rasberry Pi 3 tests were conducted on a Raspberry Pi 3 ARM CPU running

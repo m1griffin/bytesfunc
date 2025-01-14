@@ -1,3 +1,4 @@
+* 3.4.4 - Bump version to update documentation.
 * 3.4.3 - Update to testing and support. There were no code changes.
           Changes were made to unit testing and benchmark support
           scripts to support a new testing environment.
